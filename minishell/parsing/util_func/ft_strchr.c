@@ -1,28 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_main.c                                       :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 12:32:33 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/10 16:09:40 by chanhale         ###   ########.fr       */
+/*   Created: 2021/11/10 12:59:32 by chanhale          #+#    #+#             */
+/*   Updated: 2022/07/10 18:33:31 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./command_parse.h"
-#include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-int	main(int argc, char **argv)
+char	*ft_strchr(const char *s, int c)
 {
-	char	*buff;
-	readline(buff);
-	printf("%s\n", buff);
-	printf("1%s\n", buff);
-	printf("1%s\n", buff);
-	free(buff);
-	system("leaks test");
+	char	casted_c;
+
+	casted_c = (char) c;
+	while (*s != casted_c && *s != '\0')
+		s++;
+	if (*s == casted_c)
+		return ((char *)s);
 	return (0);
 }

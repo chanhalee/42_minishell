@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:34 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/08 15:22:27 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/10 17:45:48 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ t_cmd	*get_empty_t_cmd(void) // if worng_return_null
 	ret->input_buffer = NULL;
 	ret->output_buffer = NULL;
 	ret->next = NULL;
+	ret->redirection_list = NULL;
 	return (ret);
 }
 
@@ -52,7 +53,7 @@ t_cmd	*add_empty_t_cmd(t_cmd_list *cmd_list)
 	return (new_node);
 }
 
-t_cmd_list	*add_empty_t_cmd_list(t_cmd_container *container)
+t_cmd_list	*create_empty_t_cmd_list(void)
 {
 	t_cmd_list	*ret;
 	t_cmd_list	*prev_list;
@@ -63,26 +64,29 @@ t_cmd_list	*add_empty_t_cmd_list(t_cmd_container *container)
 	ret->cmd_list = NULL;
 	ret->status = TYPE_INITIAL_STATUS;
 	ret->first_cmd_input = NULL;
-	if (container->cmd_lists == NULL)
-		container->cmd_lists = ret;
-	else
-	{
-		prev_list = container->cmd_lists;
-		while (prev_list->next_list != NULL)
-			prev_list = prev_list->next_list;
-		prev_list->next_list = ret;
-	}
+	ret->next_list = NULL;
 	return (ret);
 }
 
-t_cmd_container	*create_empty_cmd_container(void)
+t_cmd_redirection	*add_empty_cmd_redirection(t_cmd *cmd, int red_type, char *file)
 {
-	t_cmd_container	*ret;
+	t_cmd_redirection	*ret;
+	t_cmd_redirection	*prev;
 
-	ret = (t_cmd_container *)malloc(sizeof(t_cmd_container));
+	ret = (t_cmd_redirection *)malloc(sizeof(t_cmd_redirection));
 	if (ret == NULL)
 		return (NULL);
-	ret->status = TYPE_INITIAL_STATUS;
-	ret->cmd_lists = NULL;
+	ret->red_type = red_type;
+	ret->file = file;
+	ret->next = NULL;
+	if (cmd->redirection_list == NULL)
+		cmd->redirection_list = ret;
+	else
+	{
+		prev = cmd->redirection_list;
+		while (prev->next != NULL)
+			prev = prev->next;
+		prev->next = ret;
+	}
 	return (ret);
 }
