@@ -1,13 +1,15 @@
 # 42_minishell
 
-__간단한 쉘 만들기__
+**간단한 쉘 만들기**
 
-* 참가인원
+컴파일
+gcc test.c -L/opt/homebrew/opt/readline/lib -I/opt/homebrew/opt/readline/include -lreadline
 
-	- jeounpar(박정규) - 명령 실행 체계 구현<br>
-	- chanhale(이찬하) - 입력 파싱 및 명령 구조화
+-   참가인원
 
-* 진행기간
+    -   jeounpar(박정규) - 명령 실행 체계 구현<br>
+    -   chanhale(이찬하) - 입력 파싱 및 명령 구조화
 
-	2022-07-07 ~ 
+-   진행기간
 
+    2022-07-07 ~
