@@ -1,9 +1,10 @@
-# include <stdio.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include <stdlib.h>
-# include <fcntl.h>
-# include <unistd.h>
+#include <stdio.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <stdlib.h>
+#include <fcntl.h>
+#include <unistd.h>
+#include <termios.h>
 
 void	signal_handler(int signo)
 {
@@ -13,7 +14,6 @@ void	signal_handler(int signo)
 		rl_on_new_line();
 		rl_replace_line("", 1);
 		rl_redisplay();
-		// str = readline("bash& ");
 	}
 }
 
@@ -23,6 +23,7 @@ int main(void)
 	char *str;
     int intro_fd;
     int readsize;
+	struct termios term;
 	
 
     intro_fd = open("intro.txt", O_RDONLY);
@@ -41,6 +42,14 @@ int main(void)
     close(intro_fd);
 
 	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, SIG_IGN);
+
+	// ctrl + C 입력시 반향을 꺼줌
+    tcgetattr(STDIN_FILENO, &term);
+    term.c_lflag &= ~(ECHOCTL);
+    tcsetattr(STDIN_FILENO, TCSANOW, &term);
+
+
     str = NULL;
 
     while(1)
@@ -48,8 +57,12 @@ int main(void)
         str = readline("bash$ ");
         if (str)
             printf("%s\n", str);
-        else
+        else {
+			printf("\033[1A");
+            printf("\033[5C");
+            printf(" exit\n");
             break ;
+		}
         add_history(str);
         free(str);
 		str = NULL;

@@ -2,6 +2,12 @@
 
 **간단한 쉘 만들기**
 
+readline 라이브러리 설치
+brew install readline
+
+readline 라이브러리 위치 확인
+brew info readline
+
 컴파일
 gcc test.c -L/opt/homebrew/opt/readline/lib -I/opt/homebrew/opt/readline/include -lreadline
 
@@ -13,3 +19,7 @@ gcc test.c -L/opt/homebrew/opt/readline/lib -I/opt/homebrew/opt/readline/include
 -   진행기간
 
     2022-07-07 ~
+
+-   구현 완료
+    입력 프롬프트 생성
+    signal 처리 (SIGINT, SIGTERM, SIGQUIT)
