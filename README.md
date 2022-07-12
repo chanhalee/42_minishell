@@ -9,7 +9,7 @@ readline 라이브러리 위치 확인
 brew info readline
 
 컴파일
-gcc test.c -L/opt/homebrew/opt/readline/lib -I/opt/homebrew/opt/readline/include -lreadline
+gcc test.c -L/$HOME/.brew/opt/readline/lib -I/$HOME/.brew/opt/readline/include -lreadline
 
 -   참가인원
 

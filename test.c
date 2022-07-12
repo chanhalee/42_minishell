@@ -56,7 +56,7 @@ int main(void)
     {
         str = readline("bash$ ");
         if (str)
-            printf("%s\n", str);
+            printf("input = %s\n", str);
         else {
 			printf("\033[1A");
             printf("\033[5C");
