@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 20:19:28 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:32:44 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void			free_t_parse_token_list(t_parse_token *token_list);
 void			*parse_err_free_two_d_char(char **ptr);
 void			*parse_err_free_multi_str(char *ptr1, char *ptr2, char *ptr3, char *ptr4);
 char 			*parse_env_from_str(char *str);
-void			tokenize_handle_qoutaion(t_parse_token *tok_list);
+void			tokenize_handle_quotaion(t_parse_token *tok_list);
 char			**seperate_quote(char *str);
 
 #endif

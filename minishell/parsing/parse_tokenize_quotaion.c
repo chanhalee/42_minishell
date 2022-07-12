@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_qoutaion.c                          :+:      :+:    :+:   */
+/*   parse_tokenize_quotaion.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:00:00 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 20:25:53 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:32:35 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char	**seperate_quote(char *str);
 
-void	tokenize_handle_qoutaion(t_parse_token *tok_list)
+void	tokenize_handle_quotaion(t_parse_token *tok_list)
 {
 	t_parse_token	*next_tok;
 	char			**sep;

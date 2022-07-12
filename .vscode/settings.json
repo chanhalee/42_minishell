@@ -1,5 +1,9 @@
 {
 	"files.associations": {
-		"command_parse.h": "c"
+		"command_parse.h": "c",
+		"readline.h": "c",
+		"history.h": "c",
+		"stdio.h": "c",
+		"do_not_submit.h": "c"
 	}
 }

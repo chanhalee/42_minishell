@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:33 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 20:27:10 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:32:50 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	main(int argc, char **argv)
 		sep = create_empty_t_parse_token();
 		sep->token_type = TYPE_TOKEN_CHUNK;
 		sep->string = ft_strdup(argv[1]);
-		tokenize_handle_qoutaion(sep);
+		tokenize_handle_quotaion(sep);
 		print_token_list(sep);
 	}
 	//system("leaks test");
@@ -78,7 +78,7 @@ t_cmd_list *parse(char *raw_cmd_string)
 // 		sep = create_empty_t_parse_token();
 // 		sep->token_type = TYPE_TOKEN_CHUNK;
 // 		sep->string = ft_strdup(argv[1]);
-// 		tokenize_handle_qoutaion(sep);
+// 		tokenize_handle_quotaion(sep);
 // 		print_token_list(sep);
 // 	}
 // 	//system("leaks test");
