@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   print_container.c                                  :+:      :+:    :+:   */
+/*   print_cmd_lists.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:27:09 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/08 15:53:05 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/11 16:32:55 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../command_parse.h"
-#include <stdio.h>
+#include "./do_not_submit.h"
 
 void print_cmd(t_cmd *cmd, int list_counter, int cmd_counter)
 {
@@ -20,11 +19,17 @@ void print_cmd(t_cmd *cmd, int list_counter, int cmd_counter)
 	printf("+++ [%d] [%d] cmd_path: %s\n",list_counter, cmd_counter, cmd->exec_file_path);
 	index = -1;
 	printf("+++ [%d] [%d] cmd_input: %s\n",list_counter, cmd_counter, *(cmd->input_buffer));
-	while ((cmd->argv)[++index] != NULL)
-		printf("+++ [%d] [%d] cmd_argv[%d]: %s\n",list_counter, cmd_counter, index, (cmd->argv)[index]);
+	if (cmd->argv != NULL)
+	{
+		while ((cmd->argv)[++index] != NULL)
+			printf("+++ [%d] [%d] cmd_argv[%d]: %s\n",list_counter, cmd_counter, index, (cmd->argv)[index]);
+	}
 	index = -1;
-	while ((cmd->environment)[++index] != NULL)
-		printf("+++ [%d] [%d] cmd_invinronment[%d]: %s\n",list_counter, cmd_counter, index, (cmd->environment)[index]);
+	if(cmd->environment != NULL)
+	{
+		while ((cmd->environment)[++index] != NULL)
+			printf("+++ [%d] [%d] cmd_invinronment[%d]: %s\n",list_counter, cmd_counter, index, (cmd->environment)[index]);
+	}
 	printf("+++ [%d] [%d] cmd_output: %s\n",list_counter, cmd_counter, cmd->output_buffer);
 }
 
@@ -52,20 +57,4 @@ void print_cmd_lists(t_cmd_list *lists)
 		}
 		lists = lists->next_list;
 	}
-}
-
-void print_cmd_container(t_cmd_container *container)
-{
-	t_cmd_list *list;
-	
-	if(container == NULL)
-	{
-		printf("NULL CONTAINER\n");
-		return ;
-	}
-	list = container->cmd_lists;
-	printf("Print container\n");
-	printf("container_status: %d\n", container->status);
-	print_cmd_lists(list);
-	printf("=====================\n\n");
 }

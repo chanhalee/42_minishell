@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   tokenize_command.c                                 :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/10 17:17:33 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/10 17:17:35 by chanhale         ###   ########.fr       */
+/*   Created: 2021/11/10 11:24:36 by chanhale          #+#    #+#             */
+/*   Updated: 2022/07/12 15:59:25 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "../command_parse.h"
 
-#include "./command_parse.h"
-
-t_parse_token	*tokenize_raw_command(char *raw_command)
+size_t	ft_strlen(const char *s)
 {
-	
+	size_t	iter;
+
+	iter = 0;
+	while (s[iter])
+		iter++;
+	return (iter);
 }

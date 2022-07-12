@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/10 22:49:41 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/12 20:19:28 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,19 @@
 
 # define TYPE_ERR_CODE_ALLOC 1
 # define TYPE_INITIAL_STATUS 0
-# define TYPE_TOKEN_LOW_PIPELINE 11
-# define TYPE_TOKEN_LOW_CMD 12
+# define TYPE_RED_LEFT 0
+
+# define TYPE_TOKEN_CHUNK 11
+# define TYPE_TOKEN_ARGV 22
+# define TYPE_TOKEN_EXEC 33
+# define TYPE_TOKEN_IO_RED 44
+# define TYPE_TOKEN_PIPELINE 55
 
 typedef struct s_cmd_redirection
 {
-	char				*file;
-	int					red_type;
-	t_cmd_redirection	*next;
+	char						*file;
+	int							red_type;
+	struct s_cmd_redirection	*next;
 }	t_cmd_redirection;
 
 typedef	struct s_cmd
@@ -53,17 +58,30 @@ typedef	struct s_parse_token
 {
 	int						token_type;
 	char					*string;
-	struct s_string_list	*next;
+	struct s_parse_token	*next;
 }	t_parse_token;
 
 t_cmd_list		*create_empty_t_cmd_list(void);
 t_cmd			*add_empty_t_cmd(t_cmd_list *cmd_list);
 void			free_first_t_cmd_node(t_cmd_list *cmd_list);
+void			free_t_cmd_list(t_cmd_list *cmd_list);
 t_cmd			*get_last_node(t_cmd *cmd_list);
 t_cmd			*get_empty_t_cmd(void);
 char			*ft_strdup(const char *src);
 char			*ft_strtrim(char const *s1, char const *set);
 char			*ft_strchr(const char *s, int c);
-char			**ft_split(char const *s, char c);
+char			**ft_split_custom(char const *s, char c);
+char			*ft_substr(char const *s, unsigned int start, size_t len);
+char			*ft_strjoin(char const *s1, char const *s2);
+int				ft_strcmp(const char *s1, const char *s2);
+size_t			ft_strlen(const char *s);
+t_parse_token	*add_t_parse_token_to_list(t_parse_token **token_list, size_t index, int type, char *content);
+t_parse_token	*create_empty_t_parse_token(void);
+void			free_t_parse_token_list(t_parse_token *token_list);
+void			*parse_err_free_two_d_char(char **ptr);
+void			*parse_err_free_multi_str(char *ptr1, char *ptr2, char *ptr3, char *ptr4);
+char 			*parse_env_from_str(char *str);
+void			tokenize_handle_qoutaion(t_parse_token *tok_list);
+char			**seperate_quote(char *str);
 
 #endif

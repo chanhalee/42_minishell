@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:34 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/10 17:45:48 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/11 16:24:48 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ t_cmd	*get_empty_t_cmd(void) // if worng_return_null
 
 	ret = (t_cmd *)malloc(sizeof(t_cmd));
 	if (ret == NULL)
-		emergency_exit_parse(NULL, TYPE_ERR_CODE_ALLOC);
+		return (NULL);
 	ret->exec_file_path = NULL;
 	ret->environment = NULL;
 	ret->argv = NULL;
@@ -43,7 +43,7 @@ t_cmd	*add_empty_t_cmd(t_cmd_list *cmd_list)
 	{
 		cmd_list->cmd_list = new_node;
 		new_node->input_buffer = &(cmd_list->first_cmd_input);
-		return ;
+		return (new_node);
 	}
 	prev_node = cmd_list->cmd_list;
 	while (prev_node -> next != NULL)
