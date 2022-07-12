@@ -6,13 +6,23 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:04:24 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 19:43:45 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/12 23:39:16 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
 
 char	*parse_env_from_str_sub(char *str);
+
+void	parse_env_from_token_list(t_parse_token *tok_lst)
+{
+	while (tok_lst != NULL)
+	{
+		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
+			tok_lst->string = parse_env_from_str(tok_lst->string);
+		tok_lst = tok_lst->next;
+	}
+}
 
 char	*parse_env_from_str(char *str)
 {
@@ -35,7 +45,7 @@ char	*parse_env_from_str(char *str)
 		ret = ft_strjoin(ret, str_tmp2);
 		parse_err_free_multi_str(str_tmp, str_tmp2, NULL, NULL);
 	}
-	parse_err_free_two_d_char(split_str);
+	parse_err_free_two_d_char(split_str, -1);
 	if (ret == NULL)
 		return (str);
 	free(str);

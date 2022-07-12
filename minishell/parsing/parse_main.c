@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:33 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 20:32:50 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 01:16:58 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,36 +15,19 @@
 
 int	main(int argc, char **argv)
 {
-	t_parse_token	*sep;
-	int		index;
+	char	**sep;
+	t_parse_token *tok;
+	int		index = -1;
 
 	if(argc >=2){
 		printf("|%s|\n", argv[1]);
-		sep = create_empty_t_parse_token();
-		sep->token_type = TYPE_TOKEN_CHUNK;
-		sep->string = ft_strdup(argv[1]);
-		tokenize_handle_quotaion(sep);
-		print_token_list(sep);
+		tok = parse_tokenize(ft_strdup(argv[1]));
+		print_token_list(tok);
+		free_t_parse_token_list(tok);
 	}
 	//system("leaks test");
 	exit(1);
-}
-
-t_cmd_list *parse(char *raw_cmd_string)
-{
-	t_parse_token *token_list;
-	char	*dup_cmd_str;
-	
-	dup_cmd_str = ft_strdup(raw_cmd_string);
-	if (dup_cmd_str == NULL)
-		return (NULL);
-	if (add_t_parse_token_to_list(&token_list, 0,
-		TYPE_TOKEN_CHUNK, NULL) == NULL)
-		return (NULL);
-	if (add_t_parse_token_to_list(&token_list, 0,
-		TYPE_TOKEN_CHUNK, dup_cmd_str) == NULL)
-		return (NULL);
-	
+	return (0);
 }
 
 // parse_env_from_str 테스트
@@ -78,6 +61,8 @@ t_cmd_list *parse(char *raw_cmd_string)
 // 		sep = create_empty_t_parse_token();
 // 		sep->token_type = TYPE_TOKEN_CHUNK;
 // 		sep->string = ft_strdup(argv[1]);
+// 		sep->next = NULL;
+// 		print_token_list(sep);
 // 		tokenize_handle_quotaion(sep);
 // 		print_token_list(sep);
 // 	}

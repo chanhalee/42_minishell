@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 20:32:44 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 00:32:51 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,10 @@
 
 # define TYPE_TOKEN_CHUNK 11
 # define TYPE_TOKEN_ARGV 22
-# define TYPE_TOKEN_EXEC 33
+# define TYPE_TOKEN_SPACE 33
 # define TYPE_TOKEN_IO_RED 44
 # define TYPE_TOKEN_PIPELINE 55
+# define TYPE_TOKEN_EXEC 66
 
 typedef struct s_cmd_redirection
 {
@@ -75,13 +76,17 @@ char			*ft_substr(char const *s, unsigned int start, size_t len);
 char			*ft_strjoin(char const *s1, char const *s2);
 int				ft_strcmp(const char *s1, const char *s2);
 size_t			ft_strlen(const char *s);
-t_parse_token	*add_t_parse_token_to_list(t_parse_token **token_list, size_t index, int type, char *content);
+t_parse_token	*add_token(t_parse_token **token_list, size_t index, int type, char *content);
 t_parse_token	*create_empty_t_parse_token(void);
 void			free_t_parse_token_list(t_parse_token *token_list);
-void			*parse_err_free_two_d_char(char **ptr);
+void			free_single_t_parse_token(t_parse_token *token_list);
+t_parse_token	*parse_tokenize(char *cmd_string);
+void			*parse_err_free_two_d_char(char **ptr, int max);
 void			*parse_err_free_multi_str(char *ptr1, char *ptr2, char *ptr3, char *ptr4);
 char 			*parse_env_from_str(char *str);
+void			parse_env_from_token_list(t_parse_token *tok_lst);
 void			tokenize_handle_quotaion(t_parse_token *tok_list);
 char			**seperate_quote(char *str);
+void			parse_tokenize_space(t_parse_token *tok_lst);
 
 #endif
