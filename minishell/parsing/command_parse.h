@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 20:50:45 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 21:54:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,9 @@
 # define TYPE_TOKEN_PIPELINE 44
 # define TYPE_TOKEN_EXEC 55
 # define TYPE_TOKEN_IO_R 66
-# define TYPE_TOKEN_IO_RR 6666
+# define TYPE_TOKEN_IO_RR 132
 # define TYPE_TOKEN_IO_L 77
-# define TYPE_TOKEN_IO_LL 7777
+# define TYPE_TOKEN_IO_LL 154
 
 
 typedef struct s_cmd_redirection
