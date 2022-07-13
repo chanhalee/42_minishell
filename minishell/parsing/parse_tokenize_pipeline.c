@@ -1,21 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_space.c                             :+:      :+:    :+:   */
+/*   parse_tokenize_pipeline.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:24:47 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 20:50:49 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:50:50 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
 #include <stdio.h>
 
-void	parse_tokenize_space_sep(t_parse_token *tok_lst);
+void	parse_tokenize_pipeline_sep(t_parse_token *tok_lst);
 
-void	parse_tokenize_space(t_parse_token *tok_lst)
+void	parse_tokenize_pipeline(t_parse_token *tok_lst)
 {
 	t_parse_token	*next_tok;
 	t_parse_token	*preserve;
@@ -27,7 +27,7 @@ void	parse_tokenize_space(t_parse_token *tok_lst)
 	{
 		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
 		{
-			sep = ft_split_custom(tok_lst->string, ' ');
+			sep = ft_split_custom(tok_lst->string, '|');
 			index = 0;
 			if (sep == NULL || sep[0] == NULL)
 				return;
@@ -43,51 +43,23 @@ void	parse_tokenize_space(t_parse_token *tok_lst)
 			break ;
 		tok_lst = tok_lst->next;
 	}
-	parse_tokenize_space_sep(preserve);
+	parse_tokenize_pipeline_sep(preserve);
 }
 
-void	parse_tokenize_space_single_tok(t_parse_token *tok)
-{
-	char			**sep;
-	int				type;
-	int				index;
-
-	sep = ft_strsep_custom(tok->string, ' ');
-	index = -1;
-	if (sep == NULL || sep[0] == NULL)
-		return;
-	type = tok->token_type;
-	cleanse_single_t_parse_token(tok);
-	while (sep[++index] != NULL && tok != NULL)
-	{
-		if (sep[index][0] == ' ')
-		{
-			if (add_token(&tok, 1, TYPE_TOKEN_SPACE, sep[index]))
-				tok = tok->next;
-		}
-		else
-		{
-			if (add_token(&tok, 1, type, sep[index]))
-				tok = tok->next;
-		}
-	}
-	parse_safe_free_two_d_char(sep, -1);
-}
-
-void	parse_tokenize_space_sep(t_parse_token *tok_lst)
+void	parse_tokenize_pipeline_sep(t_parse_token *tok_lst)
 {
 	t_parse_token	*tok;
 
 	while (tok_lst != NULL)
 	{
-		if (tok_lst->token_type == TYPE_TOKEN_CHUNK && *(tok_lst->string) == ' ')
+		if (tok_lst->token_type == TYPE_TOKEN_CHUNK && *(tok_lst->string) == '|')
 		{
 			tok = add_token(&tok_lst, 1, TYPE_TOKEN_CHUNK, (tok_lst->string) + 1);
 			if (tok == NULL)
 				return ;
 			free(tok_lst->string);
-			tok_lst->token_type = TYPE_TOKEN_SPACE;
-			tok_lst->string = ft_strdup(" ");
+			tok_lst->token_type = TYPE_TOKEN_PIPELINE;
+			tok_lst->string = ft_strdup("|");
 			tok_lst = tok;
 		}
 		tok_lst = tok_lst->next;

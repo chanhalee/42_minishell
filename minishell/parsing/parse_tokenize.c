@@ -6,14 +6,16 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:49:36 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 00:41:07 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:50:49 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
-#include <stdio.h>
+# include "./do_not_submit/do_not_submit.h"
 
-void	tokenize_annihilate_empty_chunk(t_parse_token **tok_lst);
+void	tokenize_annihilate_empty_chunk(t_parse_token *tok_lst);
+void	tokenize_annihilate_initial_empty_chunk(t_parse_token **tok_lst);
+void	parse_tokenize_change_chunk_to_argv(t_parse_token *tok_lst);
 
 t_parse_token	*parse_tokenize(char *cmd_string)
 {
@@ -26,34 +28,61 @@ t_parse_token	*parse_tokenize(char *cmd_string)
 	tokenize_handle_quotaion(ret);
 	parse_env_from_token_list(ret);
 	parse_tokenize_space(ret);
+	parse_tokenize_pipeline(ret);
+	parse_tokenize_io_red(ret);
+	tokenize_annihilate_empty_chunk(ret);
+	tokenize_annihilate_initial_empty_chunk(&ret);
+	parse_tokenize_change_chunk_to_argv(ret);
+	parse_tokenize_merge_argv(ret);
 
 	return (ret);
 }
 
-void	tokenize_annihilate_empty_chunk(t_parse_token **tok_lst)
+void	tokenize_annihilate_empty_chunk(t_parse_token *tok_lst)
 {
 	t_parse_token	*tok;
 	t_parse_token	*prev;
 
-	if (tok_lst == NULL || *tok_lst == NULL)
+	if (tok_lst == NULL)
 		return;
-	tok = (*tok_lst);
-	while ((*tok_lst)->next != NULL && (*tok_lst)->token_type == TYPE_TOKEN_CHUNK
-		&& (*(*tok_lst)->string) == '\0')
+	prev = tok_lst;
+	tok = tok_lst->next;
+	while (tok != NULL)
 	{
-		tok = (*tok_lst);
-		(*tok_lst) = tok->next;
-		free_single_t_parse_token(tok);
-	}
-	prev = (*tok_lst);
-	while (prev->next != NULL)
-	{
-		tok = prev->next;
-		if (tok->token_type == TYPE_TOKEN_CHUNK && *(tok->string) == '\0')
+		if (tok->token_type == TYPE_TOKEN_CHUNK && tok->string[0] == '\0')
 		{
 			prev->next = tok->next;
-			free (tok);
+			free_single_t_parse_token(tok);
+			tok = prev;
 		}
-		prev = prev->next;
+		prev = tok;
+		tok = tok->next;
+	}
+}
+
+void	tokenize_annihilate_initial_empty_chunk(t_parse_token **tok_lst)
+{
+	t_parse_token	*tok;
+	
+	if ((*tok_lst)->string[0] == '\0' && (*tok_lst)->token_type == TYPE_TOKEN_CHUNK)
+	{
+		if ((*tok_lst)->next == NULL)
+		{
+			(*tok_lst)->token_type = TYPE_TOKEN_ARGV;
+			return ;
+		}
+		tok = (*tok_lst)->next;
+		free_single_t_parse_token(*tok_lst);
+		*tok_lst = tok;
+	}
+}
+
+void	parse_tokenize_change_chunk_to_argv(t_parse_token *tok_lst)
+{
+	while (tok_lst != NULL)
+	{
+		if (tok_lst->token_type == TYPE_TOKEN_CHUNK)
+			tok_lst->token_type = TYPE_TOKEN_ARGV;
+		tok_lst = tok_lst->next;
 	}
 }

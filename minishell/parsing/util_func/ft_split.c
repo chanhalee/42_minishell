@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_split_custom.c                                  :+:      :+:    :+:   */
+/*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:10:29 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 13:37:29 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:34:57 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static size_t	get_arr_size(char const *s, char c);
 static char		*make_elements(char const **s, char c);
 static void		emergency_exit(char **p, char **iter_p);
 
-char	**ft_split_custom(char const *s, char c)
+char	**ft_split(char const *s, char c)
 {
 	char	**result;
 	char	**iter_result;
@@ -49,14 +49,23 @@ static size_t	get_arr_size(char const *s, char c)
 	int		flag;
 
 	result = 1;
-	if (*s != c)
-		result++;
+	flag = 0;
 	while (*s)
 	{
 		if (*s == c)
-			result++;
+		{
+			if (flag)
+			{
+				result++;
+				flag = 0;
+			}
+		}
+		else
+			flag = 1;
 		s++;
 	}
+	if (flag)
+		result++;
 	return (result);
 }
 
@@ -68,20 +77,16 @@ static char	*make_elements(char const **s, char c)
 	char		*iter_result;
 
 	size = 1;
-	iter_s = *s;
-	if (**s == c)
-	{
+	while (**s == c)
 		(*s)++;
-		size++;
-	}
-	while (**s != '\0' && **s != c && size++)
+	iter_s = *s;
+	while (**s != c && **s != '\0' && size++)
 		(*s)++;
 	result = (char *)malloc(sizeof(char) * size);
 	if (result == NULL)
 		return (NULL);
 	iter_result = result;
-	size--;
-	while (size-- && *iter_s != '\0')
+	while (*iter_s != c && *iter_s != '\0')
 		*(iter_result++) = *(iter_s++);
 	*iter_result = '\0';
 	return (result);

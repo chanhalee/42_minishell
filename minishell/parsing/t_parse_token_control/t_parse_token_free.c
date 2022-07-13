@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:12:59 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 23:31:23 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 15:28:43 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,4 +34,18 @@ void	free_single_t_parse_token(t_parse_token *token_list)
 	if (token_list->string != NULL)
 		free (token_list->string);
 	free(token_list);
+}
+
+void	cleanse_single_t_parse_token(t_parse_token *token)
+{
+	char	*str;
+	if (token == NULL)
+	 	return ;
+	str = ft_strdup("");
+	if (str == NULL)
+		return ;
+	if (token->string != NULL)
+		free (token->string);
+	token->string = str;
+	token->token_type = TYPE_TOKEN_CHUNK;
 }

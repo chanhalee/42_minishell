@@ -1,25 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_get_last_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 11:24:36 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 14:16:45 by chanhale         ###   ########.fr       */
+/*   Created: 2022/07/13 19:42:27 by chanhale          #+#    #+#             */
+/*   Updated: 2022/07/13 19:45:34 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../command_parse.h"
 
-size_t	ft_strlen(const char *s)
+char	ft_get_last_char(char *str)
 {
-	size_t	iter;
+	int		index;
+	char	ret;
 
-	iter = 0;
-	if (s == NULL)
-		return (0);
-	while (s[iter])
-		iter++;
-	return (iter);
+	index = -1;
+	ret = '\0';
+	if (str == NULL)
+		return ('\0');
+	while (str[++index] != '\0')
+		ret = str[index];
+	return (ret);
 }

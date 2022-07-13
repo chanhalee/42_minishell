@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:00:00 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 00:38:53 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:50:50 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	tokenize_handle_quotaion(t_parse_token *tok_list)
 				add_token(&tok_list, 1, TYPE_TOKEN_ARGV, sep[1]);
 				free(tok_list->string);
 				tok_list->string = ft_strdup(sep[0]);
-				parse_err_free_two_d_char(sep, -1);
+				parse_safe_free_two_d_char(sep, -1);
 				tok_list = tok_list->next;
 			}
 		}
@@ -48,13 +48,13 @@ char	**seperate_quote_sub_single_quote(char *str, int start, int end)
 		return (NULL);
 	ret[0] = ft_substr(str, 0, start);
 	if (ret[0] == NULL)
-		return (parse_err_free_two_d_char(ret, -1));
+		return (parse_safe_free_two_d_char(ret, -1));
 	ret[1] = ft_substr(str, start + 1, end - start - 1);
 	if (ret[1] == NULL)
-		return (parse_err_free_two_d_char(ret, -1));
+		return (parse_safe_free_two_d_char(ret, -1));
 	ret[2] = ft_substr(str, end + 1, ft_strlen(str));
 	if (ret[2] == NULL)
-		return (parse_err_free_two_d_char(ret, -1));
+		return (parse_safe_free_two_d_char(ret, -1));
 	ret[3] = NULL;
 	return (ret);
 }
@@ -68,14 +68,14 @@ char	**seperate_quote_sub_double_quote(char *str, int start, int end)
 		return (NULL);
 	ret[0] = ft_substr(str, 0, start);
 	if (ret[0] == NULL)
-		return (parse_err_free_two_d_char(ret, -1));
+		return (parse_safe_free_two_d_char(ret, -1));
 	ret[1] = ft_substr(str, start + 1, end - start - 1);
 	ret[1] = parse_env_from_str(ret[1]);
 	if (ret[1] == NULL)
-		return (parse_err_free_two_d_char(ret, -1));
+		return (parse_safe_free_two_d_char(ret, -1));
 	ret[2] = ft_substr(str, end + 1, ft_strlen(str));
 	if (ret[2] == NULL)
-		return (parse_err_free_two_d_char(ret, -1));
+		return (parse_safe_free_two_d_char(ret, -1));
 	ret[3] = NULL;
 	return (ret);
 }

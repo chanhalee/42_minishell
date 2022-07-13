@@ -4,6 +4,7 @@
 		"readline.h": "c",
 		"history.h": "c",
 		"stdio.h": "c",
-		"do_not_submit.h": "c"
+		"do_not_submit.h": "c",
+		"stdlib.h": "c"
 	}
 }

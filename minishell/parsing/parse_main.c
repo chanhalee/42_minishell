@@ -6,29 +6,44 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:33 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 01:16:58 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/13 20:50:47 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
 # include "./do_not_submit/do_not_submit.h"
 
-int	main(int argc, char **argv)
-{
-	char	**sep;
-	t_parse_token *tok;
-	int		index = -1;
+// int	main(int argc, char **argv)
+// {
+// 	char	**sep;
+// 	t_parse_token *tok;
+// 	int		index = -1;
 
-	if(argc >=2){
-		printf("|%s|\n", argv[1]);
-		tok = parse_tokenize(ft_strdup(argv[1]));
-		print_token_list(tok);
-		free_t_parse_token_list(tok);
-	}
-	//system("leaks test");
-	exit(1);
-	return (0);
-}
+// 	if(argc >=2){
+// 		printf("|%s|\n", argv[1]);
+// 		tok = parse_tokenize(ft_strdup(argv[1]));
+// 		print_token_list(tok);
+// 		free_t_parse_token_list(tok);
+// 	}
+// 	//system("leaks test");
+// 	exit(1);
+// 	return (0);
+// }
+
+// int	main(int argc, char **argv)
+// {
+// 	char	**sep;
+// 	t_parse_token *tok;
+// 	int		index = -1;
+
+// 	sep = ft_strsep_custom_io(">> >A<>< Sa><< ", '>', '<');
+// 	while (sep[++index])
+// 		printf("|%s|\n", sep[index]);
+// 	parse_safe_free_two_d_char(sep, -1);
+// 	//system("leaks test");
+// 	exit(1);
+// 	return (0);
+// }
 
 // parse_env_from_str 테스트
 //

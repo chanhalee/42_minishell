@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_err_free_seq.c                               :+:      :+:    :+:   */
+/*   parse_safe_free_seq.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../command_parse.h"
 
-void	*parse_err_free_two_d_char(char **ptr, int max)
+void	*parse_safe_free_two_d_char(char **ptr, int max)
 {
 	int	index;
 
@@ -25,7 +25,7 @@ void	*parse_err_free_two_d_char(char **ptr, int max)
 	return (NULL);
 }
 
-void	*parse_err_free_multi_str(char *ptr1, char *ptr2, char *ptr3, char *ptr4)
+void	*parse_safe_free_multi_str(char *ptr1, char *ptr2, char *ptr3, char *ptr4)
 {
 	if (ptr1 != NULL)
 		free(ptr1);
