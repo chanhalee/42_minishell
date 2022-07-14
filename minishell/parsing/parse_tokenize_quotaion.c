@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:00:00 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 20:50:50 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/14 23:09:17 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 char	**seperate_quote(char *str);
 
-void	tokenize_handle_quotaion(t_parse_token *tok_list)
+void	parse_tokenize_handle_quotaion(t_parse_token *tok_list)
 {
 	char			**sep;
 	
