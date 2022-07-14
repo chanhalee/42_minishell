@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/14 23:04:33 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:03:23 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include <readline/history.h>
 
 # define TYPE_ERR_CODE_ALLOC 1
+# define TYPE_FAIL 1
+# define TYPE_SUCCESS 0
 # define TYPE_INITIAL_STATUS 0
 # define TYPE_RED_LEFT 0
 # define TYPE_SYNTAX_ERR 999
@@ -43,7 +45,7 @@ typedef struct s_cmd_redirection
 
 typedef	struct s_cmd
 {
-	char						*exec_file_path;
+	char						*exec_file_name;
 	char						**environment;
 	char						**argv;
 	char						**input_buffer;
@@ -57,7 +59,6 @@ typedef	struct s_cmd_list
 	struct s_cmd				*cmd_list;
 	char						*first_cmd_input;
 	int							status;
-	struct s_cmd_list			*next_list;
 }	t_cmd_list;
 
 typedef	struct s_parse_token
@@ -67,43 +68,45 @@ typedef	struct s_parse_token
 	struct s_parse_token	*next;
 }	t_parse_token;
 
-t_cmd_list		*create_empty_t_cmd_list(void);
-t_cmd			*add_empty_t_cmd(t_cmd_list *cmd_list);
-void			free_first_t_cmd_node(t_cmd_list *cmd_list);
-void			free_t_cmd_list(t_cmd_list *cmd_list);
-void			cleanse_single_t_parse_token(t_parse_token *token);
-t_cmd			*get_last_node(t_cmd *cmd_list);
-t_cmd			*get_empty_t_cmd(void);
-char			**ft_split_custom(char const *s, char c);
-char			**ft_strsep_custom(char const *s, char c);
-char			**ft_strsep_custom_io(char const *s, char c, char d);
-int				ft_strstr_custom(const char *h, const char *n, int	*end);
-char			ft_get_last_char(char *str);
-char			*ft_strdup(const char *src);
-char			*ft_strtrim(char const *s1, char const *set);
-char			*ft_strchr(const char *s, int c);
-char			*ft_substr(char const *s, unsigned int start, size_t len);
-char			*ft_strjoin(char const *s1, char const *s2);
-int				ft_strcmp(const char *s1, const char *s2);
-size_t			ft_strlen(const char *s);
-t_parse_token	*add_token(t_parse_token **token_list, size_t index, int type, char *content);
-t_parse_token	*create_empty_t_parse_token(void);
-void			free_t_parse_token_list(t_parse_token *token_list);
-void			free_single_t_parse_token(t_parse_token *token_list);
-t_parse_token	*parse_tokenize(char *cmd_string);
-void			*parse_safe_free_two_d_char(char **ptr, int max);
-void			*parse_safe_free_multi_str(char *ptr1, char *ptr2, char *ptr3, char *ptr4);
-char 			*parse_env_from_str(char *str);
-void			parse_env_from_token_list(t_parse_token *tok_lst);
-void			parse_tokenize_handle_quotaion(t_parse_token *tok_list);
-char			**seperate_quote(char *str);
-void			parse_tokenize_space(t_parse_token *tok_lst);
-void			parse_tokenize_space_single_tok(t_parse_token *tok);
-void			parse_tokenize_annihilate_space_token(t_parse_token **tok_lst);
-void			parse_tokenize_pipeline(t_parse_token *tok_lst);
-void			parse_tokenize_io_red(t_parse_token *tok_lst);
-void			parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst);
-void			parse_tokenize_merge_argv(t_parse_token *tok_lst);
-int				parse_check_syntex_err(t_parse_token *tok_lst);
+t_cmd_list			*create_empty_t_cmd_list(void);
+t_cmd				*add_empty_t_cmd_to_list(t_cmd_list *cmd_list);
+t_cmd_redirection	*add_cmd_redirection(t_cmd *cmd, int red_type, char *file);
+void				free_first_t_cmd_node(t_cmd_list *cmd_list);
+void				*free_t_cmd_list(t_cmd_list *cmd_list);
+void				cleanse_single_t_parse_token(t_parse_token *token);
+t_cmd				*get_last_node(t_cmd *cmd_list);
+t_cmd				*get_empty_t_cmd(void);
+char				**ft_split_custom(char const *s, char c);
+char				**ft_strsep_custom(char const *s, char c);
+char				**ft_strsep_custom_io(char const *s, char c, char d);
+int					ft_strstr_custom(const char *h, const char *n, int	*end);
+char				ft_get_last_char(char *str);
+char				*ft_strdup(const char *src);
+char				*ft_strtrim(char const *s1, char const *set);
+char				*ft_strchr(const char *s, int c);
+char				*ft_substr(char const *s, unsigned int start, size_t len);
+char				*ft_strjoin(char const *s1, char const *s2);
+int					ft_strcmp(const char *s1, const char *s2);
+size_t				ft_strlen(const char *s);
+t_parse_token		*add_token(t_parse_token **token_list, size_t index, int type, char *content);
+t_parse_token		*create_empty_t_parse_token(void);
+void				free_t_parse_token_list(t_parse_token *token_list);
+void				free_single_t_parse_token(t_parse_token *token_list);
+t_parse_token		*parse_tokenize(char *cmd_string);
+void				*parse_safe_free_two_d_char(char **ptr, int max);
+void				*parse_safe_free_multi_str(void *ptr1, void *ptr2, void *ptr3, void *ptr4);
+char 				*parse_env_from_str(char *str);
+void				parse_env_from_token_list(t_parse_token *tok_lst);
+void				parse_tokenize_handle_quotaion(t_parse_token *tok_list);
+char				**seperate_quote(char *str);
+void				parse_tokenize_space(t_parse_token *tok_lst);
+void				parse_tokenize_space_single_tok(t_parse_token *tok);
+void				parse_tokenize_annihilate_space_token(t_parse_token **tok_lst);
+void				parse_tokenize_pipeline(t_parse_token *tok_lst);
+void				parse_tokenize_io_red(t_parse_token *tok_lst);
+void				parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst);
+void				parse_tokenize_merge_argv(t_parse_token *tok_lst);
+int					parse_check_syntex_err(t_parse_token *tok_lst);
+void				*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index);
 
 #endif
