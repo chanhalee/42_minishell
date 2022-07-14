@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:34 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/11 16:24:48 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 01:01:54 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,21 @@
 t_cmd	*get_empty_t_cmd(void) // if worng_return_null
 {
 	t_cmd	*ret;
+	char	**argv;
 
 	ret = (t_cmd *)malloc(sizeof(t_cmd));
 	if (ret == NULL)
 		return (NULL);
-	ret->exec_file_path = NULL;
+	argv = (char **)malloc(sizeof(char *));
+	if (argv == NULL)
+	{
+		free(ret);
+		return (NULL);
+	}
+	argv[0] = NULL;
+	ret->exec_file_name = NULL;
 	ret->environment = NULL;
-	ret->argv = NULL;
+	ret->argv = argv;
 	ret->input_buffer = NULL;
 	ret->output_buffer = NULL;
 	ret->next = NULL;
@@ -29,7 +37,7 @@ t_cmd	*get_empty_t_cmd(void) // if worng_return_null
 	return (ret);
 }
 
-t_cmd	*add_empty_t_cmd(t_cmd_list *cmd_list)
+t_cmd	*add_empty_t_cmd_to_list(t_cmd_list *cmd_list)
 {
 	t_cmd	*new_node;
 	t_cmd	*prev_node;
@@ -64,20 +72,21 @@ t_cmd_list	*create_empty_t_cmd_list(void)
 	ret->cmd_list = NULL;
 	ret->status = TYPE_INITIAL_STATUS;
 	ret->first_cmd_input = NULL;
-	ret->next_list = NULL;
 	return (ret);
 }
 
-t_cmd_redirection	*add_empty_cmd_redirection(t_cmd *cmd, int red_type, char *file)
+t_cmd_redirection	*add_cmd_redirection(t_cmd *cmd, int red_type, char *file)
 {
 	t_cmd_redirection	*ret;
 	t_cmd_redirection	*prev;
+	char				*str;
 
 	ret = (t_cmd_redirection *)malloc(sizeof(t_cmd_redirection));
-	if (ret == NULL)
-		return (NULL);
+	str = ft_strdup(file);
+	if (ret == NULL || str == NULL)
+		return(parse_safe_free_multi_str(ret, str, NULL, NULL));
 	ret->red_type = red_type;
-	ret->file = file;
+	ret->file = str;
 	ret->next = NULL;
 	if (cmd->redirection_list == NULL)
 		cmd->redirection_list = ret;

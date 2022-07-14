@@ -25,7 +25,7 @@ void	*parse_safe_free_two_d_char(char **ptr, int max)
 	return (NULL);
 }
 
-void	*parse_safe_free_multi_str(char *ptr1, char *ptr2, char *ptr3, char *ptr4)
+void	*parse_safe_free_multi_str(void *ptr1, void *ptr2, void *ptr3, void *ptr4)
 {
 	if (ptr1 != NULL)
 		free(ptr1);

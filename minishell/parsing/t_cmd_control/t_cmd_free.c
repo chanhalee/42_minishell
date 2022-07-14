@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 13:47:46 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/11 16:35:55 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 00:47:13 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ void	free_first_t_cmd_node(t_cmd_list *cmd_list)
 	node = cmd_list->cmd_list;
 	cmd_list->cmd_list = cmd_list->cmd_list->next;
 	free_t_cmd_redirection(node);
-	if (node->exec_file_path != NULL)
-		free (node->exec_file_path);
+	if (node->exec_file_name != NULL)
+		free (node->exec_file_name);
 	index = -1;
 	while (node->environment != NULL && (node->environment)[++index])
 		free (node->environment);
@@ -55,13 +55,14 @@ void	free_t_cmd_redirection(t_cmd *cmd)
 	}
 }
 
-void	free_t_cmd_list(t_cmd_list *cmd_list)
+void	*free_t_cmd_list(t_cmd_list *cmd_list)
 {
 	if (cmd_list == NULL)
-		return ;
+		return (NULL);
 	if (cmd_list->first_cmd_input != NULL)
 		free (cmd_list->first_cmd_input);
 	while (cmd_list->cmd_list != NULL)
 		free_first_t_cmd_node(cmd_list);
 	free (cmd_list);
+	return (NULL);
 }
