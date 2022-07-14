@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 21:54:41 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/14 23:04:33 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,16 +22,16 @@
 # define TYPE_ERR_CODE_ALLOC 1
 # define TYPE_INITIAL_STATUS 0
 # define TYPE_RED_LEFT 0
-
+# define TYPE_SYNTAX_ERR 999
 # define TYPE_TOKEN_CHUNK 11
 # define TYPE_TOKEN_ARGV 22
 # define TYPE_TOKEN_SPACE 33
 # define TYPE_TOKEN_PIPELINE 44
 # define TYPE_TOKEN_EXEC 55
-# define TYPE_TOKEN_IO_R 66
-# define TYPE_TOKEN_IO_RR 132
-# define TYPE_TOKEN_IO_L 77
-# define TYPE_TOKEN_IO_LL 154
+# define TYPE_TOKEN_IO_R 101
+# define TYPE_TOKEN_IO_RR 102
+# define TYPE_TOKEN_IO_L 103
+# define TYPE_TOKEN_IO_LL 104
 
 
 typedef struct s_cmd_redirection
@@ -95,13 +95,15 @@ void			*parse_safe_free_two_d_char(char **ptr, int max);
 void			*parse_safe_free_multi_str(char *ptr1, char *ptr2, char *ptr3, char *ptr4);
 char 			*parse_env_from_str(char *str);
 void			parse_env_from_token_list(t_parse_token *tok_lst);
-void			tokenize_handle_quotaion(t_parse_token *tok_list);
+void			parse_tokenize_handle_quotaion(t_parse_token *tok_list);
 char			**seperate_quote(char *str);
 void			parse_tokenize_space(t_parse_token *tok_lst);
 void			parse_tokenize_space_single_tok(t_parse_token *tok);
+void			parse_tokenize_annihilate_space_token(t_parse_token **tok_lst);
 void			parse_tokenize_pipeline(t_parse_token *tok_lst);
 void			parse_tokenize_io_red(t_parse_token *tok_lst);
-void			tokenize_annihilate_empty_chunk(t_parse_token *tok_lst);
+void			parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst);
 void			parse_tokenize_merge_argv(t_parse_token *tok_lst);
+int				parse_check_syntex_err(t_parse_token *tok_lst);
 
 #endif
