@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:34 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 01:01:54 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 16:20:12 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_cmd	*get_empty_t_cmd(void) // if worng_return_null
 	}
 	argv[0] = NULL;
 	ret->exec_file_name = NULL;
-	ret->environment = NULL;
+	ret->path = NULL;
 	ret->argv = argv;
 	ret->input_buffer = NULL;
 	ret->output_buffer = NULL;

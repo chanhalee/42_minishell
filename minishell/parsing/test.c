@@ -26,7 +26,7 @@ int main(void)
     int intro_fd;
     int readsize;
 	struct termios term;
-	t_parse_token *tok;
+	t_cmd_list	*cmd_lst;
 	
 
     intro_fd = open("intro.txt", O_RDONLY);
@@ -60,9 +60,9 @@ int main(void)
         str = readline("bash$ ");
         if (str){
             printf("input = %s\n", str);
-		tok = parse_tokenize(ft_strdup(str));
-		print_token_list(tok);
-		free_t_parse_token_list(tok);
+		cmd_lst = parse(ft_strdup(str));
+		print_cmd_lists(cmd_lst);
+		free_t_cmd_list(cmd_lst);
 		}
         else {
 			printf("\033[1A");
