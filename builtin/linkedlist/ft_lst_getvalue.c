@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdel.c                                        :+:      :+:    :+:   */
+/*   ft_lst_getvalue.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:50:41 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:13:51 by park             ###   ########.fr       */
+/*   Created: 2022/07/16 01:11:28 by park              #+#    #+#             */
+/*   Updated: 2022/07/16 01:14:26 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "linkedlist.h"
 
-int	ft_lstdelone(t_list *list, char *key)
+char	*ft_lst_getvalue(t_list *list, char *key)
 {
     t_env *curr;
 
@@ -20,15 +20,8 @@ int	ft_lstdelone(t_list *list, char *key)
     while (curr != list->tail)
     {
         if (ft_strcmp(curr->key, key))
-        {
-			curr->prev->next = curr->next;
-			curr->next->prev = curr->prev;
-			free(curr->key);
-			free(curr->value);
-			free(curr);
-            return 1;
-        }
+			return curr->value;
         curr = curr->next;
     }
-    return 0;
+    return NULL;
 }

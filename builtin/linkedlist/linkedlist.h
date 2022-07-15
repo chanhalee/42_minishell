@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:14:48 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:09:03 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 01:12:43 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct s_list
 {
     t_env *head;
     t_env *tail;
-    int count;
 }	t_list;
 
 int		init_env(char **env, t_env **head, t_list *list);
