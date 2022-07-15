@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:53:03 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 00:32:26 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:31:38 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ t_parse_token	*add_t_parse_token_to_list_sub(t_parse_token **token_list,
 		prev = prev->next;
 	ret->next = prev->next;
 	prev->next = ret;
-
+	return (NULL);
 }
 
 t_parse_token	*add_token(t_parse_token **token_list,

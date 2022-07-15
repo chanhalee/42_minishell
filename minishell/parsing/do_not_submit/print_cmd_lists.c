@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 15:27:09 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 17:01:33 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:29:42 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void print_cmd_lists(t_cmd_list *lists)
 	t_cmd		*cmd;
 
 	cmd_counter = -1;
-	printf ("\n=======print_cmd_list========\n", cmd_counter);
+	printf ("\n=======print_cmd_list========\n");
 	printf("+ list_status: %d\n", lists->status);
 	printf("+ list_first_input: {%s}\n\n", lists->first_cmd_input);
 	cmd = lists->cmd_list;
