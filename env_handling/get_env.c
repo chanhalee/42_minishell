@@ -1,40 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 22:42:07 by park             ###   ########.fr       */
+/*   Created: 2022/07/15 21:26:46 by park              #+#    #+#             */
+/*   Updated: 2022/07/15 22:32:56 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_builtin.h"
+#include <unistd.h>
+#include <fcntl.h>
 #include <stdio.h>
 
-
-status_code ft_echo(char **argv)
+char	*find_env(char **env)
 {
-    int newline;
-    int idx;
+	int	idx;
 
-    newline = 0;
-    idx = 1;
-    if (ft_strcmp(argv[1], "-n") == 0)
-    {
-        idx = 2;
-        newline = 1;
-    }
-    while (argv[idx] != NULL)
-    {
-        printf("%s", argv[idx]);
-        if (argv[idx + 1] != NULL)
-            printf(" ");
-        idx++;
-    }
-    if (newline == 0)
-        printf("\n");
-    return 1;
+	idx = -1;
+	while (env[++idx] != NULL)
+		printf("%s\n", env[idx]);
+	return NULL;
 }
-

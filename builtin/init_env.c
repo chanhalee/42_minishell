@@ -1,40 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 22:42:07 by park             ###   ########.fr       */
+/*   Created: 2022/07/15 22:37:24 by park              #+#    #+#             */
+/*   Updated: 2022/07/15 22:59:04 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_builtin.h"
+#include <stdlib.h>
 #include <stdio.h>
+#include "ft_builtin.h"
 
-
-status_code ft_echo(char **argv)
+int	find_env(char **env, char *key)
 {
-    int newline;
-    int idx;
-
-    newline = 0;
-    idx = 1;
-    if (ft_strcmp(argv[1], "-n") == 0)
-    {
-        idx = 2;
-        newline = 1;
-    }
-    while (argv[idx] != NULL)
-    {
-        printf("%s", argv[idx]);
-        if (argv[idx + 1] != NULL)
-            printf(" ");
-        idx++;
-    }
-    if (newline == 0)
-        printf("\n");
-    return 1;
+	int i = 0;
+	while (env[i] != NULL)
+	{
+		printf("1\n");
+		if (ft_strncmp(key, env[i], ft_strlen(key)) == 0)
+		{
+			printf("key, value = %s\n", env[i]);
+			break;
+		}
+		i++;
+	}
+	return 1;
 }
-

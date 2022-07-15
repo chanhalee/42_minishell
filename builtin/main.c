@@ -2,9 +2,12 @@
 #include <unistd.h>
 #include <limits.h>
 
-int main(int argc, char **argv)
+int main(int argc, char **argv, char **env)
 {
-	ft_cd(argv, argv);
+	char **g_env;
+	g_env = env;
+	find_env(env, "PATH");
+	// ft_cd(argv, argv);
     // ft_pwd();
     return 0;
 }
