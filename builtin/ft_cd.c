@@ -6,11 +6,12 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:38:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 21:22:23 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 01:24:50 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_builtin.h"
+#include "./linkedlist/linkedlist.h"
 #include <unistd.h>
 #include <stdio.h>
 
@@ -24,11 +25,10 @@
 status_code ft_cd(char **argv, char **env)
 {
 	status_code	rst;
-	char	home[256] = "/Users/park";
 
 	rst = chdir(argv[1]);
 	if (argv[1] == NULL)
-		return (chdir(home));
+		return (chdir());
 	if (rst == -1)
 	{
 		printf("bash: cd: %s: No such file or directory\n", argv[1]);

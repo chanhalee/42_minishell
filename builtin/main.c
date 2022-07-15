@@ -1,13 +1,18 @@
 #include "ft_builtin.h"
+#include "./linkedlist/linkedlist.h"
 #include <unistd.h>
 #include <limits.h>
 
 int main(int argc, char **argv, char **env)
 {
-	char **g_env;
-	g_env = env;
-	find_env(env, "PATH");
-	// ft_cd(argv, argv);
-    // ft_pwd();
+	t_list list;
+	t_env *head;
+	t_env *tmp;
+
+	ft_initlist(&list);
+	init_env(env, &head, &list);
+
+	ft_lstdelone(&list, "PWD");
+	ft_viewall(&list);
     return 0;
 }
