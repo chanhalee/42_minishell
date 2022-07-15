@@ -4,6 +4,7 @@
 
 int main(int argc, char **argv)
 {
-    ft_pwd();
+	ft_cd(argv, argv);
+    // ft_pwd();
     return 0;
 }
