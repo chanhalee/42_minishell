@@ -1,22 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_export.c                                        :+:      :+:    :+:   */
+/*   ft_env.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 03:00:57 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 03:12:30 by park             ###   ########.fr       */
+/*   Created: 2022/07/16 03:13:26 by park              #+#    #+#             */
+/*   Updated: 2022/07/16 03:15:46 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "ft_builtin.h"
+#include "ft_builtin.h"
 
-// status_code	ft_export(t_list *list, char *str)
-// {
-// 	char	*key;
-// 	char	*value;
-// 	int		i;
-
-// 	i  
-// }
+status_code	ft_env(t_list *list)
+{
+	ft_viewall(list);
+	return (1);
+}

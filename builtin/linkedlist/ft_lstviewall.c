@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 01:08:29 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:30:38 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 03:12:16 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void ft_viewall(t_list *list)
 	seek = list->head->next;
     while (seek != list->tail)
     {
-        printf("key = %s, value = %s\n", seek->key, seek->value);
+        printf("%s=%s\n", seek->key, seek->value);
         seek = seek->next;
     }
 }
