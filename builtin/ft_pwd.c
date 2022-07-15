@@ -1,40 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_echo.c                                          :+:      :+:    :+:   */
+/*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 20:04:29 by park             ###   ########.fr       */
+/*   Created: 2022/07/15 19:57:52 by park              #+#    #+#             */
+/*   Updated: 2022/07/15 20:14:37 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ft_builtin.h"
 #include <stdio.h>
+#include <unistd.h>
 
-
-status_code ft_echo(char **argv)
+status_code ft_pwd(void)
 {
-    int newline;
-    int idx;
+    char	buff[PATH_MAX];
 
-    newline = 0;
-    idx = 1;
-    if (ft_strncmp(argv[1], "-n", ft_strlen(argv[1])) == 0)
-    {
-        idx = 2;
-        newline = 1;
-    }
-    while (argv[idx] != NULL)
-    {
-        printf("%s", argv[idx]);
-        if (argv[idx + 1] != NULL)
-            printf(" ");
-        idx++;
-    }
-    if (newline == 0)
-        printf("\n");
-    return 1;
+	if (getcwd(buff, PATH_MAX) != NULL)
+	{
+		printf("%s\n", buff);
+		return 1;
+	}
+	return 0;
 }
-

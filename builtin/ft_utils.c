@@ -6,11 +6,19 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:46:01 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 18:46:34 by park             ###   ########.fr       */
+/*   Updated: 2022/07/15 20:03:05 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+
+size_t ft_strlen(char *str)
+{
+    size_t i;
+    while (str[i] != '\0')
+        i++;
+    return i;
+}
 
 int	ft_strncmp(const char *s1, const char *s2, size_t n)
 {
