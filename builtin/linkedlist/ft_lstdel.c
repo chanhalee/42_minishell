@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:50:41 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:13:51 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 01:47:45 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_lstdelone(t_list *list, char *key)
 	curr = list->head->next;
     while (curr != list->tail)
     {
-        if (ft_strcmp(curr->key, key))
+        if (ft_strcmp(curr->key, key) == 0)
         {
 			curr->prev->next = curr->next;
 			curr->next->prev = curr->prev;

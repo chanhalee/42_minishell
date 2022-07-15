@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:37:24 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 00:56:08 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 01:23:34 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,6 @@ int	init_env(char **env, t_env **head, t_list *list)
 			{
 				key = ft_substr(env[i], 0, j);
 				value = ft_substr(env[i], j + 1, ft_strlen(env[i]) - j);
-				// new_node = ft_lstnew(key, value);
 				ft_lstadd(list, key, value);
 			}
 			j++;

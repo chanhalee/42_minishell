@@ -1,32 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_update_env.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 02:55:05 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 02:55:08 by park             ###   ########.fr       */
+/*   Created: 2022/07/16 02:33:54 by park              #+#    #+#             */
+/*   Updated: 2022/07/16 02:56:37 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "linkedlist.h"
+#include <stdio.h>
 
-char	*ft_strdup(const char *src)
+void	ft_update_env(t_list *list, char *key, char *value)
 {
-	int		size;
-	int		localindex;
-	char	*result;
+	t_env *curr;
 
-	size = 0;
-	while (src[size])
-		size++;
-	result = (char *)malloc((size + 1) * sizeof(char));
-	if (result == NULL)
-		return (NULL);
-	localindex = -1;
-	while (++localindex < size)
-		result[localindex] = src[localindex];
-	result[localindex] = '\0';
-	return (result);
+	printf("key = %s, value =  %s\n", key, value);
+	curr = list->head->next;
+    while (curr != list->tail)
+    {
+        if (ft_strcmp(curr->key, key) == 0)
+		{
+			free(curr->value);
+			curr->value = ft_strdup(value);
+			break;
+		}
+        curr = curr->next;
+    }
 }
