@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:57:28 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/11 15:42:10 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 14:40:38 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ void	emergency_exit_parse(t_cmd *cmd_list, int exit_code)
 		free(next->input_buffer);
 	while (next != NULL)
 	{
-		if (next->exec_file_path)
-			free(next->exec_file_path);
+		if (next->exec_file_name)
+			free(next->exec_file_name);
 		if (next->environment)
 		{
 			index = -1;
