@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 01:11:28 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:14:26 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 01:47:27 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	*ft_lst_getvalue(t_list *list, char *key)
 	curr = list->head->next;
     while (curr != list->tail)
     {
-        if (ft_strcmp(curr->key, key))
+        if (ft_strcmp(curr->key, key) == 0)
 			return curr->value;
         curr = curr->next;
     }

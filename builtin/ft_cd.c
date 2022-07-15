@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:38:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:24:50 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 02:57:14 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,18 +22,45 @@
 // cd ~ : 홈 디렉토리로 이동합니다.
 // cd	: 홈 디렉토리로 이동합니다.
 
-status_code ft_cd(char **argv, char **env)
+status_code ft_cd(char **argv, t_list *list)
 {
 	status_code	rst;
+	char		*value;
+	char		buff[1024];
 
-	rst = chdir(argv[1]);
-	if (argv[1] == NULL)
-		return (chdir());
+	if (argv[1] == NULL || ft_strcmp(argv[1], "~") == 0)
+	{
+		value = ft_lst_getvalue(list, "HOME");
+		if (value == NULL)
+		{
+			printf("bash: cd: HOME not set\n");
+			return 0;
+		}
+	}
+	else if (ft_strcmp(argv[1], "-") == 0)
+	{
+		value = ft_lst_getvalue(list, "OLDPWD");
+		if (value == NULL)
+		{
+			printf("bash: cd: OLDPWD not set\n");
+			return 0;
+		}
+	}
+	else
+		value = argv[1];
+	rst = chdir(value);
 	if (rst == -1)
 	{
 		printf("bash: cd: %s: No such file or directory\n", argv[1]);
-		return -1;
+		return (rst);
 	}
-	printf("rst = %d\n", rst);
-    return 1;
+	else
+	{
+		getcwd(buff, 1024);
+		ft_update_env(list, "OLDPWD", ft_lst_getvalue(list, "PWD"));
+		ft_update_env(list, "PWD", buff);
+	}
+	// printf("OLDPWD = %s\n", ft_lst_getvalue(list, "OLDPWD"));
+	// printf("PWD = %s\n", ft_lst_getvalue(list, "PWD"));
+    return (rst);
 }
