@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 00:25:37 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 00:50:18 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 17:02:17 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index)
 		new_argv[counter] = cmd->argv[counter];
 	new_argv[counter] = new_str;
 	new_argv[counter + 1] = NULL;
-	parse_safe_free_two_d_char(cmd->argv, -1);
+	free(cmd->argv);
 	cmd->argv = new_argv;
 	return (NULL);
 }

@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:39:21 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 21:41:33 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 16:25:59 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_token_list(t_parse_token *list)
 	printf("[");
 	while (list != NULL)
 	{
-		printf(" \{%s\}(%d),", list->string, list->token_type);
+		printf(" {%s}(%d),", list->string, list->token_type);
 		list = list->next;
 	}
 	printf("]\n");

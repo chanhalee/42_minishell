@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 14:39:04 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 16:24:53 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_cmd_redirection
 typedef	struct s_cmd
 {
 	char						*exec_file_name;
-	char						**environment;
+	char						**path;
 	char						**argv;
 	char						**input_buffer;
 	char						*output_buffer;
@@ -68,6 +68,7 @@ typedef	struct s_parse_token
 	struct s_parse_token	*next;
 }	t_parse_token;
 
+t_cmd_list			*parse(char *raw_cmd_string);
 t_cmd_list			*create_empty_t_cmd_list(void);
 t_cmd				*add_empty_t_cmd_to_list(t_cmd_list *cmd_list);
 t_cmd_redirection	*add_cmd_redirection(t_cmd *cmd, int red_type, char *file);
@@ -107,6 +108,8 @@ void				parse_tokenize_io_red(t_parse_token *tok_lst);
 void				parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst);
 void				parse_tokenize_merge_argv(t_parse_token *tok_lst);
 int					parse_check_syntex_err(t_parse_token *tok_lst);
+t_cmd_list			*handle_syntex_err_tok(t_parse_token *tok_lst);
 void				*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index);
+t_cmd_list			*parse_assemble_tokens_to_t_cmd_list(t_parse_token *tok_lst);
 
 #endif

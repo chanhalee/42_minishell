@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 13:47:46 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 00:47:13 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/15 16:20:33 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ void	free_first_t_cmd_node(t_cmd_list *cmd_list)
 	if (node->exec_file_name != NULL)
 		free (node->exec_file_name);
 	index = -1;
-	while (node->environment != NULL && (node->environment)[++index])
-		free (node->environment);
-	if (node->environment != NULL)
-		free (node->environment);
+	while (node->path != NULL && (node->path)[++index])
+		free (node->path);
+	if (node->path != NULL)
+		free (node->path);
 	index = -1;
 	while (node->argv != NULL && (node->argv)[++index])
 		free((node->argv)[index]);
