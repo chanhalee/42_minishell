@@ -26,6 +26,8 @@ int main(void)
 	else if (pid == 0)
 	{
 		printf("자식 프로세스 생성\n");
+
+		// ls -al > a.txt > b.txt > c.txt
 		int fd = open("a.tx", O_WRONLY | O_CREAT, 0644);
 		int fd2 = open("b.tx", O_WRONLY | O_CREAT, 0644);
 		int fd3 = open("c.tx", O_WRONLY | O_CREAT, 0644);
