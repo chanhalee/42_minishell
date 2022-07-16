@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:00:00 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/14 23:09:17 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 14:19:33 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ char	**seperate_quote(char *str);
 void	parse_tokenize_handle_quotaion(t_parse_token *tok_list)
 {
 	char			**sep;
-	
+
 	while (tok_list != NULL)
 	{
 		if (tok_list->token_type == TYPE_TOKEN_CHUNK)
@@ -88,21 +88,21 @@ char	**seperate_quote(char *str)
 
 	start = -1;
 	while (str[++start] != '\0' && str[start] != '\'' && str[start] != '"')
-	;
+		;
 	if (str[start] == '\0')
 		return (NULL);
 	end = start;
 	if (str[start] == '\'')
 	{
 		while (str[++end] != '\0' && str[end] != '\'')
-		;
+			;
 		if (str[end] == '\'')
 			return (seperate_quote_sub_single_quote(str, start, end));
 	}
 	if (str[start] == '"')
 	{
 		while (str[++end] != '\0' && str[end] != '"')
-		;
+			;
 		if (str[end] == '"')
 			return (seperate_quote_sub_double_quote(str, start, end));
 	}
