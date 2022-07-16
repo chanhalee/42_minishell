@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 22:42:07 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 15:26:14 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 #include <stdio.h>
 
 
-status_code ft_echo(char **argv)
+status_code ft_echo(char **argv, t_list *list)
 {
     int newline;
     int idx;
+	char	*key;
+	char	*value;
 
     newline = 0;
     idx = 1;
@@ -28,7 +30,15 @@ status_code ft_echo(char **argv)
     }
     while (argv[idx] != NULL)
     {
-        printf("%s", argv[idx]);
+		if (argv[idx][0] == '$')
+		{
+			key = ft_substr(argv[idx], 1, ft_strlen(argv[idx]));
+			value = ft_lst_getvalue(list, key);
+			printf("%s\n", value);
+			free(key);
+		}
+		else
+        	printf("%s", argv[idx]);
         if (argv[idx + 1] != NULL)
             printf(" ");
         idx++;

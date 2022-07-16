@@ -4,13 +4,14 @@
 
 int main(int argc, char **argv, char **env)
 {
-	ft_exit(argv);
-	// t_list list;
-	// t_env *head;
-	// t_env *tmp;
+	t_list list;
+	t_env *head;
+	t_env *tmp;
 
-	// ft_initlist(&list);
-	// init_env(env, &head, &list);
+	ft_initlist(&list);
+	init_env(env, &head, &list);
+
+	ft_echo(argv, &list);
 	// ft_unset(&list, argv);
 	// ft_viewall(&list);
 

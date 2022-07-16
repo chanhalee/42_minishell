@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:36 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 15:05:28 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 15:25:27 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ typedef int status_code;
 # include "ft_utils.h"
 
 int			find_env(char **env, char *key);
-status_code ft_echo(char **argv);
+status_code ft_echo(char **argv, t_list *list);
 status_code	ft_exit(char **argv);
 status_code	ft_pwd(void);
 status_code ft_cd(char **argv, t_list *list);
