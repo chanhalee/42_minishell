@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:04:24 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/14 20:38:18 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 14:25:49 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void	parse_env_from_tok(t_parse_token *tok)
 	while (--index >= 0 && tok != NULL)
 	{
 		next = tok->next;
-		if (tok->string[0] == '$')
+		if (tok->string[0] == '$' && (tok->string[1] == '_'
+			|| (tok->string[1] >= 'A' && tok->string[1] <= 'Z')
+			|| (tok->string[1] >= 'a' && tok->string[1] <= 'z')))
 			parse_env_from_tok_sub(tok);
 		tok = next;
 	}
@@ -60,12 +62,9 @@ void	parse_env_from_tok_sub(t_parse_token *tok)
 	char	*str;
 	char	*str2;
 	char	*str3;
-	
-	end = 0;
+
+	end = 1;
 	str = tok->string;
-	if (str[++end] != '_' && !(str[end] >= 'A' && str[end] <= 'Z')
-		&& !(str[end] >= 'a' && str[end] <= 'z'))
-		return ;
 	while (str[end] == '_' || (str[end] >= 'A' && str[end] <= 'Z') || (str[end]
 			>= 'a' && str[end] <= 'z') || (str[end] >= '0' && str[end] <= '9'))
 		end++;

@@ -6,13 +6,13 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:34 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 16:20:12 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 11:13:59 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "../command_parse.h"
+#include "../command_parse.h"
 
-t_cmd	*get_empty_t_cmd(void) // if worng_return_null
+t_cmd	*get_empty_t_cmd(void)
 {
 	t_cmd	*ret;
 	char	**argv;
@@ -84,7 +84,7 @@ t_cmd_redirection	*add_cmd_redirection(t_cmd *cmd, int red_type, char *file)
 	ret = (t_cmd_redirection *)malloc(sizeof(t_cmd_redirection));
 	str = ft_strdup(file);
 	if (ret == NULL || str == NULL)
-		return(parse_safe_free_multi_str(ret, str, NULL, NULL));
+		return (parse_safe_free_multi_str(ret, str, NULL, NULL));
 	ret->red_type = red_type;
 	ret->file = str;
 	ret->next = NULL;

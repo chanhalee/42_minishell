@@ -6,13 +6,14 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 20:17:55 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 18:27:53 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 14:14:03 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
 
-int	parse_check_syntex_err_set_err(t_parse_token *tok_lst, t_parse_token *err, t_parse_token *prev)
+int	parse_check_syntex_err_set_err(t_parse_token *tok_lst,
+		t_parse_token *err, t_parse_token *prev)
 {
 	char	*str;
 
@@ -50,9 +51,10 @@ int	parse_check_syntex_err(t_parse_token *tok_lst)
 	while (tok != NULL)
 	{
 		if (tok->token_type == TYPE_TOKEN_PIPELINE && (prev == NULL
-			|| tok->next == NULL || prev->token_type != TYPE_TOKEN_ARGV))
+				|| tok->next == NULL || prev->token_type != TYPE_TOKEN_ARGV))
 			return (parse_check_syntex_err_set_err(tok_lst, tok, prev));
-		if (tok->token_type >= TYPE_TOKEN_IO_R && tok->token_type <= TYPE_TOKEN_IO_LL
+		if (tok->token_type >= TYPE_TOKEN_IO_R
+			&& tok->token_type <= TYPE_TOKEN_IO_LL
 			&& (tok->next == NULL || tok->next->token_type != TYPE_TOKEN_ARGV))
 			return (parse_check_syntex_err_set_err(tok_lst, tok, prev));
 		prev = tok;
