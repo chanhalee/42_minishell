@@ -6,7 +6,7 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:37:24 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:23:34 by park             ###   ########.fr       */
+/*   Updated: 2022/07/16 16:46:41 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,6 @@ int	init_env(char **env, t_env **head, t_list *list)
 		}
 		i++;
 	}
+	ft_update_env(list, "OLDPWD", "");
 	return 1;
 }
