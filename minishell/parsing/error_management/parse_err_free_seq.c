@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_safe_free_seq.c                               :+:      :+:    :+:   */
+/*   parse_err_free_seq.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 15:49:28 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 23:35:23 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 15:55:22 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ void	*parse_safe_free_two_d_char(char **ptr, int max)
 	return (NULL);
 }
 
-void	*parse_safe_free_multi_str(void *ptr1, void *ptr2, void *ptr3, void *ptr4)
+void	*parse_safe_free_multi_str(
+		void *ptr1, void *ptr2, void *ptr3, void *ptr4)
 {
 	if (ptr1 != NULL)
 		free(ptr1);

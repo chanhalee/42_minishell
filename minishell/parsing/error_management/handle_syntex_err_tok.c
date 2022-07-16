@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:03:59 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 17:02:25 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 15:54:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_cmd_list	*handle_syntex_err_tok(t_parse_token *tok_lst)
 	char		*str;
 	t_cmd_list	*ret;
 	t_cmd		*cmd;
-	
+
 	if (tok_lst == NULL)
 		str = ft_strdup("");
 	else

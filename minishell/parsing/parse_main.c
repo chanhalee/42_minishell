@@ -6,12 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:33 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 14:20:04 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 16:03:43 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
-# include "./do_not_submit/do_not_submit.h"
 
 t_cmd_list	*parse(char *raw_cmd_string)
 {

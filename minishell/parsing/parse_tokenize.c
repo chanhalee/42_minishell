@@ -6,12 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:49:36 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/14 23:16:54 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 15:52:10 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
-# include "./do_not_submit/do_not_submit.h"
 
 void	parse_tokenize_annihilate_initial_empty_chunk(t_parse_token **tok_lst);
 void	parse_tokenize_change_chunk_to_argv(t_parse_token *tok_lst);
@@ -19,6 +18,7 @@ void	parse_tokenize_change_chunk_to_argv(t_parse_token *tok_lst);
 t_parse_token	*parse_tokenize(char *cmd_string)
 {
 	t_parse_token	*ret;
+
 	ret = create_empty_t_parse_token();
 	if (ret == NULL)
 		return (NULL);
@@ -44,7 +44,7 @@ void	parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst)
 	t_parse_token	*prev;
 
 	if (tok_lst == NULL)
-		return;
+		return ;
 	prev = tok_lst;
 	tok = tok_lst->next;
 	while (tok != NULL)
@@ -63,8 +63,9 @@ void	parse_tokenize_annihilate_empty_chunk(t_parse_token *tok_lst)
 void	parse_tokenize_annihilate_initial_empty_chunk(t_parse_token **tok_lst)
 {
 	t_parse_token	*tok;
-	
-	if ((*tok_lst)->string[0] == '\0' && (*tok_lst)->token_type == TYPE_TOKEN_CHUNK)
+
+	if ((*tok_lst)->string[0] == '\0'
+		&& (*tok_lst)->token_type == TYPE_TOKEN_CHUNK)
 	{
 		if ((*tok_lst)->next == NULL)
 		{
