@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:24:47 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/14 22:01:25 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 15:34:03 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	parse_tokenize_io_red(t_parse_token *tok_lst)
 	t_parse_token	*preserve;
 	char			*str;
 	int				index;
-	
+
 	preserve = tok_lst;
 	while (tok_lst != NULL)
 	{
@@ -94,12 +94,12 @@ void	parse_tokenize_io_red_sub(t_parse_token *tok)
 	char			**sep;
 	int				type;
 	int				index;
-	t_parse_token 	*ret;
+	t_parse_token	*ret;
 
 	sep = ft_strsep_custom_io(tok->string, '>', '<');
 	index = -1;
 	if (sep == NULL || sep[0] == NULL)
-		return;
+		return ;
 	type = tok->token_type;
 	cleanse_single_t_parse_token(tok);
 	ret = tok;
@@ -109,7 +109,7 @@ void	parse_tokenize_io_red_sub(t_parse_token *tok)
 			ret = add_token(&tok, 1, TYPE_TOKEN_IO_R, sep[index]);
 		else if (sep[index][0] == '<')
 			ret = add_token(&tok, 1, TYPE_TOKEN_IO_L, sep[index]);
-		else 
+		else
 			ret = add_token(&tok, 1, type, sep[index]);
 		tok = tok->next;
 	}

@@ -6,12 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:04:24 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 14:25:49 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/16 15:01:26 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
-# include "./do_not_submit/do_not_submit.h"
 
 void			parse_env_from_tok_sub(t_parse_token *tok);
 char			*parse_env_from_str_sub(char *str);
@@ -49,8 +48,8 @@ void	parse_env_from_tok(t_parse_token *tok)
 	{
 		next = tok->next;
 		if (tok->string[0] == '$' && (tok->string[1] == '_'
-			|| (tok->string[1] >= 'A' && tok->string[1] <= 'Z')
-			|| (tok->string[1] >= 'a' && tok->string[1] <= 'z')))
+				|| (tok->string[1] >= 'A' && tok->string[1] <= 'Z')
+				|| (tok->string[1] >= 'a' && tok->string[1] <= 'z')))
 			parse_env_from_tok_sub(tok);
 		tok = next;
 	}
