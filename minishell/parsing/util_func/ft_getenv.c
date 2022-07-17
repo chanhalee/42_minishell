@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../command_parse.h"
+#include "../../include/command_parse.h"
 
 char	*ft_getenv(char *key)
 {

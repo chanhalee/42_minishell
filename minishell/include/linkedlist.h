@@ -6,14 +6,14 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:14:48 by park              #+#    #+#             */
-/*   Updated: 2022/07/17 15:46:29 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 02:01:52 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LINKEDLIST_H
 # define LINKEDLIST_H
 
-# include "./utils/ft_utils.h"
+# include "ft_utils.h"
 
 typedef struct s_env
 {

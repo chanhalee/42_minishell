@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_get_last_char.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 19:42:27 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:10:08 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/18 02:08:20 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../command_parse.h"
+#include "../../include/command_parse.h"
 
 char	ft_p_get_last_char(char *str)
 {

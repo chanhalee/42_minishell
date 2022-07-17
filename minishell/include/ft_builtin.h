@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_builtin.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:36 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 15:25:27 by park             ###   ########.fr       */
+/*   Updated: 2022/07/18 02:01:48 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ typedef int status_code;
 # define FAIL 0
 
 # include "ft_utils.h"
-# include "./linkedlist/linkedlist.h"
-# include "ft_utils.h"
+# include "linkedlist.h"
+# include "command_parse.h"
 
 int			find_env(char **env, char *key);
 status_code ft_echo(char **argv, t_list *list);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../command_parse.h"
+#include "../../include/command_parse.h"
 
 t_cmd	*get_empty_t_cmd(void)
 {

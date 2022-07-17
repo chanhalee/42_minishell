@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:50:41 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:47:45 by park             ###   ########.fr       */
+/*   Updated: 2022/07/18 02:06:05 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "linkedlist.h"
+#include "../include/linkedlist.h"
 
 int	ft_lstdelone(t_list *list, char *key)
 {

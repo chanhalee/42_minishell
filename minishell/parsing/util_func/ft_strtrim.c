@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 14:10:28 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:08:37 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/18 02:08:20 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../command_parse.h"
+#include "../../include/command_parse.h"
 
 static int	sub_func(char const *s1, char const *set, char **result, int *g_s);
 static int	sub_is_in(char c, char const *set);

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./command_parse.h"
+#include "../include/command_parse.h"
 
 void	parse_tokenize_annihilate_space_token_sub(t_parse_token *tok_lst);
 

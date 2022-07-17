@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../command_parse.h"
+#include "../../include/command_parse.h"
 
 void	*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index)
 {

@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./command_parse.h"
+#include "../include/command_parse.h"
 #include <stdio.h>
 
 void	parse_tokenize_pipeline_sep(t_parse_token *tok_lst);
