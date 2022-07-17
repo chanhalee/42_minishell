@@ -5,6 +5,7 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <termios.h>
+#include "../minishell/parsing/command_parse.h"
 
 void signal_handler(int signo)
 {
