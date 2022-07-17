@@ -11,9 +11,11 @@
 // 	ft_initlist(&list);
 // 	init_env(env, &head, &list);
 
-// 	ft_viewall(&list);
-// 	ft_lstdelone(&list, "PATH");
-// 	ft_viewall(&list);
+// 	char *value = ft_getenv(&list, "PATH");
+// 	printf("%s\n", value);
+// 	// ft_viewall(&list);
+// 	// ft_lstdelone(&list, "PATH");
+// 	// ft_viewall(&list);
 
 // 	return 0;
 // }

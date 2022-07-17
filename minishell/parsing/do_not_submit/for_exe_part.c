@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   for_exe_part.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 13:35:55 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 15:52:26 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void interprete_exe_name(t_cmd *cmd)
 	char	**sep;
 
 	if ((cmd->exec_file_name[0] == '.' && cmd->exec_file_name[1] == '/')
-		||cmd->exec_file_name[0]=='/');
+		||cmd->exec_file_name[0]=='/')
 		execve(cmd->exec_file_name, cmd->argv, NULL);
 	str = ft_getenv("PATH");
 	index = -1;

@@ -6,21 +6,13 @@
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:29:07 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 23:32:05 by park             ###   ########.fr       */
+/*   Updated: 2022/07/17 15:33:21 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
 
-size_t	ft_strlen(const char *str)
-{
-	size_t	len;
-
-	len = 0;
-	while (str[len] != '\0')
-		len++;
-	return (len);
-}
+size_t	ft_strlen(const char *str);
 
 char	*ft_substr(char const *s, size_t start, size_t len)
 {
