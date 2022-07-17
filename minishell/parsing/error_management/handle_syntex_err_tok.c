@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../command_parse.h"
+#include "../../include/command_parse.h"
 
 t_cmd_list	*handle_syntex_err_tok(t_parse_token *tok_lst)
 {

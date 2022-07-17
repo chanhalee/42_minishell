@@ -5,8 +5,12 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <termios.h>
-#include "./parsing/command_parse.h"
+#include "./include/command_parse.h"
+#include "./include/ft_builtin.h"
+
 # include "./parsing/do_not_submit/do_not_submit.h"
+
+void print_cmd_lists_tmp(t_cmd_list *lists);
 
 void	signal_handler(int signo)
 {

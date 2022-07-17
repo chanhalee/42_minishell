@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./command_parse.h"
+#include "../include/command_parse.h"
 
 void	parse_tokenize_io_red_sep(t_parse_token *tok_lst);
 void	parse_tokenize_io_red_sub(t_parse_token *tok);

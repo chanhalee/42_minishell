@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./command_parse.h"
+#include "../include/command_parse.h"
 
 t_parse_token	*parse_assemble_tokens_to_t_cmd_list_sub(
 					t_parse_token *tok_lst, t_cmd **cmd,

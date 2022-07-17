@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./command_parse.h"
+#include "../include/command_parse.h"
 
 int	parse_check_syntex_err_set_err(t_parse_token *tok_lst,
 		t_parse_token *err, t_parse_token *prev)
