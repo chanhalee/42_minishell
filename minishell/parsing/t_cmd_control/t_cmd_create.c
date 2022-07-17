@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cmd_create.c                                     :+:      :+:    :+:   */
+/*   t_cmd_create.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:55:34 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 11:13:59 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ t_cmd_redirection	*add_cmd_redirection(t_cmd *cmd, int red_type, char *file)
 	char				*str;
 
 	ret = (t_cmd_redirection *)malloc(sizeof(t_cmd_redirection));
-	str = ft_strdup(file);
+	str = ft_p_strdup(file);
 	if (ret == NULL || str == NULL)
 		return (parse_safe_free_multi_str(ret, str, NULL, NULL));
 	ret->red_type = red_type;

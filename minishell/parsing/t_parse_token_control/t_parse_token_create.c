@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_parse_token_create.c                             :+:      :+:    :+:   */
+/*   t_parse_token_create.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 14:53:03 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/15 17:31:38 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ t_parse_token	*add_token(t_parse_token **token_list,
 	if (ret == NULL)
 		return (NULL);
 	ret->token_type = type;
-	ret->string = ft_strdup(content);
+	ret->string = ft_p_strdup(content);
 	if (ret->string == NULL)
 		free(ret);
 	if (ret->string == NULL)

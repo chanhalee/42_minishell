@@ -1,25 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlen.c                                        :+:      :+:    :+:   */
+/*   ft_getenv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 11:24:36 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:08:37 by chanhale         ###   ########.fr       */
+/*   Created: 2022/07/16 01:11:28 by park              #+#    #+#             */
+/*   Updated: 2022/07/16 01:47:27 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../command_parse.h"
 
-size_t	ft_p_strlen(const char *s)
+char	*ft_getenv(char *key)
 {
-	size_t	iter;
+    t_env	*curr;
+	t_list	*list;
 
-	iter = 0;
-	if (s == NULL)
-		return (0);
-	while (s[iter])
-		iter++;
-	return (iter);
+	list = &(g_state.list);
+	curr = list->head->next;
+    while (curr != list->tail)
+    {
+        if (ft_strcmp(curr->key, key) == 0)
+			return curr->value;
+        curr = curr->next;
+    }
+    return NULL;
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_quotaion.c                          :+:      :+:    :+:   */
+/*   parse_tokenize_quotaion.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 17:00:00 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 14:19:33 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	parse_tokenize_handle_quotaion(t_parse_token *tok_list)
 				add_token(&tok_list, 1, TYPE_TOKEN_CHUNK, sep[2]);
 				add_token(&tok_list, 1, TYPE_TOKEN_ARGV, sep[1]);
 				free(tok_list->string);
-				tok_list->string = ft_strdup(sep[0]);
+				tok_list->string = ft_p_strdup(sep[0]);
 				parse_safe_free_two_d_char(sep, -1);
 				tok_list = tok_list->next;
 			}
@@ -46,13 +46,13 @@ char	**seperate_quote_sub_single_quote(char *str, int start, int end)
 	ret = (char **)malloc(sizeof(char *) * 4);
 	if (ret == NULL)
 		return (NULL);
-	ret[0] = ft_substr(str, 0, start);
+	ret[0] = ft_p_substr(str, 0, start);
 	if (ret[0] == NULL)
 		return (parse_safe_free_two_d_char(ret, -1));
-	ret[1] = ft_substr(str, start + 1, end - start - 1);
+	ret[1] = ft_p_substr(str, start + 1, end - start - 1);
 	if (ret[1] == NULL)
 		return (parse_safe_free_two_d_char(ret, -1));
-	ret[2] = ft_substr(str, end + 1, ft_strlen(str));
+	ret[2] = ft_p_substr(str, end + 1, ft_p_strlen(str));
 	if (ret[2] == NULL)
 		return (parse_safe_free_two_d_char(ret, -1));
 	ret[3] = NULL;
@@ -66,14 +66,14 @@ char	**seperate_quote_sub_double_quote(char *str, int start, int end)
 	ret = (char **)malloc(sizeof(char *) * 4);
 	if (ret == NULL)
 		return (NULL);
-	ret[0] = ft_substr(str, 0, start);
+	ret[0] = ft_p_substr(str, 0, start);
 	if (ret[0] == NULL)
 		return (parse_safe_free_two_d_char(ret, -1));
-	ret[1] = ft_substr(str, start + 1, end - start - 1);
+	ret[1] = ft_p_substr(str, start + 1, end - start - 1);
 	ret[1] = parse_env_from_str(ret[1]);
 	if (ret[1] == NULL)
 		return (parse_safe_free_two_d_char(ret, -1));
-	ret[2] = ft_substr(str, end + 1, ft_strlen(str));
+	ret[2] = ft_p_substr(str, end + 1, ft_p_strlen(str));
 	if (ret[2] == NULL)
 		return (parse_safe_free_two_d_char(ret, -1));
 	ret[3] = NULL;

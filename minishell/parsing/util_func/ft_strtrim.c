@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 14:10:28 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/10 18:34:41 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:08:37 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 static int	sub_func(char const *s1, char const *set, char **result, int *g_s);
 static int	sub_is_in(char c, char const *set);
 
-char	*ft_strtrim(char const *s1, char const *set)
+char	*ft_p_strtrim(char const *s1, char const *set)
 {
 	int			size;
 	char		*result;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_annihilate_space.c                  :+:      :+:    :+:   */
+/*   parse_tokenize_annihilate_space.c                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:30:50 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 15:31:42 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	parse_tokenize_annihilate_space_token(t_parse_token **tok_lst)
 	}
 	if (tok->token_type == TYPE_TOKEN_SPACE)
 	{
-		str = ft_strdup("");
+		str = ft_p_strdup("");
 		if (str == NULL)
 			return ;
 		free(tok->string);

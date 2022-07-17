@@ -6,13 +6,13 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 13:57:26 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 17:48:12 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:09:32 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../command_parse.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_p_strjoin(char const *s1, char const *s2)
 {
 	unsigned int	index_result;
 	unsigned int	index_str;

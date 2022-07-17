@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:10:29 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 15:34:57 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:10:14 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static size_t	get_arr_size(char const *s, char c);
 static char		*make_elements(char const **s, char c);
 static void		emergency_exit(char **p, char **iter_p);
 
-char	**ft_split(char const *s, char c)
+char	**ft_p_split(char const *s, char c)
 {
 	char	**result;
 	char	**iter_result;

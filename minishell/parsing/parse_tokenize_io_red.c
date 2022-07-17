@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_io_red.c                            :+:      :+:    :+:   */
+/*   parse_tokenize_io_red.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:24:47 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 15:34:03 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	parse_tokenize_io_red_merge_l(t_parse_token *tok_lst)
 		if (tok_lst->token_type == TYPE_TOKEN_IO_L && tok_lst->next
 			&& tok_lst->next->token_type == TYPE_TOKEN_IO_L)
 		{
-			str = ft_strdup("<<");
+			str = ft_p_strdup("<<");
 			if (str == NULL)
 				return ;
 			tok = tok_lst->next;
@@ -75,7 +75,7 @@ void	parse_tokenize_io_red_merge_r(t_parse_token *tok_lst)
 		if (tok_lst->token_type == TYPE_TOKEN_IO_R && tok_lst->next
 			&& tok_lst->next->token_type == TYPE_TOKEN_IO_R)
 		{
-			str = ft_strdup(">>");
+			str = ft_p_strdup(">>");
 			if (str == NULL)
 				return ;
 			tok = tok_lst->next;
@@ -96,7 +96,7 @@ void	parse_tokenize_io_red_sub(t_parse_token *tok)
 	int				index;
 	t_parse_token	*ret;
 
-	sep = ft_strsep_custom_io(tok->string, '>', '<');
+	sep = ft_p_strsep_custom_io(tok->string, '>', '<');
 	index = -1;
 	if (sep == NULL || sep[0] == NULL)
 		return ;

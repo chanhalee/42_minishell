@@ -6,13 +6,13 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 16:53:44 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/10 18:34:22 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:10:23 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../command_parse.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_p_strdup(const char *src)
 {
 	int		size;
 	int		localindex;

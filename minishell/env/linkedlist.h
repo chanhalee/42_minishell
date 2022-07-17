@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   linkedlist.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:14:48 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 02:50:50 by park             ###   ########.fr       */
+/*   Updated: 2022/07/17 15:46:29 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef LINKEDLIST_H
 # define LINKEDLIST_H
 
-# include "../ft_utils.h"
+# include "./utils/ft_utils.h"
 
 typedef struct s_env
 {
@@ -31,8 +31,6 @@ typedef struct s_list
 
 int		init_env(char **env, t_env **head, t_list *list);
 int		ft_lstdelone(t_list *list, char *key);
-char	*ft_substr(char const *s, size_t start, size_t len);
-char	*ft_lst_getvalue(t_list *list, char *key);
 t_env	*ft_lstnew(char *key, char *value);
 void	ft_lstadd(t_list *list, char *key, char *value);
 void	ft_initlist(t_list *list);

@@ -1,23 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strchr.c                                        :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/11/10 12:59:32 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:10:17 by chanhale         ###   ########.fr       */
+/*   Created: 2022/07/17 15:30:01 by park              #+#    #+#             */
+/*   Updated: 2022/07/17 15:30:11 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_p_strchr(const char *s, int c)
-{
-	char	casted_c;
+#include <stdlib.h>
 
-	casted_c = (char) c;
-	while (*s != casted_c && *s != '\0')
-		s++;
-	if (*s == casted_c)
-		return ((char *)s);
-	return (0);
+size_t	ft_strlen(const char *str)
+{
+	size_t	len;
+
+	len = 0;
+	while (str[len] != '\0')
+		len++;
+	return (len);
 }

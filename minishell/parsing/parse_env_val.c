@@ -1,19 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_env_val.c                                    :+:      :+:    :+:   */
+/*   parse_env_val.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 16:04:24 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 15:01:26 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./command_parse.h"
 
 void			parse_env_from_tok_sub(t_parse_token *tok);
-char			*parse_env_from_str_sub(char *str);
+char			*parse_env_from_str_sub(char *str, int end);
 void			parse_env_from_tok(t_parse_token *tok);
 
 void	parse_env_from_token_list(t_parse_token *tok_lst)
@@ -35,11 +35,11 @@ void	parse_env_from_tok(t_parse_token *tok)
 	t_parse_token	*next;
 	int				index;
 
-	split_str = ft_split_custom(tok->string, '$');
+	split_str = ft_p_split_custom(tok->string, '$');
 	if (split_str == NULL)
 		return ;
 	free (tok->string);
-	tok->string = ft_strdup(split_str[0]);
+	tok->string = ft_p_strdup(split_str[0]);
 	index = 0;
 	while (split_str[++index] != NULL)
 		add_token(&tok, index, tok->token_type, split_str[index]);
@@ -67,18 +67,17 @@ void	parse_env_from_tok_sub(t_parse_token *tok)
 	while (str[end] == '_' || (str[end] >= 'A' && str[end] <= 'Z') || (str[end]
 			>= 'a' && str[end] <= 'z') || (str[end] >= '0' && str[end] <= '9'))
 		end++;
-	str2 = ft_substr(str, 1, end - 1);
+	str2 = ft_p_substr(str, 1, end - 1);
 	if (str2 == NULL)
 		return ;
 	str3 = getenv(str2);
 	free(str2);
 	if (str3 == NULL)
-		str3 = "";
-	str3 = ft_strdup(str3);
+		str3 = ft_p_strdup("");
 	if (str3 == NULL)
 		return ;
 	tok->string = str3;
-	str3 = ft_substr(str, end, ft_strlen(str));
+	str3 = ft_p_substr(str, end, ft_p_strlen(str));
 	add_token(&tok, 1, tok->token_type, str3);
 	parse_safe_free_multi_str(str, str3, NULL, NULL);
 	tok->token_type = TYPE_TOKEN_ARGV;
@@ -94,18 +93,18 @@ char	*parse_env_from_str(char *str)
 	char	*str_tmp2;
 	int		index;
 
-	split_str = ft_split_custom(str, '$');
+	split_str = ft_p_split_custom(str, '$');
 	if (split_str == NULL)
 		return (str);
 	index = -1;
-	ret = ft_strdup("");
+	ret = ft_p_strdup("");
 	while (split_str[++index] != NULL && ret != NULL)
 	{
-		str_tmp2 = ft_strdup(split_str[index]);
+		str_tmp2 = ft_p_strdup(split_str[index]);
 		if (str_tmp2[0] == '$')
-			str_tmp2 = parse_env_from_str_sub(str_tmp2);
+			str_tmp2 = parse_env_from_str_sub(str_tmp2, 0);
 		str_tmp = ret;
-		ret = ft_strjoin(ret, str_tmp2);
+		ret = ft_p_strjoin(ret, str_tmp2);
 		parse_safe_free_multi_str(str_tmp, str_tmp2, NULL, NULL);
 	}
 	parse_safe_free_two_d_char(split_str, -1);
@@ -115,30 +114,29 @@ char	*parse_env_from_str(char *str)
 	return (ret);
 }
 
-char	*parse_env_from_str_sub(char *str)
+char	*parse_env_from_str_sub(char *str, int end)
 {
-	int		end;
+	char	*str1;
 	char	*str2;
 	char	*str3;
 
-	end = 0;
 	if (str[++end] != '_' && !(str[end] >= 'A' && str[end] <= 'Z')
 		&& !(str[end] >= 'a' && str[end] <= 'z'))
 		return (str);
 	while (str[end] == '_' || (str[end] >= 'A' && str[end] <= 'Z') || (str[end]
 			>= 'a' && str[end] <= 'z') || (str[end] >= '0' && str[end] <= '9'))
 		end++;
-	str2 = ft_substr(str, 1, end - 1);
+	str2 = ft_p_substr(str, 1, end - 1);
 	if (str2 == NULL)
 		return (str);
 	str3 = getenv(str2);
 	free(str2);
 	if (str3 == NULL)
-		str3 = "";
-	str2 = ft_substr(str, end, ft_strlen(str));
-	str3 = ft_strjoin(str3, str2);
-	parse_safe_free_multi_str(str2, NULL, NULL, NULL);
-	if (str3 == NULL)
+		str3 = ft_p_strdup("");
+	str2 = ft_p_substr(str, end, ft_p_strlen(str));
+	str1 = ft_p_strjoin(str3, str2);
+	parse_safe_free_multi_str(str2, str3, NULL, NULL);
+	if (str1 == NULL)
 		return (str);
 	free (str);
 	return (str3);

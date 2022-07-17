@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_check_syntex_err.c                           :+:      :+:    :+:   */
+/*   parse_check_syntex_err.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/14 20:17:55 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 16:25:07 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	parse_check_syntex_err_set_err(t_parse_token *tok_lst,
 	tok_lst->token_type = TYPE_SYNTAX_ERR;
 	if (err->next == NULL)
 	{
-		str = ft_strdup("newline");
+		str = ft_p_strdup("newline");
 		if (str == NULL)
 			return (0);
 		free(tok_lst->string);

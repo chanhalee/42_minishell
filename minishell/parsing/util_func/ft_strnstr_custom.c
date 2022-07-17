@@ -6,13 +6,13 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 14:36:02 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 14:20:42 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:08:37 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../command_parse.h"
 
-int	ft_strstr_custom(const char *h, const char *n, int	*end)
+int	ft_p_strstr_custom(const char *h, const char *n, int	*end)
 {
 	int	i_h;
 	int	i_n;
@@ -21,7 +21,7 @@ int	ft_strstr_custom(const char *h, const char *n, int	*end)
 	i_h = -1;
 	if (*n == '\0' || end == NULL)
 		return (-1);
-	len = ft_strlen(h);
+	len = ft_p_strlen(h);
 	while (++i_h < len)
 	{
 		i_n = -1;

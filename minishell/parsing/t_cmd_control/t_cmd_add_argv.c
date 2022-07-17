@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_cmd_add_argv.c                                   :+:      :+:    :+:   */
+/*   t_cmd_add_argv.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 00:25:37 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 16:01:56 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,12 +21,12 @@ void	*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index)
 	counter = -1;
 	if (index == 0)
 	{
-		new_str = ft_strdup(str);
+		new_str = ft_p_strdup(str);
 		if (new_str == NULL)
 			return (NULL);
 		cmd->exec_file_name = new_str;
 	}
-	new_str = ft_strdup(str);
+	new_str = ft_p_strdup(str);
 	while (cmd->argv[++counter] != NULL)
 		;
 	new_argv = (char **)malloc(sizeof(char *) * (counter + 2));

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 13:24:31 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/12 17:32:26 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:10:20 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../command_parse.h"
 
-int	ft_strcmp(const char *s1, const char *s2)
+int	ft_p_strcmp(const char *s1, const char *s2)
 {
 	size_t	length_s1;
 	size_t	iter;
