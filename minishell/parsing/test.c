@@ -60,7 +60,7 @@ int main(void)
         str = readline("bash$ ");
         if (str){
             printf("input = %s\n", str);
-		cmd_lst = parse(ft_strdup(str));
+		cmd_lst = parse(ft_p_strdup(str));
 		print_cmd_lists(cmd_lst);
 		free_t_cmd_list(cmd_lst);
 		}

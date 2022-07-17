@@ -6,13 +6,13 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 19:42:27 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 15:55:44 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:10:08 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../command_parse.h"
 
-char	ft_get_last_char(char *str)
+char	ft_p_get_last_char(char *str)
 {
 	int		index;
 	char	ret;

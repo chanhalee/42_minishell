@@ -6,11 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 12:59:32 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/10 18:33:31 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:10:17 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_p_strchr(const char *s, int c)
 {
 	char	casted_c;
 

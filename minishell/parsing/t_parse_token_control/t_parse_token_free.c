@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   t_parse_token_free.c                               :+:      :+:    :+:   */
+/*   t_parse_token_free.c                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 15:12:59 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 16:02:40 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ void	cleanse_single_t_parse_token(t_parse_token *token)
 
 	if (token == NULL)
 		return ;
-	str = ft_strdup("");
+	str = ft_p_strdup("");
 	if (str == NULL)
 		return ;
 	if (token->string != NULL)

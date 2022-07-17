@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_merge_argv.c                        :+:      :+:    :+:   */
+/*   parse_tokenize_merge_argv.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 20:30:13 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 15:52:40 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	parse_tokenize_merge_argv(t_parse_token *tok_lst)
 			&& tok_lst->next->token_type == TYPE_TOKEN_ARGV)
 		{
 			tok = tok_lst->next;
-			str = ft_strjoin(tok_lst->string, tok->string);
+			str = ft_p_strjoin(tok_lst->string, tok->string);
 			if (str == NULL)
 				return ;
 			tok_lst->next = tok_lst->next->next;

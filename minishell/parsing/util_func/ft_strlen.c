@@ -6,13 +6,13 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/10 11:24:36 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/13 14:16:45 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:08:37 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../command_parse.h"
 
-size_t	ft_strlen(const char *s)
+size_t	ft_p_strlen(const char *s)
 {
 	size_t	iter;
 

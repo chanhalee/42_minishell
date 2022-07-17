@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_tokenize_pipeline.c                          :+:      :+:    :+:   */
+/*   parse_tokenize_pipeline.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 22:24:47 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 15:33:05 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,11 @@ void	parse_tokenize_pipeline_sub(t_parse_token *tok)
 	char			*str;
 	int				idx;
 
-	sep = ft_split_custom(tok->string, '|');
+	sep = ft_p_split_custom(tok->string, '|');
 	idx = 0;
 	if (sep == NULL || sep[0] == NULL)
 		return ;
-	str = ft_strdup(sep[0]);
+	str = ft_p_strdup(sep[0]);
 	if (str == NULL)
 	{
 		parse_safe_free_two_d_char(sep, -1);
@@ -72,7 +72,7 @@ void	parse_tokenize_pipeline_sep(t_parse_token *tok_lst)
 				return ;
 			free(tok_lst->string);
 			tok_lst->token_type = TYPE_TOKEN_PIPELINE;
-			tok_lst->string = ft_strdup("|");
+			tok_lst->string = ft_p_strdup("|");
 			tok_lst = tok;
 		}
 		tok_lst = tok_lst->next;

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_syntex_err_tok.c                            :+:      :+:    :+:   */
+/*   handle_syntex_err_tok.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 16:03:59 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 15:54:41 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:04:41 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,9 @@ t_cmd_list	*handle_syntex_err_tok(t_parse_token *tok_lst)
 	t_cmd		*cmd;
 
 	if (tok_lst == NULL)
-		str = ft_strdup("");
+		str = ft_p_strdup("");
 	else
-		str = ft_strdup(tok_lst->string);
+		str = ft_p_strdup(tok_lst->string);
 	free_t_parse_token_list(tok_lst);
 	if (str == NULL)
 		return (NULL);

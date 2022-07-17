@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 16:04:45 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 12:35:50 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,18 +76,19 @@ void				*free_t_cmd_list(t_cmd_list *cmd_list);
 void				cleanse_single_t_parse_token(t_parse_token *token);
 t_cmd				*get_last_node(t_cmd *cmd_list);
 t_cmd				*get_empty_t_cmd(void);
-char				**ft_split_custom(char const *s, char c);
-char				**ft_strsep_custom(char const *s, char c);
-char				**ft_strsep_custom_io(char const *s, char c, char d);
-int					ft_strstr_custom(const char *h, const char *n, int	*end);
-char				ft_get_last_char(char *str);
-char				*ft_strdup(const char *src);
-char				*ft_strtrim(char const *s1, char const *set);
-char				*ft_strchr(const char *s, int c);
-char				*ft_substr(char const *s, unsigned int start, size_t len);
-char				*ft_strjoin(char const *s1, char const *s2);
-int					ft_strcmp(const char *s1, const char *s2);
-size_t				ft_strlen(const char *s);
+char				**ft_p_split_custom(char const *s, char c);
+char				**ft_p_strsep_custom(char const *s, char c);
+char				**ft_p_strsep_custom_io(char const *s, char c, char d);
+int					ft_p_strstr_custom(const char *h, const char *n, int *end);
+char				ft_p_get_last_char(char *str);
+char				**ft_p_split(char const *s, char c);
+char				*ft_p_strdup(const char *src);
+char				*ft_p_strtrim(char const *s1, char const *set);
+char				*ft_p_strchr(const char *s, int c);
+char				*ft_p_substr(char const *s, unsigned int start, size_t len);
+char				*ft_p_strjoin(char const *s1, char const *s2);
+int					ft_p_strcmp(const char *s1, const char *s2);
+size_t				ft_p_strlen(const char *s);
 t_parse_token		*add_token(t_parse_token **token_list,
 						size_t index, int type, char *content);
 t_parse_token		*create_empty_t_parse_token(void);
@@ -115,5 +116,6 @@ t_cmd_list			*handle_syntex_err_tok(t_parse_token *tok_lst);
 void				*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index);
 t_cmd_list			*parse_assemble_tokens_to_t_cmd_list(
 						t_parse_token *tok_lst);
+char				*ft_getenv(char *str);
 
 #endif
