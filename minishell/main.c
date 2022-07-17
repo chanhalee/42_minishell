@@ -60,19 +60,19 @@ void	init_env_and_signal(char **env)
     tcsetattr(STDIN_FILENO, TCSANOW, &term);
 }
 
-void	prompt(t_cmd_list *cmd_lst)
+void	prompt(t_cmd_list *cmd_lst, char *str)
 {
     while(1)
     {
-        g_state.str = readline("bash$ ");
-        if (g_state.str)
+        str = readline("bash$ ");
+        if (str)
 		{
-			if (g_state.str[0] != 0)
+			if (str[0] != 0)
 			{
-				cmd_lst = parse(ft_p_strdup(g_state.str));
+				cmd_lst = parse(ft_p_strdup(str));
 				print_cmd_lists(cmd_lst);
 				free_t_cmd_list(cmd_lst);
-        		add_history(g_state.str);
+        		add_history(str);
 			}
 		}
         else
@@ -82,18 +82,19 @@ void	prompt(t_cmd_list *cmd_lst)
             printf(" exit\n");
             break ;
 		}
-        free(g_state.str);
-		g_state.str = NULL;
+        free(str);
+		str = NULL;
     }
 }
 
 int main(int argc, char **argv, char **env)
 {
 	t_cmd_list	*cmd_lst;
+	char		*str;
 
 	print_intro();
 	init_env_and_signal(env);
-	prompt(cmd_lst);
+	prompt(cmd_lst, str);
 
 	system("leaks minishell");
     return(0);
