@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./command_parse.h"
+#include "../include/command_parse.h"
 #include <stdio.h>
 
 char	**seperate_quote(char *str);

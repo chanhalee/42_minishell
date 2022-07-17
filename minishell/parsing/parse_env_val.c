@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./command_parse.h"
+#include "../include/command_parse.h"
 
 void			parse_env_from_tok_sub(t_parse_token *tok);
 char			*parse_env_from_str_sub(char *str, int end);

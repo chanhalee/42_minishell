@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 21:01:31 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 02:01:39 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "../env/linkedlist.h"
+# include "linkedlist.h"
 
 # define TYPE_ERR_CODE_ALLOC 1
 # define TYPE_FAIL 1
