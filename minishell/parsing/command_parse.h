@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 20:50:38 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/17 21:01:31 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ typedef struct s_state
 	t_list	list;
 	t_env 	*head;
 	t_env	*tmp;
-	char	*str;
 }	t_state;
 
 t_state	g_state;
