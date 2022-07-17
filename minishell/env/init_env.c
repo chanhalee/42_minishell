@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:37:24 by park              #+#    #+#             */
-<<<<<<< HEAD:builtin/linkedlist/init_env.c
-/*   Updated: 2022/07/16 16:46:41 by park             ###   ########.fr       */
-=======
-/*   Updated: 2022/07/17 15:26:32 by park             ###   ########.fr       */
->>>>>>> d4e01730e8c323fb2d6389ee692a769cf0648960:minishell/env/init_env.c
+/*   Updated: 2022/07/17 18:52:04 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
