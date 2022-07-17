@@ -19,7 +19,7 @@ void	signal_handler(int signo)
 	}
 }
 
-int main(void)
+int main(int argc, char **argv, char **env)
 {
     char buffer[43];
 	char *str;
@@ -27,53 +27,55 @@ int main(void)
     int readsize;
 	struct termios term;
 	t_cmd_list	*cmd_lst;
-	
 
-    intro_fd = open("intro.txt", O_RDONLY);
-    if (intro_fd < 0)
-        return 1;
-    while (1)
-    {
-        readsize = read(intro_fd, buffer, 42);
-		buffer[42] = '\0';
-        if (readsize < 1) {
-            printf("\n");
-            break;
-        }
-        printf("%s", buffer);
-    }
-    close(intro_fd);
+	ft_initlist(&(g_state.list));
+	init_env(env, &(g_state.head), &(g_state.list));
+	printf("%s\n", ft_getenv("PATH"));
+    // intro_fd = open("intro.txt", O_RDONLY);
+    // if (intro_fd < 0)
+    //     return 1;
+    // while (1)
+    // {
+    //     readsize = read(intro_fd, buffer, 42);
+	// 	buffer[42] = '\0';
+    //     if (readsize < 1) {
+    //         printf("\n");
+    //         break;
+    //     }
+    //     printf("%s", buffer);
+    // }
+    // close(intro_fd);
 
-	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, SIG_IGN);
+	// signal(SIGINT, signal_handler);
+	// signal(SIGQUIT, SIG_IGN);
 
-	// ctrl + C 입력시 반향을 꺼줌
-    tcgetattr(STDIN_FILENO, &term);
-    term.c_lflag &= ~(ECHOCTL);
-    tcsetattr(STDIN_FILENO, TCSANOW, &term);
+	// // ctrl + C 입력시 반향을 꺼줌
+    // tcgetattr(STDIN_FILENO, &term);
+    // term.c_lflag &= ~(ECHOCTL);
+    // tcsetattr(STDIN_FILENO, TCSANOW, &term);
 
 
-    str = NULL;
+    // str = NULL;
 
-    while(1)
-    {
-        str = readline("bash$ ");
-        if (str){
-            printf("input = %s\n", str);
-		cmd_lst = parse(ft_p_strdup(str));
-		print_cmd_lists(cmd_lst);
-		free_t_cmd_list(cmd_lst);
-		}
-        else {
-			printf("\033[1A");
-            printf("\033[5C");
-            printf(" exit\n");
-            break ;
-		}
-        add_history(str);
-        free(str);
-		str = NULL;
-    }
-	system("leaks test");
-    return(0);
+    // while(1)
+    // {
+    //     str = readline("bash$ ");
+    //     if (str){
+    //         printf("input = %s\n", str);
+	// 	cmd_lst = parse(ft_p_strdup(str));
+	// 	print_cmd_lists(cmd_lst);
+	// 	free_t_cmd_list(cmd_lst);
+	// 	}
+    //     else {
+	// 		printf("\033[1A");
+    //         printf("\033[5C");
+    //         printf(" exit\n");
+    //         break ;
+	// 	}
+    //     add_history(str);
+    //     free(str);
+	// 	str = NULL;
+    // }
+	// system("leaks test");
+    // return(0);
 }

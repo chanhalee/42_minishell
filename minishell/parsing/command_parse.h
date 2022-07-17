@@ -3,21 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/17 12:35:50 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/17 15:46:41 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef COMMAND_PARSE_H
 # define COMMAND_PARSE_H
 
-#include <stdio.h>
+# include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "../env/linkedlist.h"
 
 # define TYPE_ERR_CODE_ALLOC 1
 # define TYPE_FAIL 1
@@ -66,6 +67,15 @@ typedef struct s_parse_token
 	char					*string;
 	struct s_parse_token	*next;
 }	t_parse_token;
+
+typedef struct s_state
+{
+	t_list	list;
+	t_env *head;
+	t_env *tmp;
+}	t_state;
+
+t_state	g_state;
 
 t_cmd_list			*parse(char *raw_cmd_string);
 t_cmd_list			*create_empty_t_cmd_list(void);
@@ -116,6 +126,6 @@ t_cmd_list			*handle_syntex_err_tok(t_parse_token *tok_lst);
 void				*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index);
 t_cmd_list			*parse_assemble_tokens_to_t_cmd_list(
 						t_parse_token *tok_lst);
-char				*ft_getenv(char *str);
+char				*ft_getenv(char *key);
 
 #endif
