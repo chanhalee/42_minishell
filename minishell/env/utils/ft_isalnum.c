@@ -1,26 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_isalnum.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 19:57:52 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 16:45:52 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/18 17:34:07 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/18 17:34:16 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
-#include <stdio.h>
-#include <unistd.h>
-
-void	ft_pwd(void)
+int	ft_isalnum(int c)
 {
-    char	buff[PATH_MAX];
-
-	if (getcwd(buff, PATH_MAX) != NULL)
-	{
-		printf("%s\n", buff);
-		return ;
-	}
+	if (c >= '0' && c <= '9')
+		return (1);
+	else if (c >= 'A' && c <= 'Z')
+		return (1);
+	else if (c >= 'a' && c <= 'z')
+		return (1);
+	else
+		return (0);
 }

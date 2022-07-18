@@ -1,26 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 19:57:52 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 16:45:52 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/18 17:33:33 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/18 17:33:48 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
-#include <stdio.h>
-#include <unistd.h>
-
-void	ft_pwd(void)
+int	ft_isdigit(int c)
 {
-    char	buff[PATH_MAX];
-
-	if (getcwd(buff, PATH_MAX) != NULL)
-	{
-		printf("%s\n", buff);
-		return ;
-	}
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

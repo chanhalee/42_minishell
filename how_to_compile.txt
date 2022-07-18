@@ -1,0 +1,1 @@
+gcc main.c env/*.c env/utils/*.c parsing/*.c parsing/*/*.c exec/*.c builtin/*.c -I/opt/homebrew/opt/readline/include -L/opt/homebrew/opt/readline/lib -lreadline -o minishell

@@ -3,21 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 15:26:14 by park             ###   ########.fr       */
+/*   Updated: 2022/07/18 16:44:46 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_builtin.h"
+#include "../include/ft_builtin.h"
 #include <stdio.h>
 
 
-status_code ft_echo(char **argv, t_list *list)
+void	ft_echo(char **argv, t_list *list)
 {
-    int newline;
-    int idx;
+    int		newline;
+    int		idx;
 	char	*key;
 	char	*value;
 
@@ -33,7 +33,7 @@ status_code ft_echo(char **argv, t_list *list)
 		if (argv[idx][0] == '$')
 		{
 			key = ft_substr(argv[idx], 1, ft_strlen(argv[idx]));
-			value = ft_lst_getvalue(list, key);
+			value = ft_getenv(key);
 			printf("%s\n", value);
 			free(key);
 		}
@@ -45,6 +45,5 @@ status_code ft_echo(char **argv, t_list *list)
     }
     if (newline == 0)
         printf("\n");
-    return 1;
 }
 
