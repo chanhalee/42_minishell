@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/18 16:49:35 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:59:18 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,18 +49,18 @@ void interprete_exe_name(t_cmd *cmd)
 // 실행 전 cmd->string != NULL 에 대한 처리가 필요함 (거짓일 경우 check_exec_name_is_builtin를 실행시켜선 안됨)
 void check_exec_name_is_builtin(t_cmd *cmd)
 {
-	if (ft_p_strcmp(cmd->exec_file_name, "echo"))
+	if (ft_p_strcmp(cmd->exec_file_name, "echo") == 0)
 		return (ft_echo(cmd->argv, &(g_state.list)));
-	else if (ft_p_strcmp(cmd->exec_file_name, "cd"))
+	else if (ft_p_strcmp(cmd->exec_file_name, "cd") == 0)
 		return (ft_cd(cmd->argv, &(g_state.list)));
-	else if (ft_p_strcmp(cmd->exec_file_name, "pwd"))
-		return (ft_pwd());//
-	else if (ft_p_strcmp(cmd->exec_file_name, "export"))
+	else if (ft_p_strcmp(cmd->exec_file_name, "pwd") == 0)
+		return (ft_pwd());
+	else if (ft_p_strcmp(cmd->exec_file_name, "export") == 0)
 		;//
-	else if (ft_p_strcmp(cmd->exec_file_name, "unset"))
+	else if (ft_p_strcmp(cmd->exec_file_name, "unset") == 0)
 		return (ft_unset(cmd->argv, &(g_state.list)));
-	else if (ft_p_strcmp(cmd->exec_file_name, "env"))
+	else if (ft_p_strcmp(cmd->exec_file_name, "env")  == 0)
 		return (ft_env(&(g_state.list)));
-	else if (ft_p_strcmp(cmd->exec_file_name, "exit"))
-		return (ft_exit(cmd->argv));//
+	else if (ft_p_strcmp(cmd->exec_file_name, "exit")  == 0)
+		return (ft_exit(cmd->argv));
 }

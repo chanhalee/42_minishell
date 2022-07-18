@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:15:59 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 16:46:23 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 17:01:28 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	ft_unset(char **argv, t_list *list)
 	i = 1;
 	while (argv[i] != NULL)
 	{
-		printf("argv = %s\n", argv[i]);
 		if (valid_env_key(argv[i]) == -1)
 			printf("bash: unset: `%s': not a valid identifier\n", argv[i]);
 		else

@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:36 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 16:48:43 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:53:54 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,6 @@ void	ft_pwd(void);
 void	ft_env(t_list *list);
 void	ft_cd(char **argv, t_list *list);
 void	ft_unset(char **argv, t_list *list);
+void	ft_exec(t_cmd_list *lists);
 
 #endif

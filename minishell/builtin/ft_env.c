@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:13:26 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 16:45:01 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:52:02 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,5 +15,4 @@
 void	ft_env(t_list *list)
 {
 	ft_viewall(list);
-	return (1);
 }
