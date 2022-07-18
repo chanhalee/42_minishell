@@ -3,15 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:38:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/17 15:22:29 by park             ###   ########.fr       */
+/*   Updated: 2022/07/18 15:20:40 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_builtin.h"
-#include "./linkedlist/linkedlist.h"
+#include "../include/ft_builtin.h"
+#include "../include/linkedlist.h"
 #include <unistd.h>
 #include <stdio.h>
 
@@ -30,7 +30,7 @@ status_code ft_cd(char **argv, t_list *list)
 
 	if (argv[1] == NULL || ft_strcmp(argv[1], "~") == 0)
 	{
-		value = ft_getenv(list, "HOME");
+		value = ft_getenv("HOME");
 		if (value == NULL)
 		{
 			printf("bash: cd: HOME not set\n");
@@ -39,7 +39,7 @@ status_code ft_cd(char **argv, t_list *list)
 	}
 	else if (ft_strcmp(argv[1], "-") == 0)
 	{
-		value = ft_getenv(list, "OLDPWD");
+		value = ft_getenv("OLDPWD");
 		if (value == NULL)
 		{
 			printf("bash: cd: OLDPWD not set\n");
@@ -57,7 +57,7 @@ status_code ft_cd(char **argv, t_list *list)
 	else
 	{
 		getcwd(buff, 1024);
-		ft_update_env(list, "OLDPWD", ft_getenv(list, "PWD"));
+		ft_update_env(list, "OLDPWD", ft_getenv("PWD"));
 		ft_update_env(list, "PWD", buff);
 	}
 	// printf("OLDPWD = %s\n", ft_getenv(list, "OLDPWD"));

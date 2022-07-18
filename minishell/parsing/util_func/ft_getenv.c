@@ -22,8 +22,8 @@ char	*ft_getenv(char *key)
     while (curr != list->tail)
     {
         if (ft_strcmp(curr->key, key) == 0)
-			return curr->value;
+			return (curr->value);
         curr = curr->next;
     }
-    return NULL;
+    return (NULL);
 }

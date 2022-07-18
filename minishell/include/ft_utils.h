@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utils.h                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 01:27:14 by park              #+#    #+#             */
-/*   Updated: 2022/07/17 15:31:56 by park             ###   ########.fr       */
+/*   Updated: 2022/07/18 15:23:17 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 #include <stdlib.h>
 
 int		ft_strcmp(char *s1, char *s2);
+int		ft_atoi(const char *nptr);
 size_t	ft_strlen(char *str);
 char	*ft_strjoin(char const *s1, char const *s2);
 char	*ft_strdup(const char *src);

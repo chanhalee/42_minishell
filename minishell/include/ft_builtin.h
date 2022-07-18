@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:36 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 02:01:48 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 15:06:07 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ typedef int status_code;
 int			find_env(char **env, char *key);
 status_code ft_echo(char **argv, t_list *list);
 status_code	ft_exit(char **argv);
+status_code	ft_env(t_list *list);
 status_code	ft_pwd(void);
 status_code ft_cd(char **argv, t_list *list);
 status_code	ft_unset(t_list *list, char **argv);
