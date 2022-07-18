@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:57:52 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 20:14:37 by park             ###   ########.fr       */
+/*   Updated: 2022/07/18 15:21:09 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_builtin.h"
+#include "../include/ft_builtin.h"
 #include <stdio.h>
 #include <unistd.h>
 

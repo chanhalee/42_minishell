@@ -70,7 +70,7 @@ void	parse_env_from_tok_sub(t_parse_token *tok)
 	str2 = ft_p_substr(str, 1, end - 1);
 	if (str2 == NULL)
 		return ;
-	str3 = getenv(str2);
+	str3 = ft_strdup(ft_getenv(str2));
 	free(str2);
 	if (str3 == NULL)
 		str3 = ft_p_strdup("");

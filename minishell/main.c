@@ -10,7 +10,7 @@
 
 # include "./parsing/do_not_submit/do_not_submit.h"
 
-void interprete_exe_name(t_cmd *cmd);
+void ft_exec(t_cmd_list *lists);
 
 void	signal_handler(int signo)
 {
@@ -54,6 +54,7 @@ void	init_env_and_signal(char **env)
 
 	ft_initlist(&(g_state.list));
 	init_env(env, &(g_state.head), &(g_state.list));
+	g_state.exit_code = 0;
 
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);
@@ -69,14 +70,13 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
     while(1)
     {
         str = readline("bash$ ");
-		printf("input = %s\n", str);
         if (str)
 		{
 			if (str[0] != 0)
 			{
 				cmd_lst = parse(ft_p_strdup(str));
 				print_cmd_lists(cmd_lst);
-				interprete_exe_name(cmd_lst->cmd_list);
+				// ft_exec(cmd_lst);
 				free_t_cmd_list(cmd_lst);
         		add_history(str);
 			}
