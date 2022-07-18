@@ -74,7 +74,7 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
 			if (str[0] != 0)
 			{
 				cmd_lst = parse(ft_p_strdup(str));
-				// print_cmd_lists(cmd_lst);
+				print_cmd_lists(cmd_lst);
 				ft_exec(cmd_lst);
 				free_t_cmd_list(cmd_lst);
         		add_history(str);

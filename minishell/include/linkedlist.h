@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:14:48 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 02:01:52 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 18:14:27 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ typedef struct s_list
 
 int		init_env(char **env, t_env **head, t_list *list);
 int		ft_lstdelone(t_list *list, char *key);
+int		ft_is_in_env(t_list	*list, char *key);
 t_env	*ft_lstnew(char *key, char *value);
 void	ft_lstadd(t_list *list, char *key, char *value);
 void	ft_initlist(t_list *list);

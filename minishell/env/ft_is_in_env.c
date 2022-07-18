@@ -1,22 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstadd.c                                        :+:      :+:    :+:   */
+/*   ft_is_in_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:36:31 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 18:32:36 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/18 18:06:27 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/18 18:14:06 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/linkedlist.h"
 
-void	ft_lstadd(t_list *lists, char *key, char *value)
+int	ft_is_in_env(t_list	*list, char *key)
 {
-    t_env *new = ft_lstnew(key, value);
-    new->prev = lists->tail->prev;
-    new->next = lists->tail;
-    lists->tail->prev->next = new;
-    lists->tail->prev = new;
+	t_env *curr;
+
+	curr = list->head->next;
+    while (curr != list->tail)
+    {
+        if (ft_strcmp(curr->key, key) == 0)
+			return 1;
+        curr = curr->next;
+    }
+	return 0;
 }
