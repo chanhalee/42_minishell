@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_getenv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 02:55:05 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 02:55:08 by park             ###   ########.fr       */
+/*   Created: 2022/07/16 01:11:28 by park              #+#    #+#             */
+/*   Updated: 2022/07/16 01:47:27 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../../include/command_parse.h"
 
-char	*ft_strdup(const char *src)
+char	*ft_getenv(char *key)
 {
-	int		size;
-	int		localindex;
-	char	*result;
+    t_env	*curr;
+	t_list	*list;
 
-	size = 0;
-	while (src[size])
-		size++;
-	result = (char *)malloc((size + 1) * sizeof(char));
-	if (result == NULL)
-		return (NULL);
-	localindex = -1;
-	while (++localindex < size)
-		result[localindex] = src[localindex];
-	result[localindex] = '\0';
-	return (result);
+	list = &(g_state.list);
+	curr = list->head->next;
+    while (curr != list->tail)
+    {
+        if (ft_strcmp(curr->key, key) == 0)
+			return (curr->value);
+        curr = curr->next;
+    }
+    return (NULL);
 }
