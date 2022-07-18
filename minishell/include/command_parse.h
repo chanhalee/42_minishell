@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/18 18:41:59 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/18 18:54:53 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@
 # define TYPE_TOKEN_IO_RR 102
 # define TYPE_TOKEN_IO_L 103
 # define TYPE_TOKEN_IO_LL 104
+
+# define STDIN 0
+# define STDOUT 1
+
+# define ERROR 0
+# define SUCCESS 1
+# define NON_DIR 126
+# define NON_COMMAND 127
 
 typedef struct s_cmd_redirection
 {
