@@ -22,20 +22,22 @@ int main(int argc2, char **argv2, char **env)
 		printf("부모 프로세스 생성\n");
 		wait(&status);
 		printf("자식 프로세스 기다리기 끝\n");
+		printf("test\n");
 	}
 	else if (pid == 0)
 	{
 		printf("자식 프로세스 생성\n");
 
-		// cat < a.tx > b.tx > c.tx
-		int fd = open("a.tx", O_WRONLY, 644);
+		// cat >
+		int fd = open("a.tx", O_RDONLY, 0644);
 		// int fd2 = open("b.tx", O_WRONLY | O_CREAT, 0644);
 		// int fd3 = open("c.tx", O_WRONLY | O_CREAT, 0644);
-		// dup2(fd, 0);
+		dup2(fd, 1);
 		// dup2(fd2, 1);
 		// dup2(fd3, 1);
-		strcpy(new_argv[0], "ls");
-		strcpy(new_argv[1], "-al");
+		strcpy(new_argv[0], "/bin/ls");
+		new_argv[1] = NULL;
+		// strcpy(new_argv[1], "-al");
 		new_argv[argc] = NULL;
 		// 맨 마지막은 NULL
 		execve(new_argv[0], new_argv, env);
