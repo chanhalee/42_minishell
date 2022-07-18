@@ -10,7 +10,7 @@
 
 # include "./parsing/do_not_submit/do_not_submit.h"
 
-void interprete_exe_name2(t_cmd *cmd);
+void interprete_exe_name(t_cmd *cmd);
 
 void	signal_handler(int signo)
 {
@@ -69,13 +69,14 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
     while(1)
     {
         str = readline("bash$ ");
+		printf("input = %s\n", str);
         if (str)
 		{
 			if (str[0] != 0)
 			{
 				cmd_lst = parse(ft_p_strdup(str));
 				print_cmd_lists(cmd_lst);
-				interprete_exe_name2(cmd_lst->cmd_list);
+				interprete_exe_name(cmd_lst->cmd_list);
 				free_t_cmd_list(cmd_lst);
         		add_history(str);
 			}
