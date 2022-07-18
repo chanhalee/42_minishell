@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/18 22:03:03 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 01:32:16 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,10 @@ typedef struct s_state
 	t_env 	*head;
 	t_env	*tmp;
 	int		exit_code;
+	int		std_in;
+	int		std_out;
 	int		fd_in;
 	int		fd_out;
-	int		pipe_fd_in;
-	int		pipe_fd_out;
 }	t_state;
 
 t_state	g_state;
