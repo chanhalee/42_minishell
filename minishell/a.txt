@@ -1,3 +1,0 @@
-exit_code = 50348032
-/Users/park/42cursus/42_minishell/minishell
-exit_code = 0

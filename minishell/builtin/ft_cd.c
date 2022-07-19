@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:38:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 17:17:01 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:16:12 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	ft_cd(char **argv, t_list *list)
 	if (rst == -1)
 	{
 		printf("bash: cd: %s: No such file or directory\n", argv[1]);
-		return (1);
+		return (127);
 	}
 	else
 	{

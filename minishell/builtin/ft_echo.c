@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 17:17:00 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:17:52 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,6 @@ int	ft_echo(char **argv, t_list *list)
     }
     if (newline == 0)
         printf("\n");
-	return (SUCCESS);
+	return (0);
 }
 

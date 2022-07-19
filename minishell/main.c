@@ -16,10 +16,19 @@ void	signal_handler(int signo)
 {
 	if (signo == SIGINT)
 	{
-		printf("\n");
-		rl_on_new_line();
-		rl_replace_line("", 1);
-		rl_redisplay();
+		if (g_state.is_fork == 0)
+		{
+			printf("\n");
+			rl_on_new_line();
+			rl_replace_line("", 1);
+			rl_redisplay();
+			g_state.exit_code = 1;
+		}
+		else
+		{
+			g_state.exit_code = 130;
+			printf("\n");
+		}
 	}
 }
 
@@ -76,14 +85,13 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
 			if (str[0] != 0)
 			{
 				cmd_lst = parse(ft_p_strdup(str));
-				// print_cmd_lists(cmd_lst);
-				ret = ft_exec(cmd_lst);
+				if (cmd_lst->status == TYPE_SYNTAX_ERR)
+					printf("bash: syntax error near unexpected token\n");
+				else
+					ret = ft_exec(cmd_lst);
 				free_t_cmd_list(cmd_lst);
-        		add_history(str);
-				free(str);
-				str = NULL;
-				if (ret == 34)
-					return ;
+				add_history(str);
+				// printf("exit_code = %d\n", g_state.exit_code);
 			}
 		}
         else
@@ -93,6 +101,10 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
             printf(" exit\n");
             break ;
 		}
+		free(str);
+		str = NULL;
+		if (ret == 34)
+			return ;
     }
 }
 

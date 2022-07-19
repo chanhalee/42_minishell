@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 19:40:30 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/19 23:45:50 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ typedef struct s_state
 	int		std_out;
 	int		fd_in;
 	int		fd_out;
+	int		is_fork;
 }	t_state;
 
 t_state	g_state;
@@ -142,6 +143,7 @@ t_cmd_list			*parse_assemble_tokens_to_t_cmd_list(
 char				*ft_getenv(char *key);
 int					interprete_exe_name(t_cmd *cmd);
 int					check_exec_name_is_builtin(t_cmd *cmd);
+int					exec_builtin(t_cmd *cmd);
 int					get_exitcode(void);
 
 #endif
