@@ -6,7 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:38:43 by park              #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/19 16:36:17 by chanhale         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/19 14:59:39 by jeounpar         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +26,7 @@
 // cd ~ : 홈 디렉토리로 이동합니다.
 // cd	: 홈 디렉토리로 이동합니다.
 
-void	ft_cd(char **argv, t_list *list)
+int	ft_cd(char **argv, t_list *list)
 {
 	int		rst;
 	char	*value;
@@ -34,7 +38,7 @@ void	ft_cd(char **argv, t_list *list)
 		if (value == NULL)
 		{
 			printf("bash: cd: HOME not set\n");
-			return ;
+			return (1);
 		}
 	}
 	else if (ft_strcmp(argv[1], "-") == 0)
@@ -43,7 +47,7 @@ void	ft_cd(char **argv, t_list *list)
 		if (value == NULL)
 		{
 			printf("bash: cd: OLDPWD not set\n");
-			return ;
+			return (1);
 		}
 	}
 	else
@@ -52,12 +56,13 @@ void	ft_cd(char **argv, t_list *list)
 	if (rst == -1)
 	{
 		printf("bash: cd: %s: No such file or directory\n", argv[1]);
-		return ;
+		return (1);
 	}
 	else
 	{
 		getcwd(buff, 9999);
 		ft_update_env(list, "OLDPWD", ft_getenv("PWD"));
-		ft_update_env(list, "PWD", buff);
+		ft_update_env(list, "PWD", buff); 
 	}
+	return (0);
 }

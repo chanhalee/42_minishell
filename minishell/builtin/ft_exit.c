@@ -6,7 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 14:47:27 by park              #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/19 16:36:19 by chanhale         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/19 15:29:26 by jeounpar         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +33,7 @@ static int	check_num(char *str)
 	return SUCCESS;
 }
 
-void	ft_exit(char **argv)
+int	ft_exit(char **argv)
 {
 	int	i;
 	int	rst;
@@ -38,14 +42,14 @@ void	ft_exit(char **argv)
 	if (argv[1] == NULL)
 	{
 		printf("exit\n");
-		exit(0);
+		return(34);
 	}
 	while (argv[i] != NULL)
 		i++;
 	if (i > 2)
 	{
 		printf("bash: exit: too many arguments\n");
-		return ;
+		return (255);
 	}
 	else
 	{
@@ -53,10 +57,10 @@ void	ft_exit(char **argv)
 		{
 			rst = ft_atoi(argv[1]);
 			printf("exit\n");
-			exit(rst);
+			return (rst);
 		}
 		printf("exit\n");
 		printf("bash: exit: %s: numeric argument required\n", argv[1]);
-		exit(1);
+		return (255);
 	}
 }

@@ -6,13 +6,18 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:13:26 by park              #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/19 16:36:18 by chanhale         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/19 14:56:19 by jeounpar         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_builtin.h"
 
-void	ft_env(t_list *list)
+int	ft_env(t_list *list)
 {
 	ft_viewall(list);
+	return (1);
 }

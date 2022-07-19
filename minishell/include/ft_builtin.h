@@ -6,7 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:36 by park              #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/19 16:36:15 by chanhale         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/19 15:31:48 by jeounpar         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +26,13 @@
 # include "command_parse.h"
 
 int		find_env(char **env, char *key);
-void	ft_echo(char **argv, t_list *list);
-void	ft_exit(char **argv);
-void	ft_pwd(void);
-void	ft_env(t_list *list);
-void	ft_cd(char **argv, t_list *list);
-void	ft_unset(char **argv, t_list *list);
-void	ft_exec(t_cmd_list *lists);
-void	ft_export(char **argv, t_list *list);
+int		ft_echo(char **argv, t_list *list);
+int		ft_pwd(void);
+int		ft_env(t_list *list);
+int		ft_cd(char **argv, t_list *list);
+int		ft_unset(char **argv, t_list *list);
+int		ft_export(char **argv, t_list *list);
+int		ft_exit(char **argv);
+int		ft_exec(t_cmd_list *lists);
 
 #endif

@@ -6,7 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/19 16:36:18 by chanhale         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/19 14:54:35 by jeounpar         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +18,7 @@
 #include <stdio.h>
 
 
-void	ft_echo(char **argv, t_list *list)
+int	ft_echo(char **argv, t_list *list)
 {
     int		newline;
     int		idx;
@@ -45,5 +49,6 @@ void	ft_echo(char **argv, t_list *list)
     }
     if (newline == 0)
         printf("\n");
+	return (SUCCESS);
 }
 

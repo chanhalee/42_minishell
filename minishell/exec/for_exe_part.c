@@ -6,7 +6,11 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/07/19 16:36:12 by chanhale         ###   ########.fr       */
+=======
+/*   Updated: 2022/07/19 15:28:41 by jeounpar         ###   ########.fr       */
+>>>>>>> main
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,4 +69,5 @@ int	check_exec_name_is_builtin(t_cmd *cmd)
 		return (ft_env(&(g_state.list)));
 	else if (ft_p_strcmp(cmd->exec_file_name, "exit")  == 0)
 		return (ft_exit(cmd->argv));
+	return (TYPE_FAIL);
 }
