@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/18 15:01:35 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:36:13 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,14 @@
 # define TYPE_TOKEN_IO_RR 102
 # define TYPE_TOKEN_IO_L 103
 # define TYPE_TOKEN_IO_LL 104
+
+# define STDIN 0
+# define STDOUT 1
+
+# define ERROR 0
+# define SUCCESS 1
+# define NON_DIR 126
+# define NON_COMMAND 127
 
 typedef struct s_cmd_redirection
 {
@@ -74,6 +82,10 @@ typedef struct s_state
 	t_env 	*head;
 	t_env	*tmp;
 	int		exit_code;
+	int		std_in;
+	int		std_out;
+	int		fd_in;
+	int		fd_out;
 }	t_state;
 
 t_state	g_state;
@@ -128,7 +140,7 @@ void				*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index);
 t_cmd_list			*parse_assemble_tokens_to_t_cmd_list(
 						t_parse_token *tok_lst);
 char				*ft_getenv(char *key);
-int					interprete_exe_name(t_cmd *cmd);
-int					check_exec_name_is_builtin(t_cmd *cmd);
+void				interprete_exe_name(t_cmd *cmd);
+void				check_exec_name_is_builtin(t_cmd *cmd);
 
 #endif

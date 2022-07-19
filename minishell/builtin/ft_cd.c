@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_cd.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:38:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 15:20:40 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:36:17 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,11 @@
 // cd ~ : 홈 디렉토리로 이동합니다.
 // cd	: 홈 디렉토리로 이동합니다.
 
-status_code ft_cd(char **argv, t_list *list)
+void	ft_cd(char **argv, t_list *list)
 {
-	status_code	rst;
-	char		*value;
-	char		buff[1024];
+	int		rst;
+	char	*value;
+	char	buff[9999];
 
 	if (argv[1] == NULL || ft_strcmp(argv[1], "~") == 0)
 	{
@@ -34,7 +34,7 @@ status_code ft_cd(char **argv, t_list *list)
 		if (value == NULL)
 		{
 			printf("bash: cd: HOME not set\n");
-			return 0;
+			return ;
 		}
 	}
 	else if (ft_strcmp(argv[1], "-") == 0)
@@ -43,7 +43,7 @@ status_code ft_cd(char **argv, t_list *list)
 		if (value == NULL)
 		{
 			printf("bash: cd: OLDPWD not set\n");
-			return 0;
+			return ;
 		}
 	}
 	else
@@ -52,15 +52,12 @@ status_code ft_cd(char **argv, t_list *list)
 	if (rst == -1)
 	{
 		printf("bash: cd: %s: No such file or directory\n", argv[1]);
-		return (rst);
+		return ;
 	}
 	else
 	{
-		getcwd(buff, 1024);
+		getcwd(buff, 9999);
 		ft_update_env(list, "OLDPWD", ft_getenv("PWD"));
 		ft_update_env(list, "PWD", buff);
 	}
-	// printf("OLDPWD = %s\n", ft_getenv(list, "OLDPWD"));
-	// printf("PWD = %s\n", ft_getenv(list, "PWD"));
-    return (rst);
 }

@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 14:47:27 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 15:21:02 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:36:19 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_builtin.h"
 #include <stdio.h>
 
-int	check_num(char *str)
+static int	check_num(char *str)
 {
 	int	i;
 
@@ -29,7 +29,7 @@ int	check_num(char *str)
 	return SUCCESS;
 }
 
-status_code	ft_exit(char **argv)
+void	ft_exit(char **argv)
 {
 	int	i;
 	int	rst;
@@ -45,7 +45,7 @@ status_code	ft_exit(char **argv)
 	if (i > 2)
 	{
 		printf("bash: exit: too many arguments\n");
-		return FAIL;
+		return ;
 	}
 	else
 	{
@@ -59,5 +59,4 @@ status_code	ft_exit(char **argv)
 		printf("bash: exit: %s: numeric argument required\n", argv[1]);
 		exit(1);
 	}
-	return 4242;
 }

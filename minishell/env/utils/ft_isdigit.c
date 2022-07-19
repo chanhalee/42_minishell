@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 03:13:26 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 16:36:18 by chanhale         ###   ########.fr       */
+/*   Created: 2022/07/18 17:33:33 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/18 17:33:48 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
-
-void	ft_env(t_list *list)
+int	ft_isdigit(int c)
 {
-	ft_viewall(list);
+	if (c >= '0' && c <= '9')
+		return (1);
+	return (0);
 }

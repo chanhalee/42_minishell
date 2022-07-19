@@ -1,32 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_utils.c                                         :+:      :+:    :+:   */
+/*   ft_getenv.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 18:46:01 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 02:02:09 by park             ###   ########.fr       */
+/*   Created: 2022/07/16 01:11:28 by park              #+#    #+#             */
+/*   Updated: 2022/07/16 01:47:27 by park             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdlib.h>
+#include "../include/command_parse.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+char	*ft_getenv(char *key)
 {
-	size_t			i;
-	unsigned char	*s1_str;
-	unsigned char	*s2_str;
+    t_env	*curr;
+	t_list	*list;
 
-	i = 0;
-	s1_str = (unsigned char *)s1;
-	s2_str = (unsigned char *)s2;
-	while (n--)
-	{
-		if (s1_str[i] != s2_str[i] || s1_str[i] == '\0'
-			|| s2_str[i] == '\0')
-			return (s1_str[i] - s2_str[i]);
-		i++;
-	}
-	return (0);
+	list = &(g_state.list);
+	curr = list->head->next;
+    while (curr != list->tail)
+    {
+        if (ft_strcmp(curr->key, key) == 0)
+			return (curr->value);
+        curr = curr->next;
+    }
+    return (NULL);
 }

@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 03:13:26 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 16:36:18 by chanhale         ###   ########.fr       */
+/*   Created: 2022/07/19 00:25:56 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/19 00:26:18 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
+#include "../include/command_parse.h"
 
-void	ft_env(t_list *list)
+void	ft_pipe()
 {
-	ft_viewall(list);
+	
 }

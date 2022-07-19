@@ -70,10 +70,11 @@ void	parse_env_from_tok_sub(t_parse_token *tok)
 	str2 = ft_p_substr(str, 1, end - 1);
 	if (str2 == NULL)
 		return ;
-	str3 = ft_strdup(ft_getenv(str2));
+	str3 = ft_getenv(str2);
 	free(str2);
 	if (str3 == NULL)
-		str3 = ft_p_strdup("");
+		str3 = "";
+	str3 = ft_strdup(str3);
 	if (str3 == NULL)
 		return ;
 	tok->string = str3;
@@ -129,13 +130,13 @@ char	*parse_env_from_str_sub(char *str, int end)
 	str2 = ft_p_substr(str, 1, end - 1);
 	if (str2 == NULL)
 		return (str);
-	str3 = getenv(str2);
+	str3 = ft_getenv(str2);
 	free(str2);
 	if (str3 == NULL)
-		str3 = ft_p_strdup("");
-	str2 = ft_p_substr(str, end, ft_p_strlen(str));
-	str1 = ft_p_strjoin(str3, str2);
-	parse_safe_free_multi_str(str2, str3, NULL, NULL);
+		str3 = "";
+	str2 = ft_substr(str, end, ft_strlen(str));
+	str3 = ft_strjoin(str3, str2);
+	parse_safe_free_multi_str(str2, NULL, NULL, NULL);
 	if (str1 == NULL)
 		return (str);
 	free (str);

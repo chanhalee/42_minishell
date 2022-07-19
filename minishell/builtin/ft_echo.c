@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_echo.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 15:21:38 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:36:18 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 #include <stdio.h>
 
 
-status_code ft_echo(char **argv, t_list *list)
+void	ft_echo(char **argv, t_list *list)
 {
-    int newline;
-    int idx;
+    int		newline;
+    int		idx;
 	char	*key;
 	char	*value;
 
@@ -45,6 +45,5 @@ status_code ft_echo(char **argv, t_list *list)
     }
     if (newline == 0)
         printf("\n");
-    return 1;
 }
 

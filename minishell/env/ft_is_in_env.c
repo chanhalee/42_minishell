@@ -1,29 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getenv.c                                  :+:      :+:    :+:   */
+/*   ft_is_in_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 01:11:28 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:47:27 by park             ###   ########.fr       */
+/*   Created: 2022/07/18 18:06:27 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/18 18:14:06 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../include/command_parse.h"
+#include "../include/linkedlist.h"
 
-char	*ft_getenv(char *key)
+int	ft_is_in_env(t_list	*list, char *key)
 {
-    t_env	*curr;
-	t_list	*list;
+	t_env *curr;
 
-	list = &(g_state.list);
 	curr = list->head->next;
     while (curr != list->tail)
     {
         if (ft_strcmp(curr->key, key) == 0)
-			return (curr->value);
+			return 1;
         curr = curr->next;
     }
-    return (NULL);
+	return 0;
 }
