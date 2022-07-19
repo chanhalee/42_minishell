@@ -10,7 +10,7 @@
 
 # include "./parsing/do_not_submit/do_not_submit.h"
 
-void interprete_exe_name(t_cmd *cmd);
+int ft_exec(t_cmd_list *lists);
 
 void	signal_handler(int signo)
 {
@@ -54,6 +54,7 @@ void	init_env_and_signal(char **env)
 
 	ft_initlist(&(g_state.list));
 	init_env(env, &(g_state.head), &(g_state.list));
+	g_state.exit_code = 0;
 
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);

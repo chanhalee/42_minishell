@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atoi.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 15:02:26 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 18:38:14 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/18 16:40:32 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ static int	get_result(char *str, int i, int result, int neg)
 	return (result * neg);
 }
 
-int	ft_p_atoi(const char *nptr)
+int	ft_atoi(const char *nptr)
 {
 	char	*str;
 	int		neg;

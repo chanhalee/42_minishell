@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 17:08:48 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:43:50 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ char				*ft_p_substr(char const *s, unsigned int start, size_t len);
 char				*ft_p_strjoin(char const *s1, char const *s2);
 int					ft_p_strcmp(const char *s1, const char *s2);
 size_t				ft_p_strlen(const char *s);
+char				*ft_p_itoa(int n);
 t_parse_token		*add_token(t_parse_token **token_list,
 						size_t index, int type, char *content);
 t_parse_token		*create_empty_t_parse_token(void);
@@ -140,7 +141,7 @@ void				*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index);
 t_cmd_list			*parse_assemble_tokens_to_t_cmd_list(
 						t_parse_token *tok_lst);
 char				*ft_getenv(char *key);
-void				interprete_exe_name(t_cmd *cmd);
+int					interprete_exe_name(t_cmd *cmd);
 int					check_exec_name_is_builtin(t_cmd *cmd);
 int					get_exitcode(void);
 
