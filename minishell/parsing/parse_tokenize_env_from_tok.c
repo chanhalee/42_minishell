@@ -96,7 +96,7 @@ void	*parse_env_from_tok_sub_question(t_parse_token *tok)
 	char	*str3;
 
 	end = 1;
-	str1 = ft_p_itoa(1);
+	str1 = ft_p_itoa(get_exitcode());
 	str2 = ft_p_substr(tok->string, 2, ft_p_strlen(tok->string));
 	if (str1 == NULL || str2 == NULL)
 		return (parse_safe_free_multi_str(str1, str2, NULL, NULL));

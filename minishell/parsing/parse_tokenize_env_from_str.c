@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:39:51 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 17:01:19 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/19 18:39:53 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,7 +80,7 @@ char	*parse_env_from_str_sub_question(char *str)
 
 	if (str[1] != '?')
 		return (str);
-	str1 = ft_p_itoa(1);
+	str1 = ft_p_itoa(get_exitcode());
 	str2 = ft_p_substr(str, 2, ft_strlen(str));
 	if (str1 == NULL || str2 == NULL)
 	{

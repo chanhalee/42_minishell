@@ -10,7 +10,7 @@
 
 # include "./parsing/do_not_submit/do_not_submit.h"
 
-void ft_exec(t_cmd_list *lists);
+int ft_exec(t_cmd_list *lists);
 
 void	signal_handler(int signo)
 {

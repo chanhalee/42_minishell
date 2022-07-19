@@ -3,7 +3,7 @@
 #include <errno.h>
 
 void	ft_redirection(t_cmd *cmd);
-void	interprete_exe_name(t_cmd *cmd);
+int		interprete_exe_name(t_cmd *cmd);
 
 void	fork_fail(void)
 {
