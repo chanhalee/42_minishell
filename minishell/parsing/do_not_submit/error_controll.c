@@ -21,19 +21,10 @@ void	emergency_exit_parse(t_cmd *cmd_list, int exit_code)
 	next = cmd_list;
 	if (cmd_list == NULL)
 		exit(exit_code);
-	if (next != NULL && next->input_buffer != NULL)
-		free(next->input_buffer);
 	while (next != NULL)
 	{
 		if (next->exec_file_name)
 			free(next->exec_file_name);
-		if (next->path)
-		{
-			index = -1;
-			while ((next->path)[++index])
-				free((next->path)[index]);
-			free(next->path);
-		}
 		if (next->argv)
 		{
 			index = -1;
@@ -41,8 +32,6 @@ void	emergency_exit_parse(t_cmd *cmd_list, int exit_code)
 				free((next->argv)[index]);
 			free(next->argv);
 		}
-		if (next->output_buffer)
-			free(next->output_buffer);
 		prev = next;
 		next = next->next;
 		free(prev);

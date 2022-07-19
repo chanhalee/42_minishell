@@ -23,21 +23,18 @@ void	free_first_t_cmd_node(t_cmd_list *cmd_list)
 		return ;
 	node = cmd_list->cmd_list;
 	cmd_list->cmd_list = cmd_list->cmd_list->next;
+	if (cmd_list->cmd_list != NULL)
+		cmd_list->cmd_list->prev = NULL;
+	if (cmd_list->cmd_list == NULL)
+		cmd_list->cmd_list_tail = NULL;
 	free_t_cmd_redirection(node);
 	if (node->exec_file_name != NULL)
 		free (node->exec_file_name);
-	index = -1;
-	while (node->path != NULL && (node->path)[++index])
-		free (node->path);
-	if (node->path != NULL)
-		free (node->path);
 	index = -1;
 	while (node->argv != NULL && (node->argv)[++index])
 		free((node->argv)[index]);
 	if (node->argv != NULL)
 		free (node->argv);
-	if (node->output_buffer)
-		free (node->output_buffer);
 	free (node);
 }
 
@@ -59,8 +56,6 @@ void	*free_t_cmd_list(t_cmd_list *cmd_list)
 {
 	if (cmd_list == NULL)
 		return (NULL);
-	if (cmd_list->first_cmd_input != NULL)
-		free (cmd_list->first_cmd_input);
 	while (cmd_list->cmd_list != NULL)
 		free_first_t_cmd_node(cmd_list);
 	free (cmd_list);
