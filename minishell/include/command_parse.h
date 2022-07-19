@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 17:43:50 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/19 19:10:26 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ typedef struct s_cmd
 	char						*exec_file_name;
 	char						**path;
 	char						**argv;
-	char						**input_buffer;
-	char						*output_buffer;
+	int							fds[2];
 	struct s_cmd_redirection	*redirection_list;
 	struct s_cmd				*next;
+	struct s_cmd				*prev;
 }	t_cmd;
 
 typedef struct s_cmd_list
