@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 20:07:22 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/19 01:20:27 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:16:24 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	ft_redirection(t_cmd *cmd)
 		if (g_state.fd_out == -1 || g_state.fd_in == -1)
 		{
 			printf("bash: %s: No such file or directory\n", red->file);
-			g_state.exit_code = 1;
+			g_state.exit_code = 127;
 		}
 		if (red->red_type == TYPE_TOKEN_IO_R || red->red_type == TYPE_TOKEN_IO_RR)
 			dup2(g_state.fd_out, STDOUT);

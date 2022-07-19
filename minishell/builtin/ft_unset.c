@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_unset.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:15:59 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 17:16:58 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:05:06 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	ft_unset(char **argv, t_list *list)
 	int	i;
 
 	if (argv[1] == NULL)
-		;
+		return (0);
 	i = 1;
 	while (argv[i] != NULL)
 	{

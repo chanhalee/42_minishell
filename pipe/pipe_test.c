@@ -18,7 +18,6 @@ int main(){
                 printf("fork error\n");
                 exit(1);
         }
-
         printf("\n");
         if(pid>0){ //parent process
                 close(fd[READ]);

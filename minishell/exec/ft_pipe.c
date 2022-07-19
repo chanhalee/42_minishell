@@ -6,13 +6,16 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 00:25:56 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/19 01:40:25 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 21:07:12 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 // #include "../include/command_parse.h"
 
-// void	ft_pipe()
+// void	ft_pipe(t_cmd *cmd)
 // {
+// 	int		status;
+// 	pid_t	pid;
+
 	
 // }
