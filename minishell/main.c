@@ -99,7 +99,8 @@ int main(int argc, char **argv, char **env)
 {
 	t_cmd_list	*cmd_lst;
 	char		*str;
-
+	
+	g_state.exit_code = 0;
 	print_intro();
 	init_env_and_signal(env);
 	prompt(cmd_lst, str);
