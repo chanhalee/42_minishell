@@ -18,19 +18,16 @@ void print_cmd(t_cmd *cmd)
 	t_cmd_redirection *red;
 
 	printf("++ cmd_filename: {%s}\n", cmd->exec_file_name);
-	printf("++ cmd_input: {%s}\n", *(cmd->input_buffer));
 	index = -1;
 	if (cmd->argv != NULL)
 	{
 		while ((cmd->argv)[++index] != NULL)
 			printf("++ cmd_argv[%d]: {%s}\n", index, (cmd->argv)[index]);
 	}
-	index = -1;
-	if(cmd->path != NULL)
-	{
-		while ((cmd->path)[++index] != NULL)
-			printf("++ cmd_path[%d]: {%s}\n",  index, (cmd->path)[index]);
-	}
+	if (cmd->prev != NULL)
+		printf("++ cmd_argv_prev_exec: {%s}\n", cmd->prev->exec_file_name);
+	if (cmd->next != NULL)
+		printf("++ cmd_argv_next_exec: {%s}\n", cmd->next->exec_file_name);
 	index = -1;
 	if (cmd->redirection_list != NULL)
 	{
@@ -40,7 +37,6 @@ void print_cmd(t_cmd *cmd)
 			red = red->next;
 		}
 	}
-	printf("++ cmd_output: {%s}\n", cmd->output_buffer);
 }
 
 void print_cmd_lists(t_cmd_list *lists)
@@ -52,7 +48,10 @@ void print_cmd_lists(t_cmd_list *lists)
 	cmd_counter = -1;
 	printf ("\n=======print_cmd_list========\n");
 	printf("+ list_status: %d\n", lists->status);
-	printf("+ list_first_input: {%s}\n\n", lists->first_cmd_input);
+	if (lists->cmd_list != NULL)
+		printf("+ list_first_exec: {%s}\n", lists->cmd_list->exec_file_name);
+	if (lists->cmd_list_tail != NULL)
+		printf("+ list_last_exec: {%s}\n\n", lists->cmd_list_tail->exec_file_name);
 	cmd = lists->cmd_list;
 	while (cmd != NULL)
 	{

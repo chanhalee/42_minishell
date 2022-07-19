@@ -28,12 +28,12 @@ t_cmd	*get_empty_t_cmd(void)
 	}
 	argv[0] = NULL;
 	ret->exec_file_name = NULL;
-	ret->path = NULL;
 	ret->argv = argv;
-	ret->input_buffer = NULL;
-	ret->output_buffer = NULL;
+	ret->prev = NULL;
 	ret->next = NULL;
 	ret->redirection_list = NULL;
+	ret->fds[0] = -1;
+	ret->fds[1] = -1;
 	return (ret);
 }
 
@@ -50,14 +50,15 @@ t_cmd	*add_empty_t_cmd_to_list(t_cmd_list *cmd_list)
 	if (cmd_list->cmd_list == NULL)
 	{
 		cmd_list->cmd_list = new_node;
-		new_node->input_buffer = &(cmd_list->first_cmd_input);
+		new_node->prev = NULL;
 		return (new_node);
 	}
 	prev_node = cmd_list->cmd_list;
 	while (prev_node -> next != NULL)
 		prev_node = prev_node->next;
 	prev_node->next = new_node;
-	new_node->input_buffer = &(prev_node->output_buffer);
+	new_node->prev = prev_node;
+	cmd_list->cmd_list_tail = new_node;
 	return (new_node);
 }
 
@@ -70,8 +71,8 @@ t_cmd_list	*create_empty_t_cmd_list(void)
 	if (ret == NULL)
 		return (NULL);
 	ret->cmd_list = NULL;
+	ret->cmd_list_tail = NULL;
 	ret->status = TYPE_INITIAL_STATUS;
-	ret->first_cmd_input = NULL;
 	return (ret);
 }
 
