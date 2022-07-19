@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 01:32:16 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 17:08:48 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,7 @@ t_cmd_list			*parse_assemble_tokens_to_t_cmd_list(
 						t_parse_token *tok_lst);
 char				*ft_getenv(char *key);
 void				interprete_exe_name(t_cmd *cmd);
-void				check_exec_name_is_builtin(t_cmd *cmd);
+int					check_exec_name_is_builtin(t_cmd *cmd);
+int					get_exitcode(void);
 
 #endif

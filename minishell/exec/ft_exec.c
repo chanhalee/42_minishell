@@ -16,44 +16,52 @@ void	pipes(t_cmd *cmd)
 	int	pid;
 	int	ret;
 	int	status;
-	int	fds[2];
+	int	pipes[2];
 	
-	if (pipe(fds))
+	if (pipe(pipes))
 		exit(1);
 	pid = fork();
 	if (pid < 0)
 		fork_fail();
 	else if (pid > 0)
 	{
-		close(fds[0]);
-		dup2(g_state.std_out, fds[1]);
-		close(fds[1]);
-		waitpid(pid, &status, 0);
-		if (WIFEXITED(status))
-			ret = WEXITSTATUS(status);
+		// close(pipes[0]);
+		dup2(pipes[1], 1);
+		close(pipes[1]);
+		ret = wait(&status);
+		g_state.exit_code = WEXITSTATUS(status);
 	}
-	else
+	else if (pid == 0)
 	{
-		dup2(fds[0], g_state.std_in);
-		close(fds[0]);
-		close(fds[1]);
-		execve(cmd->argv[0], cmd->argv, NULL);
+		dup2(pipes[0], 0);
+		// close(pipes[0]);
+		close(pipes[1]);
+		ret = check_exec_name_is_builtin(cmd);
+		if (ret == -1)
+			ret = execve(cmd->argv[0], cmd->argv, NULL);
+		exit(ret);
 	}
 }
 
-void	ft_exec(t_cmd_list *lists)
+int	ft_exec(t_cmd_list *lists)
 {
 	t_cmd	*cmd;
 	int		pipe_open;
 
 	cmd = lists->cmd_list;
 	while (cmd != NULL)
-	{	
+	{
+		g_state.std_out = dup(STDOUT);
+		g_state.std_in = dup(STDIN);
 		ft_redirection(cmd);
-		check_exec_name_is_builtin(cmd);
+		// check_exec_name_is_builtin(cmd);
 		pipes(cmd);
 		dup2(g_state.std_in, STDIN);
 		dup2(g_state.std_out, STDOUT);
+		printf("exit_code = %d\n", g_state.exit_code);
+		if (g_state.exit_code == 34 && cmd->next == NULL)
+			return (34);
 		cmd = cmd->next;
 	}
+	return (0);
 }

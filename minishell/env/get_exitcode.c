@@ -1,19 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_env.c                                           :+:      :+:    :+:   */
+/*   get_exitcode.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 03:13:26 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 14:56:19 by jeounpar         ###   ########.fr       */
+/*   Created: 2022/07/19 17:06:26 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/19 17:07:56 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/ft_builtin.h"
+#include "../include/command_parse.h"
 
-int	ft_env(t_list *list)
+int	get_exitcode(void)
 {
-	ft_viewall(list);
-	return (1);
+	return (g_state.exit_code);
 }

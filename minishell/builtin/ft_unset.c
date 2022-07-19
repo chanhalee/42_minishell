@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:15:59 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 17:01:28 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:00:42 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static int	valid_env_key(char	*key)
 	return 1;
 }
 
-void	ft_unset(char **argv, t_list *list)
+int	ft_unset(char **argv, t_list *list)
 {
 	int	i;
 
@@ -40,9 +40,16 @@ void	ft_unset(char **argv, t_list *list)
 	while (argv[i] != NULL)
 	{
 		if (valid_env_key(argv[i]) == -1)
+		{
 			printf("bash: unset: `%s': not a valid identifier\n", argv[i]);
+			return (1);
+		}
 		else
+		{
 			ft_lstdelone(list, argv[i]);
+			break ;
+		}
 		i++;
 	}
+	return (1);
 }
