@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/18 17:08:29 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:28:41 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void interprete_exe_name(t_cmd *cmd)
 
 // 실행 전 syntax error 에 대한 식별이 필요함 cmd_list->status == TYPE_SYNTAX_ERR 라면 실행하면 안됨.
 // 실행 전 cmd->string != NULL 에 대한 처리가 필요함 (거짓일 경우 check_exec_name_is_builtin를 실행시켜선 안됨)
-void check_exec_name_is_builtin(t_cmd *cmd)
+int	check_exec_name_is_builtin(t_cmd *cmd)
 {
 	if (ft_p_strcmp(cmd->exec_file_name, "echo") == 0)
 		return (ft_echo(cmd->argv, &(g_state.list)));
@@ -63,4 +63,5 @@ void check_exec_name_is_builtin(t_cmd *cmd)
 		return (ft_env(&(g_state.list)));
 	else if (ft_p_strcmp(cmd->exec_file_name, "exit")  == 0)
 		return (ft_exit(cmd->argv));
+	return (TYPE_FAIL);
 }

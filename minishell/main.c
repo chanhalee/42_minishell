@@ -58,7 +58,6 @@ void	init_env_and_signal(char **env)
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);
 
-	// ctrl + C 입력시 반향을 꺼줌
     tcgetattr(STDIN_FILENO, &term);
     term.c_lflag &= ~(ECHOCTL);
     tcsetattr(STDIN_FILENO, TCSANOW, &term);
@@ -66,6 +65,8 @@ void	init_env_and_signal(char **env)
 
 void	prompt(t_cmd_list *cmd_lst, char *str)
 {
+	int ret;
+
     while(1)
     {
         str = readline("bash$ ");
@@ -75,9 +76,13 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
 			{
 				cmd_lst = parse(ft_p_strdup(str));
 				// print_cmd_lists(cmd_lst);
-				ft_exec(cmd_lst);
+				ret = ft_exec(cmd_lst);
 				free_t_cmd_list(cmd_lst);
         		add_history(str);
+				free(str);
+				str = NULL;
+				if (ret == 34)
+					return ;
 			}
 		}
         else
@@ -87,8 +92,6 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
             printf(" exit\n");
             break ;
 		}
-        free(str);
-		str = NULL;
     }
 }
 

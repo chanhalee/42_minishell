@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 16:44:46 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 14:54:35 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 
-void	ft_echo(char **argv, t_list *list)
+int	ft_echo(char **argv, t_list *list)
 {
     int		newline;
     int		idx;
@@ -45,5 +45,6 @@ void	ft_echo(char **argv, t_list *list)
     }
     if (newline == 0)
         printf("\n");
+	return (SUCCESS);
 }
 

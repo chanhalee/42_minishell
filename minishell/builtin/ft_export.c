@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:00:57 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 18:39:27 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/19 15:03:47 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 #include "../include/linkedlist.h"
 #include "../include/ft_utils.h"
 
-static void	print_non_argv_export(t_list *list)
+static int	print_non_argv_export(t_list *list)
 {
 	t_env *curr;
 
@@ -24,12 +24,14 @@ static void	print_non_argv_export(t_list *list)
         printf("declare -x %s=%s\n", curr->key, curr->value);
         curr = curr->next;
     }
+	return (0);
 }
 
-static void	print_error(int error, char *str)
+static int	print_error(int error, char *str)
 {
 	error++;
 	printf("bash: export: `%s': not a valid identifier\n", str);
+	return (1);
 }
 
 
@@ -63,7 +65,7 @@ static void	free_key_value(char **envs)
 // key=value -> ok, key= value -> ok, key =value -> X
 // return 0 -> 맨 앞글자가 숫자, return 1 -> ok, return 2 -> '=' 없음,
 // return -1 -> key에 숫자나 문자 이외의 문자가 있음
-void	ft_export(char **argv, t_list *list)
+int	ft_export(char **argv, t_list *list)
 {
 	int		error;
 	char	**envs;
@@ -82,4 +84,5 @@ void	ft_export(char **argv, t_list *list)
 			ft_lstadd(&(g_state.list), ft_strdup(envs[0]), ft_strdup(envs[1]));
 		free_key_value(envs);
 	}
+	return (0);
 }
