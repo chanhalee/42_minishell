@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 16:36:13 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/19 16:48:58 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +112,7 @@ char				*ft_p_substr(char const *s, unsigned int start, size_t len);
 char				*ft_p_strjoin(char const *s1, char const *s2);
 int					ft_p_strcmp(const char *s1, const char *s2);
 size_t				ft_p_strlen(const char *s);
+char				*ft_p_itoa(int n);
 t_parse_token		*add_token(t_parse_token **token_list,
 						size_t index, int type, char *content);
 t_parse_token		*create_empty_t_parse_token(void);
