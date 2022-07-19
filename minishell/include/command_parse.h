@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 23:45:50 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/20 01:25:23 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,8 @@
 # define SUCCESS 1
 # define NON_DIR 126
 # define NON_COMMAND 127
+# define TYPE_PIPE 88
+# define TYPE_NORMAL 0
 
 typedef struct s_cmd_redirection
 {
@@ -56,6 +58,9 @@ typedef struct s_cmd
 	char						*exec_file_name;
 	char						**argv;
 	int							fds[2];
+	int							fd_in;
+	int							fd_out;
+	int							type;
 	struct s_cmd_redirection	*redirection_list;
 	struct s_cmd				*next;
 	struct s_cmd				*prev;
@@ -83,8 +88,6 @@ typedef struct s_state
 	int		exit_code;
 	int		std_in;
 	int		std_out;
-	int		fd_in;
-	int		fd_out;
 	int		is_fork;
 }	t_state;
 
