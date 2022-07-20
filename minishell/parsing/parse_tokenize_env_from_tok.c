@@ -12,7 +12,7 @@
 
 #include "../include/command_parse.h"
 
-void	parse_env_from_tok_sub(t_parse_token *tok);
+void	parse_env_from_tok_sub(t_parse_token *tok, int end);
 void	parse_env_from_tok(t_parse_token *tok);
 void	*parse_env_from_tok_sub_question(t_parse_token *tok);
 
@@ -50,21 +50,19 @@ void	parse_env_from_tok(t_parse_token *tok)
 		if (tok->string[0] == '$' && (tok->string[1] == '_'
 				|| (tok->string[1] >= 'A' && tok->string[1] <= 'Z')
 				|| (tok->string[1] >= 'a' && tok->string[1] <= 'z')))
-			parse_env_from_tok_sub(tok);
+			parse_env_from_tok_sub(tok, 1);
 		else if (tok->string[0] == '$' && tok->string[1] == '?')
 			parse_env_from_tok_sub_question(tok);
 		tok = next;
 	}
 }
 
-void	parse_env_from_tok_sub(t_parse_token *tok)
+void	parse_env_from_tok_sub(t_parse_token *tok, int end)
 {
-	int		end;
 	char	*str;
 	char	*str2;
 	char	*str3;
 
-	end = 1;
 	str = tok->string;
 	while (str[end] == '_' || (str[end] >= 'A' && str[end] <= 'Z') || (str[end]
 			>= 'a' && str[end] <= 'z') || (str[end] >= '0' && str[end] <= '9'))
