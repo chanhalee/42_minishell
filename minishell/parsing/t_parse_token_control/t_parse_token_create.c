@@ -20,6 +20,8 @@ t_parse_token	*create_empty_t_parse_token(void)
 	if (ret == NULL)
 		return (NULL);
 	ret->next = NULL;
+	ret->original_str = NULL;
+	ret->is_null = TYPE_INITIAL_STATUS;
 	ret->string = NULL;
 	ret->token_type = 0;
 	return (ret);
@@ -46,7 +48,7 @@ t_parse_token	*add_token(t_parse_token **token_list,
 
 	if (token_list == NULL)
 		return (NULL);
-	ret = (t_parse_token *)malloc(sizeof(t_parse_token));
+	ret = create_empty_t_parse_token();
 	if (ret == NULL)
 		return (NULL);
 	ret->token_type = type;

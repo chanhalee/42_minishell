@@ -19,6 +19,9 @@ void	print_token_list(t_parse_token *list)
 	while (list != NULL)
 	{
 		printf(" {%s}(%d),", list->string, list->token_type);
+		if (list->original_str != NULL)
+			printf ("[%s]", list->original_str);
+		printf(",");
 		list = list->next;
 	}
 	printf("]\n");

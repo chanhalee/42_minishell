@@ -45,12 +45,16 @@ t_parse_token	*parse_assemble_tokens_to_t_cmd_list_sub(
 			return (free_t_cmd_list(ret));
 		(*counter) = -1;
 	}
-	if (tok_lst->token_type == TYPE_TOKEN_ARGV)
-		parse_t_cmd_add_argv((*cmd), tok_lst->string, ++(*counter));
+	if (tok_lst->token_type == TYPE_TOKEN_ARGV && (++(*counter) == 0 || tok_lst->is_null != TYPE_ARGV_NULL))
+		parse_t_cmd_add_argv((*cmd), tok_lst->string, (*counter));
 	if (tok_lst->token_type >= TYPE_TOKEN_IO_R
 		&& tok_lst->token_type <= TYPE_TOKEN_IO_LL)
 	{
-		add_cmd_redirection((*cmd), tok_lst->token_type, tok_lst->next->string);
+		if(tok_lst->token_type == TYPE_TOKEN_IO_LL
+			&& tok_lst->next->original_str != NULL)
+			add_cmd_redirection((*cmd), tok_lst->token_type, tok_lst->next->original_str);
+		else
+			add_cmd_redirection((*cmd), tok_lst->token_type, tok_lst->next->string);
 		tok_lst = tok_lst->next;
 	}
 	tok_lst = tok_lst->next;

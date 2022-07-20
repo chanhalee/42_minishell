@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
+#include "./do_not_submit/do_not_submit.h"
 
 void	parse_tokenize_annihilate_initial_empty_chunk(t_parse_token **tok_lst);
 void	parse_tokenize_change_chunk_to_argv(t_parse_token *tok_lst);
@@ -34,7 +35,9 @@ t_parse_token	*parse_tokenize(char *cmd_string)
 	parse_tokenize_change_chunk_to_argv(ret);
 	parse_tokenize_merge_argv(ret);
 	parse_tokenize_annihilate_space_token(&ret);
+	print_token_list(ret);
 	parse_check_syntex_err(ret);
+	print_token_list(ret);
 	return (ret);
 }
 

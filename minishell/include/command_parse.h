@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/20 22:13:53 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 03:04:32 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,10 @@
 # define TYPE_FAIL 1
 # define TYPE_SUCCESS 0
 # define TYPE_INITIAL_STATUS 0
+# define TYPE_ARGV_NULL 1
 # define TYPE_RED_LEFT 0
 # define TYPE_SYNTAX_ERR 999
+# define TYPE_AMBIGUOUS_ERR 9999
 # define TYPE_TOKEN_CHUNK 11
 # define TYPE_TOKEN_ARGV 22
 # define TYPE_TOKEN_SPACE 33
@@ -78,6 +80,8 @@ typedef struct s_cmd_list
 typedef struct s_parse_token
 {
 	int						token_type;
+	int						is_null;
+	char					*original_str;
 	char					*string;
 	struct s_parse_token	*next;
 }	t_parse_token;

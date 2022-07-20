@@ -21,6 +21,8 @@ void	free_t_parse_token_list(t_parse_token *token_list)
 	{
 		if (next->string != NULL)
 			free (next->string);
+		if (next->original_str != NULL)
+			free (next->original_str);
 		token_list = next;
 		next = next->next;
 		free (token_list);
@@ -33,6 +35,8 @@ void	free_single_t_parse_token(t_parse_token *token_list)
 		return ;
 	if (token_list->string != NULL)
 		free (token_list->string);
+	if (token_list->original_str != NULL)
+		free (token_list->original_str);
 	free(token_list);
 }
 
@@ -47,6 +51,8 @@ void	cleanse_single_t_parse_token(t_parse_token *token)
 		return ;
 	if (token->string != NULL)
 		free (token->string);
+	if (token->original_str != NULL)
+		free (token->original_str);
 	token->string = str;
 	token->token_type = TYPE_TOKEN_CHUNK;
 }
