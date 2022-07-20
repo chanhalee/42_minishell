@@ -28,22 +28,8 @@ void	set_pipe(t_cmd *cmd)
 		}
 	}
 }
-// void	set_pipe(t_cmd *cmd)
-// {
-// 	if (cmd->next != 0)
-// 	{
-// 		dup2(cmd->fds[1], 1);
-// 		if (cmd->next == 0)
-// 			dup2(cmd->prev->fds[0], 0);
-// 		else
-// 		{
-// 			dup2(cmd->prev->fds[0], 0);
-// 			dup2(cmd->fds[1], 1);
-// 		}
-// 	}
-// }
 
-void	close_fd_dup(t_cmd *cmd, int *stin, int *stout)
+void	close_fd(t_cmd *cmd, int *stin, int *stout)
 {
 	if (cmd->prev != 0)
 		close(cmd->prev->fds[0]);
@@ -84,7 +70,6 @@ void	pipes(t_cmd *cmd)
 	}
 	else
 	{
-		// close(pipes[0]);
 		close(cmd->fds[1]);
 		wait(&status);
 		g_state.exit_code = WEXITSTATUS(status);
@@ -115,21 +100,32 @@ int	ft_exec(t_cmd_list *lists)
 	int		std_out;
 
 	set_type(lists);
-	
 	cmd = lists->cmd_list;
 	while (cmd != NULL)
 	{
 		std_out = dup(STDOUT);
 		std_in = dup(STDIN);	
 		pipe(cmd->fds);
+		if (cmd->argv[0][0] == '\0')
+		{
+			cmd = cmd->next;
+			continue;
+		}
 		builtin_exec = check_exec_name_is_builtin(cmd);
 		path_exec = interprete_exe_name(cmd);
-		if (builtin_exec == 0 || path_exec == 0)
+		// printf("path_exec = %d, builtin_exec = %d\n", path_exec, builtin_exec);
+		if (builtin_exec == 1)
 		{
 			ft_redirection(cmd);
-			// check_exec_name_is_builtin(cmd);
+			exec_builtin(cmd);
+		}
+		else if (path_exec == 3)
+			printf("bash: %s: is a directory\n", cmd->argv[0]);
+		else if (builtin_exec == 0 || path_exec == 0)
+		{
+			ft_redirection(cmd);
 			pipes(cmd);
-			close_fd_dup(cmd, &std_in, &std_out);
+			close_fd(cmd, &std_in, &std_out);
 			if (g_state.exit_code == 34 && cmd->prev == NULL)
 				return (34);
 			g_state.is_fork = 0;
@@ -142,8 +138,6 @@ int	ft_exec(t_cmd_list *lists)
 				printf("bash: %s: No such file or directory\n", cmd->argv[0]);
 			g_state.exit_code = 127;
 		}
-		// dup2(g_state.std_in, STDIN);
-		// dup2(g_state.std_out, STDOUT);
 		cmd = cmd->next;
 	}
 	return (0);

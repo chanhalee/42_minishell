@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/20 00:16:25 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/20 17:44:02 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	interprete_exe_name(t_cmd *cmd)
 	char		*str;
 	char		*str_tmp;
 	int			index;
+	int			rst;
 	char		**sep;
 	t_cmd		*tmp;
 	struct stat	sb;
@@ -31,8 +32,11 @@ int	interprete_exe_name(t_cmd *cmd)
 	if ((cmd->exec_file_name[0] == '.' && cmd->exec_file_name[1] == '/')
 		||cmd->exec_file_name[0]=='/')
 	{
-		if (stat(cmd->exec_file_name, &sb) == -1)
+		rst = stat(cmd->exec_file_name, &sb);
+		if (rst == -1)
 			return (1);
+		else if ((sb.st_mode & S_IFMT) == S_IFDIR)
+			return (3);
 		else
 			return (0);
 	}
@@ -67,18 +71,18 @@ int exec_builtin(t_cmd *cmd)
 {
 	if (ft_p_strcmp(cmd->exec_file_name, "echo") == 0)
 		return (ft_echo(cmd->argv, &(g_state.list)));
-	else if (ft_p_strcmp(cmd->exec_file_name, "cd") == 0)
-		return (ft_cd(cmd->argv, &(g_state.list)));
 	else if (ft_p_strcmp(cmd->exec_file_name, "pwd") == 0)
 		return (ft_pwd());
+	else if (ft_p_strcmp(cmd->exec_file_name, "env") == 0)
+		return (ft_env(&(g_state.list)));
+	else if (ft_p_strcmp(cmd->exec_file_name, "exit") == 0)
+		return (ft_exit(cmd->argv));
+	else if (ft_p_strcmp(cmd->exec_file_name, "cd") == 0)
+		return (ft_cd(cmd->argv, &(g_state.list)));
 	else if (ft_p_strcmp(cmd->exec_file_name, "export") == 0)
 		return (ft_export(cmd->argv, &(g_state.list)));
 	else if (ft_p_strcmp(cmd->exec_file_name, "unset") == 0)
 		return (ft_unset(cmd->argv, &(g_state.list)));
-	else if (ft_p_strcmp(cmd->exec_file_name, "env")  == 0)
-		return (ft_env(&(g_state.list)));
-	else if (ft_p_strcmp(cmd->exec_file_name, "exit")  == 0)
-		return (ft_exit(cmd->argv));
 	return (-1);
 }
 
@@ -86,17 +90,17 @@ int	check_exec_name_is_builtin(t_cmd *cmd)
 {
 	if (ft_p_strcmp(cmd->exec_file_name, "echo") == 0)
 		return (0);
-	else if (ft_p_strcmp(cmd->exec_file_name, "cd") == 0)
-		return (0);
 	else if (ft_p_strcmp(cmd->exec_file_name, "pwd") == 0)
-		return (0);
-	else if (ft_p_strcmp(cmd->exec_file_name, "export") == 0)
-		return (0);
-	else if (ft_p_strcmp(cmd->exec_file_name, "unset") == 0)
 		return (0);
 	else if (ft_p_strcmp(cmd->exec_file_name, "env")  == 0)
 		return (0);
 	else if (ft_p_strcmp(cmd->exec_file_name, "exit")  == 0)
 		return (0);
+	else if (ft_p_strcmp(cmd->exec_file_name, "cd") == 0)
+		return (1);
+	else if (ft_p_strcmp(cmd->exec_file_name, "export") == 0)
+		return (1);
+	else if (ft_p_strcmp(cmd->exec_file_name, "unset") == 0)
+		return (1);
 	return (-1);
 }
