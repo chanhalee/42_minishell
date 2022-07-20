@@ -15,6 +15,7 @@
 t_cmd_list	*handle_syntex_err_tok(t_parse_token *tok_lst)
 {
 	char		*str;
+	int			err_code;
 	t_cmd_list	*ret;
 	t_cmd		*cmd;
 
@@ -22,19 +23,15 @@ t_cmd_list	*handle_syntex_err_tok(t_parse_token *tok_lst)
 		str = ft_p_strdup("");
 	else
 		str = ft_p_strdup(tok_lst->string);
-	free_t_parse_token_list(tok_lst);
-	if (str == NULL)
-		return (NULL);
 	ret = create_empty_t_cmd_list();
-	if (ret == NULL)
-		return (parse_safe_free_multi_str(str, NULL, NULL, NULL));
+	err_code = tok_lst->token_type;
+	free_t_parse_token_list(tok_lst);
+	if (str == NULL || ret == NULL)
+		return (parse_safe_free_multi_str(str, ret, NULL, NULL));
+	ret->status = err_code;
 	cmd = add_empty_t_cmd_to_list(ret);
 	if (cmd == NULL)
-	{
-		free(str);
-		return (free_t_cmd_list(ret));
-	}
-	ret->status = TYPE_SYNTAX_ERR;
+		return (parse_safe_free_multi_str(str, ret, NULL, NULL));
 	cmd->exec_file_name = str;
 	return (ret);
 }
