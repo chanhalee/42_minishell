@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/20 21:58:37 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:13:53 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,8 @@
 # define NON_COMMAND 127
 # define TYPE_PIPE 88
 # define TYPE_NORMAL 0
+
+# define BEFORE_LL 105
 
 typedef struct s_cmd_redirection
 {
@@ -149,5 +151,6 @@ int					check_exec_name_is_builtin(t_cmd *cmd);
 int					exec_builtin(t_cmd *cmd);
 int					get_exitcode(void);
 void				ft_heredoc(t_cmd_list *lists);
+void				unlink_tmp_file(t_cmd_list *lists);
 
 #endif

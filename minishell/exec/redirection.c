@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 20:07:22 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/20 00:47:36 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:13:10 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	ft_redirection(t_cmd *cmd)
 			cmd->fd_out = open(red->file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
 		else if (red->red_type == TYPE_TOKEN_IO_RR)
 			cmd->fd_out = open(red->file, O_CREAT | O_WRONLY | O_APPEND, 0644);
-		else if (red->red_type == TYPE_TOKEN_IO_L)
+		else if (red->red_type == TYPE_TOKEN_IO_L || red->red_type == BEFORE_LL)
 			cmd->fd_in = open(red->file, O_RDONLY);
 		if (cmd->fd_out == -1 || cmd->fd_in== -1)
 		{

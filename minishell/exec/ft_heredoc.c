@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:55:17 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/20 21:43:52 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/20 22:12:45 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	ft_heredoc(t_cmd_list *lists)
 				// int fd;
 				eof = ft_strdup(red->file);
 				rand_file_name(red, i);
-				red->red_type = TYPE_TOKEN_IO_L;
+				red->red_type = BEFORE_LL;
 				go_heredoc(red, eof);
 				// printf("new_file_name = %s, type = %d\n", red->file, red->red_type);
 				free(eof);
