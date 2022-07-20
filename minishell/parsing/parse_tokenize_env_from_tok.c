@@ -15,6 +15,7 @@
 void	parse_env_from_tok_sub(t_parse_token *tok, int end);
 void	parse_env_from_tok(t_parse_token *tok);
 void	*parse_env_from_tok_sub_question(t_parse_token *tok);
+char	*parse_env_from_tok_sub_set_env_null(t_parse_token *tok, char *str);
 
 void	parse_env_from_token_list(t_parse_token *tok_lst)
 {
@@ -71,9 +72,9 @@ void	parse_env_from_tok_sub(t_parse_token *tok, int end)
 	if (str2 == NULL)
 		return ;
 	str3 = ft_getenv(str2);
-	free(str2);
 	if (str3 == NULL)
-		str3 = "";
+		str3 = parse_env_from_tok_sub_set_env_null(tok, str2);
+	free(str2);
 	str3 = ft_strdup(str3);
 	if (str3 == NULL)
 		return ;
@@ -105,4 +106,16 @@ void	*parse_env_from_tok_sub_question(t_parse_token *tok)
 	free(tok->string);
 	tok->string = str3;
 	return (NULL);
+}
+
+char	*parse_env_from_tok_sub_set_env_null(t_parse_token *tok, char *str)
+{
+	char	*str1;
+
+	str1 = ft_p_strjoin("$", str);
+	if (str1 == NULL)
+		return ("");
+	tok->is_null = TYPE_ARGV_NULL;
+	tok->original_str = str1;
+	return ("");
 }
