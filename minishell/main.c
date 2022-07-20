@@ -91,6 +91,7 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
 					printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
 				else
 					ret = ft_exec(cmd_lst);
+				unlink_tmp_file(cmd_lst);
 				free_t_cmd_list(cmd_lst);
 				add_history(str);
 				// printf("exit_code = %d\n", g_state.exit_code);
