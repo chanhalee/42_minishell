@@ -122,6 +122,6 @@ int main(int argc, char **argv, char **env)
 	init_env_and_signal(env);
 	prompt(cmd_lst, str);
 
-	system("leaks minishell");
+	// system("leaks minishell");
     return(0);
 }

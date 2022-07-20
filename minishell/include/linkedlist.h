@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 23:14:48 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 18:14:27 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:53:33 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ typedef struct s_env
 
 typedef struct s_list
 {
-    t_env *head;
-    t_env *tail;
+	t_env	*head;
+	t_env	*tail;
 }	t_list;
 
 int		init_env(char **env, t_env **head, t_list *list);

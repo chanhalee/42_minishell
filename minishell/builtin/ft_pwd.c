@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pwd.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:57:52 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 17:16:59 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:49:25 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,9 @@
 
 int	ft_pwd(void)
 {
-    char	buff[PATH_MAX];
+	char	buff[9999];
 
-	if (getcwd(buff, PATH_MAX) != NULL)
+	if (getcwd(buff, 9999) != NULL)
 		printf("%s\n", buff);
 	return (0);
 }

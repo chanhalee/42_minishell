@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:15:59 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 00:28:24 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:49:44 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ static int	valid_key(char *key)
 	while (key[i] != '\0')
 	{
 		if ((key[i] >= '0' && key[i] <= '9') || (key[i] >= 'a'
-			&& key[i] <= 'z') || (key[i] >= 'A' && key[i] <= 'Z'))
+				&& key[i] <= 'z') || (key[i] >= 'A' && key[i] <= 'Z'))
 			;
 		else
 			return (-1);

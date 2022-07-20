@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 22:08:30 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/20 22:14:31 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:54:20 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	unlink_tmp_file(t_cmd_list *lists)
 {
 	t_cmd				*cmd;
 	t_cmd_redirection	*red;
-	
+
 	cmd = lists->cmd_list;
 	while (cmd != NULL)
 	{

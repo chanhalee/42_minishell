@@ -3,8 +3,7 @@
 #include <errno.h>
 #include <stdio.h>
 
-int	ft_redirection(t_cmd *cmd);
-int		interprete_exe_name(t_cmd *cmd);
+int		ft_redirection(t_cmd *cmd);
 
 void	fork_fail(void)
 {
@@ -119,7 +118,6 @@ int	ft_exec(t_cmd_list *lists)
 		}
 		builtin_exec = check_exec_name_is_builtin(cmd);
 		path_exec = interprete_exe_name(cmd);
-		// printf("path_exec = %d, builtin_exec = %d\n", path_exec, builtin_exec);
 		if (builtin_exec == 1)
 		{
 			ft_redirection(cmd);
@@ -129,7 +127,6 @@ int	ft_exec(t_cmd_list *lists)
 			printf("bash: %s: is a directory\n", cmd->argv[0]);
 		else if (builtin_exec == 0 || path_exec == 0)
 		{
-			// ft_redirection(cmd);
 			pipes(cmd);
 			close_fd(cmd, &std_in, &std_out);
 			if (g_state.exit_code == 34 && cmd->prev == NULL)
