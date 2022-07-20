@@ -86,6 +86,7 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
 			{
 				cmd_lst = parse(ft_p_strdup(str));
 				// print_cmd_lists(cmd_lst);
+				ft_heredoc(cmd_lst);
 				if (cmd_lst->status == TYPE_SYNTAX_ERR)
 					printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
 				else

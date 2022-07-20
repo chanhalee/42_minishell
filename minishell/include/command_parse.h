@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/20 17:24:35 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/20 21:58:37 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,5 +148,6 @@ int					interprete_exe_name(t_cmd *cmd);
 int					check_exec_name_is_builtin(t_cmd *cmd);
 int					exec_builtin(t_cmd *cmd);
 int					get_exitcode(void);
+void				ft_heredoc(t_cmd_list *lists);
 
 #endif
