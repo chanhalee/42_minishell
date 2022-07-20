@@ -1,146 +1,85 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_exec.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/07/21 02:31:29 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/21 02:56:10 by jeounpar         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/command_parse.h"
 #include <stdlib.h>
 #include <errno.h>
 #include <stdio.h>
 
 int		ft_redirection(t_cmd *cmd);
+void	close_fd(t_cmd *cmd, int *stin, int *stout);
+void	exec_cmd(t_cmd *cmd);
+void	set_type(t_cmd_list *lists);
 
-void	fork_fail(void)
+static int	check_null(t_cmd *cmd)
 {
-	printf("fork fail\n");
-	exit(TYPE_FAIL);
-}
-
-void	set_pipe(t_cmd *cmd)
-{
-	if (cmd->type == TYPE_PIPE
-		|| (cmd->next != 0 && cmd->next->type == TYPE_PIPE))
+	if (cmd->argv[0] == NULL)
 	{
-		if (cmd->type != TYPE_PIPE)
-			dup2(cmd->fds[1], 1);
-		else if (cmd->next == 0)
-			dup2(cmd->prev->fds[0], 0);
-		else
-		{
-			dup2(cmd->prev->fds[0], 0);
-			dup2(cmd->fds[1], 1);
-		}
+		cmd = cmd->next;
+		return (1);
 	}
+	if (cmd->argv[0][0] == '\0')
+	{
+		cmd = cmd->next;
+		return (1);
+	}
+	return (0);
 }
 
-void	close_fd(t_cmd *cmd, int *stin, int *stout)
+static int	ft_exec_helper(int arr[4], t_cmd *cmd)
 {
-	if (cmd->prev != 0)
-		close(cmd->prev->fds[0]);
-	close(cmd->fds[1]);
-	if (cmd->next == 0)
-		close(cmd->fds[0]);
-	if (cmd->fd_in != 0)
-		close(cmd->fd_in);
-	if (cmd->fd_out != 1)
-		close(cmd->fd_out);
-	dup2(*stin, 0);
-	dup2(*stout, 1);
-	close(*stin);
-	close(*stout);
-}
-
-void	pipes(t_cmd *cmd)
-{
-	int	pid;
-	int	ret;
-	int	status;
-
-	g_state.is_fork = 1;
-	pid = fork();
-	if (pid < 0)
-		exit(1);
-	else if (pid == 0)
+	if (arr[1] == 1)
 	{
 		ft_redirection(cmd);
-		set_pipe(cmd);
-		if (cmd->fd_in != 0)
-			dup2(cmd->fd_in, 0);
-		if (cmd->fd_out != 1)
-			dup2(cmd->fd_out, 1);
-		ret = exec_builtin(cmd);
-		if (ret == -1)
-			ret = execve(cmd->argv[0], cmd->argv, NULL);
-		exit(ret);
+		exec_builtin(cmd);
+	}
+	else if (arr[0] == 3)
+		printf("bash: %s: is a directory\n", cmd->argv[0]);
+	else if (arr[1] == 0 || arr[0] == 0)
+	{
+		exec_cmd(cmd);
+		close_fd(cmd, &arr[2], &arr[3]);
+		if (g_state.exit_code == 34 && cmd->prev == NULL)
+			return (34);
+		g_state.is_fork = 0;
 	}
 	else
 	{
-		close(cmd->fds[1]);
-		waitpid(pid, &status, 0);
-		g_state.exit_code = WEXITSTATUS(status);
+		if (arr[1] == -1 && arr[0] == -1)
+			printf("bash: %s: command not found\n", cmd->argv[0]);
+		else if (arr[1] == -1 && arr[0] == 1)
+			printf("bash: %s: No such file or directory\n", cmd->argv[0]);
+		g_state.exit_code = 127;
 	}
-}
-
-void	set_type(t_cmd_list *lists)
-{
-	t_cmd	*cmd;
-
-	cmd = lists->cmd_list;
-	cmd->type = TYPE_NORMAL;
-	cmd = cmd->next;
-	while(cmd != NULL)
-	{
-		cmd->type = TYPE_PIPE;
-		cmd = cmd->next;
-	}
+	return (0);
 }
 
 int	ft_exec(t_cmd_list *lists)
 {
 	t_cmd	*cmd;
-	int		pipe_open;
-	int		path_exec;
-	int		builtin_exec;
-	int		std_in;
-	int		std_out;
+	int		arr[4];
 
 	set_type(lists);
 	cmd = lists->cmd_list;
 	while (cmd != NULL)
 	{
-		std_out = dup(STDOUT);
-		std_in = dup(STDIN);	
+		arr[3] = dup(STDOUT);
+		arr[2] = dup(STDIN);
 		pipe(cmd->fds);
-		if (cmd->argv[0] == NULL)
-		{
-			cmd = cmd->next;
-			continue;
-		}
-		if (cmd->argv[0][0] == '\0')
-		{
-			cmd = cmd->next;
-			continue;
-		}
-		builtin_exec = check_exec_name_is_builtin(cmd);
-		path_exec = interprete_exe_name(cmd);
-		if (builtin_exec == 1)
-		{
-			ft_redirection(cmd);
-			exec_builtin(cmd);
-		}
-		else if (path_exec == 3)
-			printf("bash: %s: is a directory\n", cmd->argv[0]);
-		else if (builtin_exec == 0 || path_exec == 0)
-		{
-			pipes(cmd);
-			close_fd(cmd, &std_in, &std_out);
-			if (g_state.exit_code == 34 && cmd->prev == NULL)
-				return (34);
-			g_state.is_fork = 0;
-		}
-		else
-		{
-			if (builtin_exec == -1 && path_exec == -1)
-				printf("bash: %s: command not found\n", cmd->argv[0]);
-			else if (builtin_exec == -1 && path_exec == 1)
-				printf("bash: %s: No such file or directory\n", cmd->argv[0]);
-			g_state.exit_code = 127;
-		}
+		if (check_null(cmd) == 1)
+			continue ;
+		arr[1] = check_exec_name_is_builtin(cmd);
+		arr[0] = interprete_exe_name(cmd);
+		ft_exec_helper(arr, cmd);
 		cmd = cmd->next;
 	}
 	return (0);
