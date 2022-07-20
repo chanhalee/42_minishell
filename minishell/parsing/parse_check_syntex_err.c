@@ -76,9 +76,8 @@ int	parse_check_syntex_err(t_parse_token *tok_lst)
 			return (parse_check_syntex_err_set_err(tok_lst, tok, prev));
 		if (tok->token_type >= TYPE_TOKEN_IO_R
 			&& tok->token_type <= TYPE_TOKEN_IO_L
-			&& (tok->next != NULL && tok->next->is_null == TYPE_ARGV_NULL)){
-				printf("%s, %s\n", tok->string, tok->next->original_str);
-			return (parse_check_syntex_err_set_ambig(tok_lst, tok, prev));}
+			&& (tok->next != NULL && tok->next->is_null == TYPE_ARGV_NULL))
+			return (parse_check_syntex_err_set_ambig(tok_lst, tok, prev));
 		prev = tok;
 		tok = tok->next;
 	}

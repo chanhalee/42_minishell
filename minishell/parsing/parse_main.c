@@ -11,7 +11,6 @@
 /* ************************************************************************** */
 
 #include "../include/command_parse.h"
-#include "./do_not_submit/do_not_submit.h"
 
 t_cmd_list	*parse(char *raw_cmd_string)
 {
@@ -21,7 +20,6 @@ t_cmd_list	*parse(char *raw_cmd_string)
 	tokens = parse_tokenize(raw_cmd_string);
 	if (tokens == NULL)
 		return (NULL);
-	print_token_list(tokens);
 	if (tokens->token_type == TYPE_SYNTAX_ERR || tokens->token_type == TYPE_AMBIGUOUS_ERR)
 		return (handle_syntex_err_tok(tokens));
 	ret = parse_assemble_tokens_to_t_cmd_list(tokens);
