@@ -4,7 +4,9 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <termios.h>
+// #include <termios.h>
+#include <curses.h>
+#include <term.h>
 #include "./include/command_parse.h"
 #include "./include/ft_builtin.h"
 

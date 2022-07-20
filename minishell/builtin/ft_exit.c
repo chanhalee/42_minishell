@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 14:47:27 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 00:18:56 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:21:30 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,5 @@ int	ft_exit(char **argv)
 	}
 	while (argv[i] != NULL)
 		i++;
-	exit_helper(i, argv);
+	return (exit_helper(i, argv));
 }

@@ -3,7 +3,7 @@
 #include <errno.h>
 #include <stdio.h>
 
-void	ft_redirection(t_cmd *cmd);
+int	ft_redirection(t_cmd *cmd);
 int		interprete_exe_name(t_cmd *cmd);
 
 void	fork_fail(void)
@@ -58,6 +58,7 @@ void	pipes(t_cmd *cmd)
 		exit(1);
 	else if (pid == 0)
 	{
+		ft_redirection(cmd);
 		set_pipe(cmd);
 		if (cmd->fd_in != 0)
 			dup2(cmd->fd_in, 0);
@@ -71,7 +72,7 @@ void	pipes(t_cmd *cmd)
 	else
 	{
 		close(cmd->fds[1]);
-		wait(&status);
+		waitpid(pid, &status, 0);
 		g_state.exit_code = WEXITSTATUS(status);
 	}
 }
@@ -106,6 +107,11 @@ int	ft_exec(t_cmd_list *lists)
 		std_out = dup(STDOUT);
 		std_in = dup(STDIN);	
 		pipe(cmd->fds);
+		if (cmd->argv[0] == NULL)
+		{
+			cmd = cmd->next;
+			continue;
+		}
 		if (cmd->argv[0][0] == '\0')
 		{
 			cmd = cmd->next;
@@ -123,7 +129,7 @@ int	ft_exec(t_cmd_list *lists)
 			printf("bash: %s: is a directory\n", cmd->argv[0]);
 		else if (builtin_exec == 0 || path_exec == 0)
 		{
-			ft_redirection(cmd);
+			// ft_redirection(cmd);
 			pipes(cmd);
 			close_fd(cmd, &std_in, &std_out);
 			if (g_state.exit_code == 34 && cmd->prev == NULL)

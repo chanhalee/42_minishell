@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_tokenize_env_from_str.c                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:39:51 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 18:39:53 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:39:45 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

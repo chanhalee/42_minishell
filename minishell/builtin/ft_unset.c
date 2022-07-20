@@ -6,14 +6,14 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:15:59 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 21:05:06 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:28:24 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/ft_builtin.h"
 #include <stdio.h>
 
-static int	valid_env_key(char	*key)
+static int	valid_key(char *key)
 {
 	int	i;
 
@@ -21,13 +21,13 @@ static int	valid_env_key(char	*key)
 	while (key[i] != '\0')
 	{
 		if ((key[i] >= '0' && key[i] <= '9') || (key[i] >= 'a'
-			&& key[i] <= 'z') || (key[i] >= 'A' || key[i] <= 'Z'))
+			&& key[i] <= 'z') || (key[i] >= 'A' && key[i] <= 'Z'))
 			;
 		else
 			return (-1);
 		i++;
 	}
-	return 1;
+	return (0);
 }
 
 int	ft_unset(char **argv, t_list *list)
@@ -39,7 +39,7 @@ int	ft_unset(char **argv, t_list *list)
 	i = 1;
 	while (argv[i] != NULL)
 	{
-		if (valid_env_key(argv[i]) == -1)
+		if (valid_key(argv[i]) == -1)
 		{
 			printf("bash: unset: `%s': not a valid identifier\n", argv[i]);
 			return (1);
@@ -51,5 +51,5 @@ int	ft_unset(char **argv, t_list *list)
 		}
 		i++;
 	}
-	return (1);
+	return (0);
 }
