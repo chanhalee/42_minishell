@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 19:38:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 21:16:12 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:06:52 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,18 +15,29 @@
 #include <unistd.h>
 #include <stdio.h>
 
-// cd .. : 상위 디렉토리로 이동합니다. 예를 들어 현재 위치가 /user/jtaewu라면 /user로 이동합니다.
-// cd . : 현재 위치한 폴더로 이동합니다. 사실상 기능은 새로고침과 동일합니다.
-// cd - : 이전에 위치했던 폴더로 이동합니다. 윈도우의 뒤로 가기와 동일합니다.
-// cd / : ROOT 디렉토리로 이동합니다.
-// cd ~ : 홈 디렉토리로 이동합니다.
-// cd	: 홈 디렉토리로 이동합니다.
+static int	cd_helper(t_list *list, char *value, char **argv)
+{
+	char	buff[9999];
+	int		rst;
+
+	rst = chdir(value);
+	if (rst == -1)
+	{
+		printf("bash: cd: %s: No such file or directory\n", argv[1]);
+		return (127);
+	}
+	else
+	{
+		getcwd(buff, 9999);
+		ft_update_env(list, "OLDPWD", ft_getenv("PWD"));
+		ft_update_env(list, "PWD", buff);
+	}
+	return (0);
+}
 
 int	ft_cd(char **argv, t_list *list)
 {
-	int		rst;
 	char	*value;
-	char	buff[9999];
 
 	if (argv[1] == NULL || ft_strcmp(argv[1], "~") == 0)
 	{
@@ -48,17 +59,5 @@ int	ft_cd(char **argv, t_list *list)
 	}
 	else
 		value = argv[1];
-	rst = chdir(value);
-	if (rst == -1)
-	{
-		printf("bash: cd: %s: No such file or directory\n", argv[1]);
-		return (127);
-	}
-	else
-	{
-		getcwd(buff, 9999);
-		ft_update_env(list, "OLDPWD", ft_getenv("PWD"));
-		ft_update_env(list, "PWD", buff); 
-	}
-	return (0);
+	return (cd_helper(list, value, argv));
 }

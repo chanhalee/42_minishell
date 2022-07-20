@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_getenv.c                                  :+:      :+:    :+:   */
+/*   ft_getenv.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/16 01:11:28 by park              #+#    #+#             */
-/*   Updated: 2022/07/16 01:47:27 by park             ###   ########.fr       */
+/*   Created: 2022/07/20 23:50:00 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/20 23:51:13 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,16 @@
 
 char	*ft_getenv(char *key)
 {
-    t_env	*curr;
+	t_env	*curr;
 	t_list	*list;
 
 	list = &(g_state.list);
 	curr = list->head->next;
-    while (curr != list->tail)
-    {
-        if (ft_strcmp(curr->key, key) == 0)
+	while (curr != list->tail)
+	{
+		if (ft_strcmp(curr->key, key) == 0)
 			return (curr->value);
-        curr = curr->next;
-    }
-    return (NULL);
+		curr = curr->next;
+	}
+	return (NULL);
 }

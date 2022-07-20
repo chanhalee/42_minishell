@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:37:24 by park              #+#    #+#             */
-/*   Updated: 2022/07/18 02:06:05 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/20 23:55:44 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,14 @@
 
 int	init_env(char **env, t_env **head, t_list *list)
 {
-	int i = 0;
-	int j;
-	char *key;
-	char *value;
-	t_env *new_node;
+	int		i;
+	int		j;
+	char	*key;
+	char	*value;
+	t_env	*new_node;
 
 	*head = ft_lstnew("", "");
-
+	i = 0;
 	while (env[i] != NULL)
 	{
 		j = 0;
@@ -40,5 +40,5 @@ int	init_env(char **env, t_env **head, t_list *list)
 		i++;
 	}
 	ft_update_env(list, "OLDPWD", "");
-	return 1;
+	return (1);
 }
