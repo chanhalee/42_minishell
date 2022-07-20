@@ -85,8 +85,9 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
 			if (str[0] != 0)
 			{
 				cmd_lst = parse(ft_p_strdup(str));
+				// print_cmd_lists(cmd_lst);
 				if (cmd_lst->status == TYPE_SYNTAX_ERR)
-					printf("bash: syntax error near unexpected token\n");
+					printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
 				else
 					ret = ft_exec(cmd_lst);
 				free_t_cmd_list(cmd_lst);
@@ -113,7 +114,6 @@ int main(int argc, char **argv, char **env)
 	t_cmd_list	*cmd_lst;
 	char		*str;
 	
-	g_state.exit_code = 0;
 	print_intro();
 	init_env_and_signal(env);
 	prompt(cmd_lst, str);

@@ -19,33 +19,30 @@ int main(void)
 	pid = fork();
 	if (pid > 0)
 	{
+		int exit_code;
 		// printf("부모 프로세스 생성\n");
 		wait(&status);
+		exit_code = WEXITSTATUS(status);
+		printf("exit_code = %d\n", exit_code);
 		// printf("자식 프로세스 기다리기 끝\n");
 	}
 	else if (pid == 0)
 	{
-		// printf("자식 프로세스 생성\n");
-
-		// ls -al > a.txt > b.txt > c.txt
-		int fd = open("a.tx", O_RDONLY | O_CREAT, 0644);
-		// int fd2 = open("b.tx", O_WRONLY | O_CREAT, 0644);
-		// int fd3 = open("c.tx", O_WRONLY | O_CREAT, 0644);
-		dup2(fd, 0);
 		// // dup2(fd2, 1);
 		// // dup2(fd3, 1);
-		strcpy(new_argv[0], "/bin/cat");
+		strcpy(new_argv[0], "/bin/qwe");
+		// new_argv[0] = NULL;
 		new_argv[1] = NULL;
 		// strcpy(new_argv[1], "");
 		// printf("%s %s\n", new_argv[0], new_argv[1]);
 		new_argv[argc] = NULL;
 		// 맨 마지막은 NULL
 		execve(new_argv[0], new_argv, NULL);
-		free(new_argv[0]);
-		free(new_argv[1]);
-		free(new_argv[2]);
-		free(new_argv);
-		close(fd);
+		printf("qqq\n");
+		// free(new_argv[0]);
+		// free(new_argv[1]);
+		// free(new_argv[2]);
+		// free(new_argv);
 	}
 	else if (pid <= -1)
 	{
