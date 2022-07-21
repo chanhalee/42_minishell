@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:55:17 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 01:56:04 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:14:44 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,25 +14,64 @@
 #include "../include/ft_utils.h"
 #include <fcntl.h>
 #include <unistd.h>
+#include <signal.h>
+
+void	signal_handler(int signo);
+
+void	heredoc_handler(int signo)
+{
+	if (signo == SIGINT)
+	{
+		printf("\n");
+		rl_on_new_line();
+    	rl_replace_line("", 1);
+    	rl_redisplay();
+		kill(pid, SIGTERM);
+	}
+}
 
 void	go_heredoc(t_cmd_redirection *red, char *eof)
 {
 	int		fd;
 	char	*str;
+	int		status;
 
 	fd = open(red->file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	while (1)
+	signal(SIGINT, heredoc_handler);
+	g_state.is_fork = 1;
+	pid = fork();
+	if (pid == 0)
 	{
-		str = readline("> ");
-		if (ft_strcmp(eof, str) == 0)
+		while(1)
 		{
+			str = readline("> ");
+			if (str != NULL)
+			{
+				if (ft_strcmp(eof, str) == 0)
+				{
+					free(str);
+					break ;
+				}
+				write(fd, str, ft_strlen(str));
+				write(fd, "\n", 1);
+			}
+			else
+			{
+				printf("\033[1A");
+				printf("\033[2C");
+				break ;
+			}
 			free(str);
-			break ;
 		}
-		write(fd, str, ft_strlen(str));
-		write(fd, "\n", 1);
-		free(str);
+		exit(1);
 	}
+	else if (pid > 0)
+	{
+		wait(&status);
+		g_state.exit_code = WEXITSTATUS(status);
+	}
+	g_state.is_fork = 0;
+	signal(SIGINT, signal_handler);
 	close(fd);
 }
 

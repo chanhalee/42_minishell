@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/21 03:04:32 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/21 18:13:08 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ typedef struct s_state
 	t_list	list;
 	t_env 	*head;
 	t_env	*tmp;
+	pid_t	pid;
 	int		exit_code;
 	int		std_in;
 	int		std_out;
