@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:00:57 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 01:48:35 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:42:56 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,6 @@ static void	free_key_value(char **envs)
 	free(envs);
 }
 
-// key=value -> ok, key= value -> ok, key =value -> X
-// return 0 -> 맨 앞글자가 숫자, return 1 -> ok, return 2 -> '=' 없음,
-// return -1 -> key에 숫자나 문자 이외의 문자가 있음
 int	ft_export(char **argv, t_list *list)
 {
 	int		error;

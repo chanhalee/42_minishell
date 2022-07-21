@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:33:32 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 11:45:51 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:49:16 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,12 @@ void	exec_cmd(t_cmd *cmd)
 		exit(1);
 	else if (pid == 0)
 	{
-		ft_redirection(cmd);
+		if (ft_redirection(cmd) == 1)
+			exit(1);
 		ft_set_pipe(cmd);
 		ret = exec_builtin(cmd);
 		if (ret == -1)
 			ret = execve(cmd->argv[0], cmd->argv, NULL);
-		printf("자식프로세스종료!\n");
 		exit(ret);
 	}
 	else
