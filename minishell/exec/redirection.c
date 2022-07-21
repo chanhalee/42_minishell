@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 20:07:22 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 14:03:01 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:03:55 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,6 @@
 int	ft_redirection(t_cmd *cmd)
 {
 	t_cmd_redirection	*red;
-	int					output_fd;
-	int					input_fd;
 
 	cmd->fd_in = 0;
 	cmd->fd_out = 1;

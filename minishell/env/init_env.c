@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 22:37:24 by park              #+#    #+#             */
-/*   Updated: 2022/07/20 23:55:44 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:02:38 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	init_env(char **env, t_env **head, t_list *list)
 	int		j;
 	char	*key;
 	char	*value;
-	t_env	*new_node;
 
 	*head = ft_lstnew("", "");
 	i = 0;

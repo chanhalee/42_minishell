@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:36 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 01:48:58 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:05:01 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include "command_parse.h"
 
 int		find_env(char **env, char *key);
-int		ft_echo(char **argv, t_list *list);
+int		ft_echo(char **argv);
 int		ft_pwd(void);
 int		ft_env(t_list *list);
 int		ft_cd(char **argv, t_list *list);

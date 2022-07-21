@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 02:27:50 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:04:46 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void	echo_helper(char **argv, int idx)
 	}
 }
 
-static void echo_flag_check(char **argv, int *idx, int *newline)
+static void	echo_flag_check(char **argv, int *idx, int *newline)
 {
 	int	t;
 
@@ -56,21 +56,14 @@ static void echo_flag_check(char **argv, int *idx, int *newline)
 	}	
 }
 
-int	ft_echo(char **argv, t_list *list)
+int	ft_echo(char **argv)
 {
 	int		newline;
 	int		idx;
-	char	*key;
-	char	*value;
 
 	newline = 0;
 	idx = 1;
 	echo_flag_check(argv, &idx, &newline);
-	// if (ft_strcmp(argv[1], "-n") == 0)
-	// {
-	// 	idx = 2;
-	// 	newline = 1;
-	// }
 	echo_helper(argv, idx);
 	if (newline == 0)
 		printf("\n");

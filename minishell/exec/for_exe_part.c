@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/21 02:06:05 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:05:38 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,6 @@ int	interprete_exe_name(t_cmd *cmd)
 	int			index;
 	char		*str;
 	char		**sep;
-	t_cmd		*tmp;
 	struct stat	sb;
 
 	if ((cmd->exec_file_name[0] == '.' && cmd->exec_file_name[1] == '/')
@@ -69,7 +68,7 @@ int	interprete_exe_name(t_cmd *cmd)
 int	exec_builtin(t_cmd *cmd)
 {
 	if (ft_p_strcmp(cmd->exec_file_name, "echo") == 0)
-		return (ft_echo(cmd->argv, &(g_state.list)));
+		return (ft_echo(cmd->argv));
 	else if (ft_p_strcmp(cmd->exec_file_name, "pwd") == 0)
 		return (ft_pwd());
 	else if (ft_p_strcmp(cmd->exec_file_name, "env") == 0)
