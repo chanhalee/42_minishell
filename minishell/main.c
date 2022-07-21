@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:54:06 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 14:39:47 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:59:35 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,19 +48,21 @@ void	print_intro(void)
 void	prompt_helper(t_cmd_list *cmd_lst, char *str, int *ret)
 {
 	cmd_lst = parse(ft_p_strdup(str));
-	ft_heredoc(cmd_lst);
-	if (cmd_lst->status == TYPE_SYNTAX_ERR)
-	{
-		printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
-		g_state.exit_code = 258;
+	if (ft_heredoc(cmd_lst) != 4242)
+		{
+		if (cmd_lst->status == TYPE_SYNTAX_ERR)
+		{
+			printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
+			g_state.exit_code = 258;
+		}
+		else if (cmd_lst->status == TYPE_AMBIGUOUS_ERR)
+		{
+			printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
+			g_state.exit_code = 1;
+		}
+		else
+			*ret = ft_exec(cmd_lst);
 	}
-	else if (cmd_lst->status == TYPE_AMBIGUOUS_ERR)
-	{
-		printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
-		g_state.exit_code = 1;
-	}
-	else
-		*ret = ft_exec(cmd_lst);
 	unlink_tmp_file(cmd_lst);
 	free_t_cmd_list(cmd_lst);
 	add_history(str);

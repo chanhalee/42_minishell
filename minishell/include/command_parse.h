@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/21 18:13:08 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:58:28 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,6 +93,7 @@ typedef struct s_state
 	t_env	*tmp;
 	pid_t	pid;
 	int		exit_code;
+	int		end;
 	int		std_in;
 	int		std_out;
 	int		is_fork;
@@ -155,7 +156,7 @@ int					interprete_exe_name(t_cmd *cmd);
 int					check_exec_name_is_builtin(t_cmd *cmd);
 int					exec_builtin(t_cmd *cmd);
 int					get_exitcode(void);
-void				ft_heredoc(t_cmd_list *lists);
+int					ft_heredoc(t_cmd_list *lists);
 void				unlink_tmp_file(t_cmd_list *lists);
 
 #endif
