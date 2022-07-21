@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/20 13:10:29 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/18 02:08:20 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:14:08 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	**ft_p_split_custom(char const *s, char c)
 static size_t	get_arr_size(char const *s, char c)
 {
 	size_t	result;
-	int		flag;
 
 	result = 1;
 	if (*s != c)

@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/22 00:33:43 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/22 00:58:15 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:13:07 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	free_env_list(char **env_list)
 char	**get_env_list(t_list *list)
 {
 	char	**rst;
-	char	*tmp;
 	int		i;
 	t_env	*curr;
 
