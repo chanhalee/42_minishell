@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:31:29 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 02:56:10 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 14:18:15 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,18 @@ static int	check_null(t_cmd *cmd)
 	return (0);
 }
 
+static int	ft_exec_helper2(int arr[4], t_cmd *cmd)
+{
+	if (ft_redirection(cmd) == 1)
+		return (1);
+	if (arr[1] == -1 && arr[0] == -1)
+		printf("bash: %s: command not found\n", cmd->argv[0]);
+	else if (arr[1] == -1 && arr[0] == 1)
+		printf("bash: %s: No such file or directory\n", cmd->argv[0]);
+	g_state.exit_code = 127;
+	return (0);
+}
+
 static int	ft_exec_helper(int arr[4], t_cmd *cmd)
 {
 	if (arr[1] == 1)
@@ -54,11 +66,8 @@ static int	ft_exec_helper(int arr[4], t_cmd *cmd)
 	}
 	else
 	{
-		if (arr[1] == -1 && arr[0] == -1)
-			printf("bash: %s: command not found\n", cmd->argv[0]);
-		else if (arr[1] == -1 && arr[0] == 1)
-			printf("bash: %s: No such file or directory\n", cmd->argv[0]);
-		g_state.exit_code = 127;
+		if (ft_exec_helper2(arr, cmd) == 1)
+			return (1);
 	}
 	return (0);
 }
@@ -79,7 +88,8 @@ int	ft_exec(t_cmd_list *lists)
 			continue ;
 		arr[1] = check_exec_name_is_builtin(cmd);
 		arr[0] = interprete_exe_name(cmd);
-		ft_exec_helper(arr, cmd);
+		if (ft_exec_helper(arr, cmd) == 34)
+			return (34);
 		cmd = cmd->next;
 	}
 	return (0);
