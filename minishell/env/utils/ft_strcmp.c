@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: park <park@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/15 23:55:46 by park              #+#    #+#             */
-/*   Updated: 2022/07/15 23:55:56 by park             ###   ########.fr       */
+/*   Created: 2022/07/20 23:47:55 by jeounpar          #+#    #+#             */
+/*   Updated: 2022/07/20 23:48:19 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_strcmp(char *s1, char *s2)
+int	ft_strcmp(char *s1, char *s2)
 {
 	int	i;
 

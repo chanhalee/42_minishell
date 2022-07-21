@@ -6,14 +6,14 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 01:27:14 by park              #+#    #+#             */
-/*   Updated: 2022/07/20 21:57:21 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:53:06 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_UTILS_H
 # define FT_UTILS_H
 
-#include <stdlib.h>
+# include <stdlib.h>
 
 int		ft_strcmp(char *s1, char *s2);
 int		ft_isalnum(int c);

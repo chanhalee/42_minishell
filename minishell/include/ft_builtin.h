@@ -6,14 +6,13 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:36 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 21:06:22 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:48:58 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_BUILTIN_H
 # define FT_BUILTIN_H
 
-# define PATH_MAX 9999
 # define SUCCESS 1
 # define FAIL 0
 

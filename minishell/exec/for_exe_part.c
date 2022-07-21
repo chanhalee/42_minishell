@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/20 17:44:02 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 02:06:05 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,38 +14,12 @@
 #include "../include/ft_builtin.h"
 #include <sys/stat.h>
 
-// 실행 전 syntax error 에 대한 식별이 필요함 cmd_list->status == TYPE_SYNTAX_ERR 라면 실행하면 안됨.
-// 실행 전 cmd->string != NULL 에 대한 처리가 필요함 (거짓일 경우 interprete_exe_name를 실행시켜선 안됨)
-// 실행 전 builtin 함수인지에 대한 확인이 필요하다. (builtin이 참일경우 실행하면 안된다.)
-// 위 경우 fork 조차 시켜선 안될듯?
-// 하기 interprete_exe_name 함수는 fork 이후에 실행되어야 한다.
-int	interprete_exe_name(t_cmd *cmd)
+static int	interprete_helper(char **sep, int index, t_cmd *cmd)
 {
 	char		*str;
 	char		*str_tmp;
-	int			index;
-	int			rst;
-	char		**sep;
-	t_cmd		*tmp;
 	struct stat	sb;
 
-	if ((cmd->exec_file_name[0] == '.' && cmd->exec_file_name[1] == '/')
-		||cmd->exec_file_name[0]=='/')
-	{
-		rst = stat(cmd->exec_file_name, &sb);
-		if (rst == -1)
-			return (1);
-		else if ((sb.st_mode & S_IFMT) == S_IFDIR)
-			return (3);
-		else
-			return (0);
-	}
-	str = ft_strdup(ft_getenv("PATH"));
-	index = -1;
-	sep = ft_p_split(str, ':');
-	parse_safe_free_multi_str(str, NULL, NULL, NULL);
-	if (str == NULL || sep == NULL)
-		return (-1);
 	while (sep[++index])
 	{
 		str_tmp = ft_p_strjoin("/", cmd->exec_file_name);
@@ -64,10 +38,35 @@ int	interprete_exe_name(t_cmd *cmd)
 	return (-1);
 }
 
-// 실행 전 syntax error 에 대한 식별이 필요함 cmd_list->status == TYPE_SYNTAX_ERR 라면 실행하면 안됨.
-// 실행 전 cmd->string != NULL 에 대한 처리가 필요함 (거짓일 경우 check_exec_name_is_builtin를 실행시켜선 안됨)
+int	interprete_exe_name(t_cmd *cmd)
+{
+	int			index;
+	char		*str;
+	char		**sep;
+	t_cmd		*tmp;
+	struct stat	sb;
 
-int exec_builtin(t_cmd *cmd)
+	if ((cmd->exec_file_name[0] == '.' && cmd->exec_file_name[1] == '/')
+		|| cmd->exec_file_name[0] == '/')
+	{
+		index = stat(cmd->exec_file_name, &sb);
+		if (index == -1)
+			return (1);
+		else if ((sb.st_mode & S_IFMT) == S_IFDIR)
+			return (3);
+		else
+			return (0);
+	}
+	str = ft_strdup(ft_getenv("PATH"));
+	index = -1;
+	sep = ft_p_split(str, ':');
+	parse_safe_free_multi_str(str, NULL, NULL, NULL);
+	if (str == NULL || sep == NULL)
+		return (-1);
+	return (interprete_helper(sep, index, cmd));
+}
+
+int	exec_builtin(t_cmd *cmd)
 {
 	if (ft_p_strcmp(cmd->exec_file_name, "echo") == 0)
 		return (ft_echo(cmd->argv, &(g_state.list)));
@@ -92,9 +91,9 @@ int	check_exec_name_is_builtin(t_cmd *cmd)
 		return (0);
 	else if (ft_p_strcmp(cmd->exec_file_name, "pwd") == 0)
 		return (0);
-	else if (ft_p_strcmp(cmd->exec_file_name, "env")  == 0)
+	else if (ft_p_strcmp(cmd->exec_file_name, "env") == 0)
 		return (0);
-	else if (ft_p_strcmp(cmd->exec_file_name, "exit")  == 0)
+	else if (ft_p_strcmp(cmd->exec_file_name, "exit") == 0)
 		return (0);
 	else if (ft_p_strcmp(cmd->exec_file_name, "cd") == 0)
 		return (1);

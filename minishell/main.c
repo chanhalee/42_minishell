@@ -4,7 +4,9 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include <termios.h>
+// #include <termios.h>
+#include <curses.h>
+#include <term.h>
 #include "./include/command_parse.h"
 #include "./include/ft_builtin.h"
 
@@ -88,7 +90,15 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
 				// print_cmd_lists(cmd_lst);
 				ft_heredoc(cmd_lst);
 				if (cmd_lst->status == TYPE_SYNTAX_ERR)
+				{
 					printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
+					g_state.exit_code = 258;
+				}
+				else if (cmd_lst->status == TYPE_AMBIGUOUS_ERR)
+				{
+					printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
+					g_state.exit_code = 1;
+				}
 				else
 					ret = ft_exec(cmd_lst);
 				unlink_tmp_file(cmd_lst);

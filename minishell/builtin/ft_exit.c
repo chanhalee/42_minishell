@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 14:47:27 by park              #+#    #+#             */
-/*   Updated: 2022/07/19 17:16:59 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/21 00:21:30 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,30 +18,21 @@ static int	check_num(char *str)
 	int	i;
 
 	i = 0;
-	while(str[i] == '-' || str[i] == '+')
+	while (str[i] == '-' || str[i] == '+')
 		i++;
-	while(str[i] != '\0')
+	while (str[i] != '\0')
 	{
 		if (str[i] < '0' || str[i] > '9')
-			return FAIL;
+			return (FAIL);
 		i++;
 	}
-	return SUCCESS;
+	return (SUCCESS);
 }
 
-int	ft_exit(char **argv)
+static int	exit_helper(int i, char **argv)
 {
-	int	i;
 	int	rst;
 
-	i = 0;
-	if (argv[1] == NULL)
-	{
-		printf("exit\n");
-		return(34);
-	}
-	while (argv[i] != NULL)
-		i++;
 	if (i > 2)
 	{
 		printf("bash: exit: too many arguments\n");
@@ -59,4 +50,19 @@ int	ft_exit(char **argv)
 		printf("bash: exit: %s: numeric argument required\n", argv[1]);
 		return (255);
 	}
+}
+
+int	ft_exit(char **argv)
+{
+	int	i;
+
+	i = 0;
+	if (argv[1] == NULL)
+	{
+		printf("exit\n");
+		return (34);
+	}
+	while (argv[i] != NULL)
+		i++;
+	return (exit_helper(i, argv));
 }

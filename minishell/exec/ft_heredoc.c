@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:55:17 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/20 22:12:45 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 01:56:04 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,13 @@ void	go_heredoc(t_cmd_redirection *red, char *eof)
 	char	*str;
 
 	fd = open(red->file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-	while(1)
+	while (1)
 	{
 		str = readline("> ");
 		if (ft_strcmp(eof, str) == 0)
 		{
 			free(str);
-			break;
+			break ;
 		}
 		write(fd, str, ft_strlen(str));
 		write(fd, "\n", 1);
@@ -54,7 +54,7 @@ void	ft_heredoc(t_cmd_list *lists)
 	t_cmd_redirection	*red;
 	int					i;
 	char				*eof;
-	
+
 	cmd = lists->cmd_list;
 	i = 0;
 	while (cmd != NULL)
@@ -64,12 +64,10 @@ void	ft_heredoc(t_cmd_list *lists)
 		{
 			if (red->red_type == TYPE_TOKEN_IO_LL)
 			{
-				// int fd;
 				eof = ft_strdup(red->file);
 				rand_file_name(red, i);
 				red->red_type = BEFORE_LL;
 				go_heredoc(red, eof);
-				// printf("new_file_name = %s, type = %d\n", red->file, red->red_type);
 				free(eof);
 				i++;
 			}
