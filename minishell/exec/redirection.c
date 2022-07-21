@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/18 20:07:22 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 01:55:10 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 13:50:21 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdio.h>
+#include <string.h>
+#include <errno.h>
 
-void	ft_redirection(t_cmd *cmd)
+int	ft_redirection(t_cmd *cmd)
 {
 	t_cmd_redirection	*red;
 	int					output_fd;
@@ -34,9 +36,11 @@ void	ft_redirection(t_cmd *cmd)
 			cmd->fd_in = open(red->file, O_RDONLY);
 		if (cmd->fd_out == -1 || cmd->fd_in == -1)
 		{
-			printf("bash: %s: No such file or directory\n", red->file);
-			g_state.exit_code = 127;
+			printf("bash: %s: %s\n", red->file, strerror(errno));
+			g_state.exit_code = 1;
+			return (1);
 		}
 		red = red->next;
 	}
+	return (0);
 }
