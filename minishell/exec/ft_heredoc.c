@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/20 20:55:17 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 18:14:44 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 19:59:55 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,10 @@ void	heredoc_handler(int signo)
 	{
 		printf("\n");
 		rl_on_new_line();
-    	rl_replace_line("", 1);
-    	rl_redisplay();
-		kill(pid, SIGTERM);
+		rl_replace_line("", 1);
+		kill(g_state.pid, SIGTERM);
 	}
 }
-
 void	go_heredoc(t_cmd_redirection *red, char *eof)
 {
 	int		fd;
@@ -37,10 +35,9 @@ void	go_heredoc(t_cmd_redirection *red, char *eof)
 	int		status;
 
 	fd = open(red->file, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+	g_state.pid = fork();
 	signal(SIGINT, heredoc_handler);
-	g_state.is_fork = 1;
-	pid = fork();
-	if (pid == 0)
+	if (g_state.pid == 0)
 	{
 		while(1)
 		{
@@ -59,21 +56,24 @@ void	go_heredoc(t_cmd_redirection *red, char *eof)
 			{
 				printf("\033[1A");
 				printf("\033[2C");
-				break ;
+				exit(1);
 			}
 			free(str);
 		}
-		exit(1);
+		exit(0);
 	}
-	else if (pid > 0)
+	else if (g_state.pid > 0)
 	{
-		wait(&status);
-		g_state.exit_code = WEXITSTATUS(status);
+		waitpid(g_state.pid, &status, 0);
+		if (WIFEXITED(status) == 0)
+			g_state.exit_code = 4242;
+		else
+			g_state.exit_code = WEXITSTATUS(status);
 	}
-	g_state.is_fork = 0;
 	signal(SIGINT, signal_handler);
 	close(fd);
 }
+
 
 void	rand_file_name(t_cmd_redirection *red, int i)
 {
@@ -87,7 +87,7 @@ void	rand_file_name(t_cmd_redirection *red, int i)
 	free(int_to_str);
 }
 
-void	ft_heredoc(t_cmd_list *lists)
+int	ft_heredoc(t_cmd_list *lists)
 {
 	t_cmd				*cmd;
 	t_cmd_redirection	*red;
@@ -108,10 +108,13 @@ void	ft_heredoc(t_cmd_list *lists)
 				red->red_type = BEFORE_LL;
 				go_heredoc(red, eof);
 				free(eof);
+				if (g_state.exit_code == 4242)
+					return (4242);
 				i++;
 			}
 			red = red->next;
 		}		
 		cmd = cmd->next;
 	}
+	return (0);
 }
