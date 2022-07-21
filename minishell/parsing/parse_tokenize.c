@@ -34,7 +34,7 @@ t_parse_token	*parse_tokenize(char *cmd_string)
 	parse_tokenize_change_chunk_to_argv(ret);
 	parse_tokenize_merge_argv(ret);
 	parse_tokenize_annihilate_space_token(&ret);
-	parse_check_syntex_err(ret);
+	parse_check_syntax_err(ret);
 	return (ret);
 }
 

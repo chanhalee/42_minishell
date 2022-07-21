@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/22 01:10:36 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 02:28:27 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ char				**ft_p_split_custom(char const *s, char c);
 char				**ft_p_strsep_custom(char const *s, char c);
 char				**ft_p_strsep_custom_io(char const *s, char c, char d);
 int					ft_p_strstr_custom(const char *h, const char *n, int *end);
+char				*ft_p_strdup_safe(const char *src);
 char				ft_p_get_last_char(char *str);
 char				**ft_p_split(char const *s, char c);
 char				*ft_p_strdup(const char *src);
@@ -141,8 +142,8 @@ void				parse_tokenize_io_red(t_parse_token *tok_lst);
 void				parse_tokenize_annihilate_empty_chunk(
 						t_parse_token *tok_lst);
 void				parse_tokenize_merge_argv(t_parse_token *tok_lst);
-int					parse_check_syntex_err(t_parse_token *tok_lst);
-t_cmd_list			*handle_syntex_err_tok(t_parse_token *tok_lst);
+int					parse_check_syntax_err(t_parse_token *tok_lst);
+t_cmd_list			*handle_syntax_err_tok(t_parse_token *tok_lst);
 void				*parse_t_cmd_add_argv(t_cmd *cmd, char *str, int index);
 t_cmd_list			*parse_assemble_tokens_to_t_cmd_list(
 						t_parse_token *tok_lst);

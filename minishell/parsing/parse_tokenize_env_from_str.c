@@ -6,7 +6,7 @@
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/19 16:39:51 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/19 18:39:53 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:22:06 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ char	*parse_env_from_str(char *str)
 
 char	*parse_env_from_str_sub(char *str, int end)
 {
-	char	*str1;
 	char	*str2;
 	char	*str3;
 
@@ -66,7 +65,7 @@ char	*parse_env_from_str_sub(char *str, int end)
 	str2 = ft_substr(str, end, ft_strlen(str));
 	str3 = ft_strjoin(str3, str2);
 	parse_safe_free_multi_str(str2, NULL, NULL, NULL);
-	if (str1 == NULL)
+	if (str3 == NULL)
 		return (str);
 	free (str);
 	return (str3);

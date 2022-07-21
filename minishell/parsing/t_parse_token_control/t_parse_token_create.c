@@ -44,7 +44,6 @@ t_parse_token	*add_token(t_parse_token **token_list,
 		size_t index, int type, char *content)
 {
 	t_parse_token	*ret;
-	t_parse_token	*prev;
 
 	if (token_list == NULL)
 		return (NULL);

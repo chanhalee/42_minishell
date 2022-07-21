@@ -1,29 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_main.c                                     :+:      :+:    :+:   */
+/*   ft_strdup_safe.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/08 12:32:33 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/16 16:03:43 by chanhale         ###   ########.fr       */
+/*   Created: 2021/11/10 16:53:44 by chanhale          #+#    #+#             */
+/*   Updated: 2022/07/22 02:27:15 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../include/command_parse.h"
+#include "../../include/command_parse.h"
 
-t_cmd_list	*parse(char *raw_cmd_string)
+char	*ft_p_strdup_safe(const char *src)
 {
-	t_cmd_list		*ret;
-	t_parse_token	*tokens;
+	int		size;
+	int		localindex;
+	char	*result;
 
-	tokens = parse_tokenize(raw_cmd_string);
-	if (tokens == NULL)
+	size = 0;
+	if (src == NULL)
+		src = "";
+	while (src[size])
+		size++;
+	result = (char *)malloc((size + 1) * sizeof(char));
+	if (result == NULL)
 		return (NULL);
-	if (tokens->token_type == TYPE_SYNTAX_ERR
-		|| tokens->token_type == TYPE_AMBIGUOUS_ERR)
-		return (handle_syntax_err_tok(tokens));
-	ret = parse_assemble_tokens_to_t_cmd_list(tokens);
-	free_t_parse_token_list(tokens);
-	return (ret);
+	localindex = -1;
+	while (++localindex < size)
+		result[localindex] = src[localindex];
+	result[localindex] = '\0';
+	return (result);
 }

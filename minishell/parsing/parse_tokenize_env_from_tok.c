@@ -89,12 +89,10 @@ void	parse_env_from_tok_sub(t_parse_token *tok, int end)
 
 void	*parse_env_from_tok_sub_question(t_parse_token *tok)
 {
-	int		end;
 	char	*str1;
 	char	*str2;
 	char	*str3;
 
-	end = 1;
 	str1 = ft_p_itoa(get_exitcode());
 	str2 = ft_p_substr(tok->string, 2, ft_p_strlen(tok->string));
 	if (str1 == NULL || str2 == NULL)

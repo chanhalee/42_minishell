@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   for_exe_part.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/21 21:05:38 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 02:30:02 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ int	interprete_exe_name(t_cmd *cmd)
 		else
 			return (0);
 	}
-	str = ft_strdup(ft_getenv("PATH"));
+	str = ft_p_strdup_safe(ft_getenv("PATH"));
 	index = -1;
 	sep = ft_p_split(str, ':');
 	parse_safe_free_multi_str(str, NULL, NULL, NULL);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:54:06 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/22 01:11:51 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:58:04 by chanhale         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 int		ft_exec(t_cmd_list *lists);
 void	init_env_and_signal(char **env);
+int		full_of_space(char *str);
 
 void	print_intro(void)
 {
@@ -50,7 +51,7 @@ void	prompt_helper(t_cmd_list *cmd_lst, char *str, int *ret)
 
 	cmd_lst = parse(ft_p_strdup(str));
 	i = 0;
-	if (ft_heredoc(cmd_lst, i) != 4242)
+	if (!full_of_space(str) && ft_heredoc(cmd_lst, i) != 4242)
 	{
 		if (cmd_lst->status == TYPE_SYNTAX_ERR)
 		{
@@ -60,7 +61,7 @@ void	prompt_helper(t_cmd_list *cmd_lst, char *str, int *ret)
 		}
 		else if (cmd_lst->status == TYPE_AMBIGUOUS_ERR)
 		{
-			printf("bash: syntax error near unexpected token `%s'\n",
+			printf("bash: %s: ambiguous redirect\n",
 				cmd_lst->cmd_list->exec_file_name);
 			g_state.exit_code = 1;
 		}
@@ -111,4 +112,15 @@ int	main(int argc, char **argv, char **env)
 	str = NULL;
 	prompt(cmd_lst, str);
 	return (0);
+}
+
+int	full_of_space(char *str)
+{
+	int	idx;
+
+	idx = -1;
+	while (str[++idx] != '\0')
+		if (str[idx] != ' ')
+			return (0);
+	return (1);
 }
