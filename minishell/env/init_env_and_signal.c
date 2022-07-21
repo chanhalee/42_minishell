@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 14:29:21 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 17:52:45 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:48:36 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,15 +35,13 @@ void	signal_handler(int signo)
 
 void	init_env_and_signal(char **env)
 {
-	struct termios term;
+	struct termios	term;
 
 	ft_initlist(&(g_state.list));
 	init_env(env, &(g_state.head), &(g_state.list));
 	g_state.exit_code = 0;
-
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, SIG_IGN);
-
 	tcgetattr(STDIN_FILENO, &term);
 	term.c_lflag &= ~(ECHOCTL);
 	tcsetattr(STDIN_FILENO, TCSANOW, &term);

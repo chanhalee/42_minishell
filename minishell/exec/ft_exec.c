@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:31:29 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 14:18:15 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 20:46:30 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,12 @@ int	ft_exec(t_cmd_list *lists)
 		arr[2] = dup(STDIN);
 		pipe(cmd->fds);
 		if (check_null(cmd) == 1)
+		{
+			printf("bash: : command not found\n");
+			ft_redirection(cmd);
+			cmd = cmd->next;
 			continue ;
+		}
 		arr[1] = check_exec_name_is_builtin(cmd);
 		arr[0] = interprete_exe_name(cmd);
 		if (ft_exec_helper(arr, cmd) == 34)

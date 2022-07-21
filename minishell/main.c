@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:54:06 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 19:59:35 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/21 21:02:16 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int		ft_exec(t_cmd_list *lists);
 void	signal_handler(int signo);
 void	init_env_and_signal(char **env);
 void	free_env(t_list	*list);
+void	print_cmd_lists(t_cmd_list *lists);
 
 void	print_intro(void)
 {
@@ -36,9 +37,10 @@ void	print_intro(void)
 	{
 		readsize = read(intro_fd, buffer, 42);
 		buffer[42] = '\0';
-		if (readsize < 1) {
+		if (readsize < 1)
+		{
 			printf("\n");
-			break;
+			break ;
 		}
 		printf("%s", buffer);
 	}
@@ -47,17 +49,22 @@ void	print_intro(void)
 
 void	prompt_helper(t_cmd_list *cmd_lst, char *str, int *ret)
 {
+	int	i;
+
 	cmd_lst = parse(ft_p_strdup(str));
-	if (ft_heredoc(cmd_lst) != 4242)
-		{
+	i = 0;
+	if (ft_heredoc(cmd_lst, i) != 4242)
+	{
 		if (cmd_lst->status == TYPE_SYNTAX_ERR)
 		{
-			printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
+			printf ("bash: syntax error near unexpected token `%s'\n",
+				cmd_lst->cmd_list->exec_file_name);
 			g_state.exit_code = 258;
 		}
 		else if (cmd_lst->status == TYPE_AMBIGUOUS_ERR)
 		{
-			printf("bash: syntax error near unexpected token `%s'\n", cmd_lst->cmd_list->exec_file_name);
+			printf("bash: syntax error near unexpected token `%s'\n",
+				cmd_lst->cmd_list->exec_file_name);
 			g_state.exit_code = 1;
 		}
 		else
@@ -70,9 +77,9 @@ void	prompt_helper(t_cmd_list *cmd_lst, char *str, int *ret)
 
 void	prompt(t_cmd_list *cmd_lst, char *str)
 {
-	int ret;
+	int	ret;
 
-	while(1)
+	while (1)
 	{
 		str = readline("bash$ ");
 		if (str)
@@ -94,15 +101,19 @@ void	prompt(t_cmd_list *cmd_lst, char *str)
 	}
 }
 
-int main(int argc, char **argv, char **env)
+int	main(int argc, char **argv, char **env)
 {
 	t_cmd_list	*cmd_lst;
 	char		*str;
-	
+
+	(void)argc;
+	(void)argv;
 	print_intro();
 	init_env_and_signal(env);
+	cmd_lst = NULL;
+	str = NULL;
 	prompt(cmd_lst, str);
 	free_env(&(g_state.list));
 	system("leaks minishell");
-	return(0);
+	return (0);
 }
