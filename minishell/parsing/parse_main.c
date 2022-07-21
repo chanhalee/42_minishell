@@ -20,7 +20,8 @@ t_cmd_list	*parse(char *raw_cmd_string)
 	tokens = parse_tokenize(raw_cmd_string);
 	if (tokens == NULL)
 		return (NULL);
-	if (tokens->token_type == TYPE_SYNTAX_ERR || tokens->token_type == TYPE_AMBIGUOUS_ERR)
+	if (tokens->token_type == TYPE_SYNTAX_ERR
+		|| tokens->token_type == TYPE_AMBIGUOUS_ERR)
 		return (handle_syntex_err_tok(tokens));
 	ret = parse_assemble_tokens_to_t_cmd_list(tokens);
 	free_t_parse_token_list(tokens);

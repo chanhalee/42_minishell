@@ -49,9 +49,11 @@ void	parse_tokenize_merge_argv_handle_env_null(t_parse_token *tok_lst)
 	str = NULL;
 	if (tok_lst->original_str != NULL && tok_lst->next->original_str != NULL)
 		str = ft_p_strjoin(tok_lst->original_str, tok_lst->next->original_str);
-	else if (tok_lst->original_str != NULL && tok_lst->next->original_str == NULL)
+	else if (tok_lst->original_str != NULL
+		&& tok_lst->next->original_str == NULL)
 		str = ft_p_strjoin(tok_lst->original_str, tok_lst->next->string);
-	else if (tok_lst->original_str == NULL && tok_lst->next->original_str != NULL)
+	else if (tok_lst->original_str == NULL
+		&& tok_lst->next->original_str != NULL)
 		str = ft_p_strjoin(tok_lst->string, tok_lst->next->original_str);
 	if (str == NULL)
 		return ;
