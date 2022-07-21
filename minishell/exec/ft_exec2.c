@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:33:32 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 13:49:16 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 00:54:04 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void	ft_set_pipe(t_cmd *cmd)
 		dup2(cmd->fd_out, 1);
 }
 
-void	exec_cmd(t_cmd *cmd)
+void	exec_cmd(t_cmd *cmd, char **env)
 {
 	int	pid;
 	int	ret;
@@ -74,7 +74,7 @@ void	exec_cmd(t_cmd *cmd)
 		ft_set_pipe(cmd);
 		ret = exec_builtin(cmd);
 		if (ret == -1)
-			ret = execve(cmd->argv[0], cmd->argv, NULL);
+			ret = execve(cmd->argv[0], cmd->argv, env);
 		exit(ret);
 	}
 	else

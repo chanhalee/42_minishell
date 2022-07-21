@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:31:29 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 20:46:30 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:09:04 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@
 
 int		ft_redirection(t_cmd *cmd);
 void	close_fd(t_cmd *cmd, int *stin, int *stout);
-void	exec_cmd(t_cmd *cmd);
+void	exec_cmd(t_cmd *cmd, char **env);
 void	set_type(t_cmd_list *lists);
+void	free_env_list(char **env_list);
+char	**get_env_list(t_list *list);
 
 static int	check_null(t_cmd *cmd)
 {
@@ -47,7 +49,7 @@ static int	ft_exec_helper2(int arr[4], t_cmd *cmd)
 	return (0);
 }
 
-static int	ft_exec_helper(int arr[4], t_cmd *cmd)
+static int	ft_exec_helper(int arr[4], t_cmd *cmd, char **env)
 {
 	if (arr[1] == 1)
 	{
@@ -58,7 +60,7 @@ static int	ft_exec_helper(int arr[4], t_cmd *cmd)
 		printf("bash: %s: is a directory\n", cmd->argv[0]);
 	else if (arr[1] == 0 || arr[0] == 0)
 	{
-		exec_cmd(cmd);
+		exec_cmd(cmd, env);
 		close_fd(cmd, &arr[2], &arr[3]);
 		if (g_state.exit_code == 34 && cmd->prev == NULL)
 			return (34);
@@ -72,29 +74,43 @@ static int	ft_exec_helper(int arr[4], t_cmd *cmd)
 	return (0);
 }
 
+static int	ft_exec_helper3(t_cmd **cmd, char **env)
+{
+	pipe((*cmd)->fds);
+	if (check_null(*cmd) == 1)
+	{
+		printf("bash: : command not found\n");
+		ft_redirection(*cmd);
+		*cmd = (*cmd)->next;
+		free_env_list(env);
+		return (1);
+	}
+	return (0);
+}
+
 int	ft_exec(t_cmd_list *lists)
 {
 	t_cmd	*cmd;
+	char	**env;
 	int		arr[4];
 
 	set_type(lists);
 	cmd = lists->cmd_list;
 	while (cmd != NULL)
 	{
+		env = get_env_list(&(g_state.list));
 		arr[3] = dup(STDOUT);
 		arr[2] = dup(STDIN);
-		pipe(cmd->fds);
-		if (check_null(cmd) == 1)
-		{
-			printf("bash: : command not found\n");
-			ft_redirection(cmd);
-			cmd = cmd->next;
+		if (ft_exec_helper3(&cmd, env) == 1)
 			continue ;
-		}
 		arr[1] = check_exec_name_is_builtin(cmd);
 		arr[0] = interprete_exe_name(cmd);
-		if (ft_exec_helper(arr, cmd) == 34)
+		if (ft_exec_helper(arr, cmd, env) == 34)
+		{
+			free_env_list(env);
 			return (34);
+		}
+		free_env_list(env);
 		cmd = cmd->next;
 	}
 	return (0);

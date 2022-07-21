@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   command_parse.h                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/08 12:32:25 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/21 23:48:52 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:10:36 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,6 @@
 
 # define ERROR 0
 # define SUCCESS 1
-# define NON_DIR 126
-# define NON_COMMAND 127
 # define TYPE_PIPE 88
 # define TYPE_NORMAL 0
 
@@ -93,9 +91,6 @@ typedef struct s_state
 	t_env	*tmp;
 	pid_t	pid;
 	int		exit_code;
-	int		end;
-	int		std_in;
-	int		std_out;
 	int		is_fork;
 }	t_state;
 

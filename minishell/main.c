@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 13:54:06 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/21 21:02:16 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 01:11:51 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,7 @@
 #include "./include/ft_builtin.h"
 
 int		ft_exec(t_cmd_list *lists);
-void	signal_handler(int signo);
 void	init_env_and_signal(char **env);
-void	free_env(t_list	*list);
-void	print_cmd_lists(t_cmd_list *lists);
 
 void	print_intro(void)
 {
@@ -113,7 +110,5 @@ int	main(int argc, char **argv, char **env)
 	cmd_lst = NULL;
 	str = NULL;
 	prompt(cmd_lst, str);
-	free_env(&(g_state.list));
-	system("leaks minishell");
 	return (0);
 }
