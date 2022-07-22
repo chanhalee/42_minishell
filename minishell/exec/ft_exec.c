@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:31:29 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/22 01:09:04 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/22 13:58:02 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,12 @@ static int	ft_exec_helper2(int arr[4], t_cmd *cmd)
 	if (ft_redirection(cmd) == 1)
 		return (1);
 	if (arr[1] == -1 && arr[0] == -1)
-		printf("bash: %s: command not found\n", cmd->argv[0]);
+	{
+		if (ft_getenv("PATH") == NULL)
+			printf("bash: %s: No such file or directory\n", cmd->argv[0]);
+		else
+			printf("bash: %s: command not found\n", cmd->argv[0]);
+	}
 	else if (arr[1] == -1 && arr[0] == 1)
 		printf("bash: %s: No such file or directory\n", cmd->argv[0]);
 	g_state.exit_code = 127;
