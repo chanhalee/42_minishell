@@ -17,7 +17,6 @@ void	parse_tokenize_merge_argv_handle_env_null(t_parse_token *tok_lst);
 void	parse_tokenize_merge_argv(t_parse_token *tok_lst)
 {
 	t_parse_token	*tok;
-	t_parse_token	*prev;
 	char			*str;
 
 	while (tok_lst != NULL)

@@ -21,8 +21,6 @@ void	parse_tokenize_io_red(t_parse_token *tok_lst)
 {
 	t_parse_token	*next_tok;
 	t_parse_token	*preserve;
-	char			*str;
-	int				index;
 
 	preserve = tok_lst;
 	while (tok_lst != NULL)
@@ -42,7 +40,6 @@ void	parse_tokenize_io_red(t_parse_token *tok_lst)
 void	parse_tokenize_io_red_merge_l(t_parse_token *tok_lst)
 {
 	t_parse_token	*tok;
-	t_parse_token	*prev;
 	char			*str;
 
 	while (tok_lst != NULL)
@@ -67,7 +64,6 @@ void	parse_tokenize_io_red_merge_l(t_parse_token *tok_lst)
 void	parse_tokenize_io_red_merge_r(t_parse_token *tok_lst)
 {
 	t_parse_token	*tok;
-	t_parse_token	*prev;
 	char			*str;
 
 	while (tok_lst != NULL)

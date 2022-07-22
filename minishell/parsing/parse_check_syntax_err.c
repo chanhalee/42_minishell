@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parse_check_syntex_err.c                         :+:      :+:    :+:   */
+/*   parse_check_syntax_err.c                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../include/command_parse.h"
 
-int	parse_check_syntex_err_set_err(t_parse_token *tok_lst,
+int	parse_check_syntax_err_set_err(t_parse_token *tok_lst,
 		t_parse_token *err, t_parse_token *prev)
 {
 	char	*str;
@@ -42,8 +42,8 @@ int	parse_check_syntex_err_set_err(t_parse_token *tok_lst,
 	return (0);
 }
 
-int	parse_check_syntex_err_set_ambig(t_parse_token *tok_lst,
-		t_parse_token *err, t_parse_token *prev)
+int	parse_check_syntax_err_set_ambig(t_parse_token *tok_lst,
+		t_parse_token *err)
 {
 	char	*str;
 
@@ -56,11 +56,10 @@ int	parse_check_syntex_err_set_ambig(t_parse_token *tok_lst,
 	return (0);
 }
 
-int	parse_check_syntex_err(t_parse_token *tok_lst)
+int	parse_check_syntax_err(t_parse_token *tok_lst)
 {
 	t_parse_token	*tok;
 	t_parse_token	*prev;
-	char			*str;
 
 	prev = NULL;
 	tok = tok_lst;
@@ -69,15 +68,15 @@ int	parse_check_syntex_err(t_parse_token *tok_lst)
 		if (tok->token_type == TYPE_TOKEN_PIPELINE && (prev == NULL
 				|| tok->next == NULL || prev->token_type != TYPE_TOKEN_ARGV
 				|| tok->next->token_type == TYPE_TOKEN_PIPELINE))
-			return (parse_check_syntex_err_set_err(tok_lst, tok, prev));
+			return (parse_check_syntax_err_set_err(tok_lst, tok, prev));
 		if (tok->token_type >= TYPE_TOKEN_IO_R
 			&& tok->token_type <= TYPE_TOKEN_IO_LL
 			&& (tok->next == NULL || tok->next->token_type != TYPE_TOKEN_ARGV))
-			return (parse_check_syntex_err_set_err(tok_lst, tok, prev));
+			return (parse_check_syntax_err_set_err(tok_lst, tok, prev));
 		if (tok->token_type >= TYPE_TOKEN_IO_R
 			&& tok->token_type <= TYPE_TOKEN_IO_L
 			&& (tok->next != NULL && tok->next->is_null == TYPE_ARGV_NULL))
-			return (parse_check_syntex_err_set_ambig(tok_lst, tok, prev));
+			return (parse_check_syntax_err_set_ambig(tok_lst, tok));
 		prev = tok;
 		tok = tok->next;
 	}

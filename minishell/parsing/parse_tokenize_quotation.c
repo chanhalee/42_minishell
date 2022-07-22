@@ -82,7 +82,6 @@ char	**seperate_quote_sub_double_quote(char *str, int start, int end)
 
 char	**seperate_quote(char *str)
 {
-	char	quotation;
 	int		start;
 	int		end;
 

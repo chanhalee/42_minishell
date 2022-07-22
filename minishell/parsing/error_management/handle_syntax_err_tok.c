@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_syntex_err_tok.c                          :+:      :+:    :+:   */
+/*   handle_syntax_err_tok.c                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -12,7 +12,7 @@
 
 #include "../../include/command_parse.h"
 
-t_cmd_list	*handle_syntex_err_tok(t_parse_token *tok_lst)
+t_cmd_list	*handle_syntax_err_tok(t_parse_token *tok_lst)
 {
 	char		*str;
 	int			err_code;

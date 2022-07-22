@@ -42,7 +42,6 @@ void print_cmd(t_cmd *cmd)
 void print_cmd_lists(t_cmd_list *lists)
 {
 	int			cmd_counter;
-	t_cmd_list	*p;
 	t_cmd		*cmd;
 
 	cmd_counter = -1;

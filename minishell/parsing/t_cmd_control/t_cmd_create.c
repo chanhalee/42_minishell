@@ -65,7 +65,6 @@ t_cmd	*add_empty_t_cmd_to_list(t_cmd_list *cmd_list)
 t_cmd_list	*create_empty_t_cmd_list(void)
 {
 	t_cmd_list	*ret;
-	t_cmd_list	*prev_list;
 
 	ret = (t_cmd_list *)malloc(sizeof(t_cmd_list));
 	if (ret == NULL)
