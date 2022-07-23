@@ -3,13 +3,13 @@
 **간단한 쉘 만들기**
 
 readline 라이브러리 설치
-brew install readline
+>brew install readline
 
 readline 라이브러리 위치 확인
-brew info readline
+>brew info readline
 
 컴파일
-gcc test.c -L/$HOME/.brew/opt/readline/lib -I/$HOME/.brew/opt/readline/include -lreadline
+>make #minishell 디렉터리에서 make 입력
 
 -   참가인원
 
@@ -18,8 +18,4 @@ gcc test.c -L/$HOME/.brew/opt/readline/lib -I/$HOME/.brew/opt/readline/include -
 
 -   진행기간
 
-    2022-07-07 ~
-
--   구현 완료
-    입력 프롬프트 생성
-    signal 처리 (SIGINT, SIGTERM, SIGQUIT)
+    2022-07-07 ~ 2022-07-22
