@@ -77,8 +77,8 @@ OBJS			= $(SRCS:.c=.o)
 CC				= gcc
 RM				= rm -f
 CFLAGS			= -Wall -Werror -Wextra
-READLINE_INC	= /opt/homebrew/opt/readline/include
-READLINE_LIB	= /opt/homebrew/opt/readline/lib
+READLINE_INC	= $(HOME)/.brew/opt/readline/include
+READLINE_LIB	= $(HOME)/.brew/opt/readline/lib
 
 %.o:			%.c
 				$(CC) $(CFLAGS) -I$(READLINE_INC) -c $< -o $@
@@ -94,6 +94,8 @@ clean:
 fclean:			clean
 				$(RM) $(NAME)
 
-re: 			fclean all
+re: 			
+				make fclean
+				make all
 
 .PHONY: 		all, clean, fclean, re

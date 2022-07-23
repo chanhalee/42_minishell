@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:15:59 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 01:49:44 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/23 11:48:12 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,7 @@ int	ft_unset(char **argv, t_list *list)
 			return (1);
 		}
 		else
-		{
 			ft_lstdelone(list, argv[i]);
-			break ;
-		}
 		i++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/21 02:31:29 by jeounpar          #+#    #+#             */
-/*   Updated: 2022/07/22 13:58:02 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/23 12:08:36 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,11 @@ static int	ft_exec_helper(int arr[4], t_cmd *cmd, char **env)
 	}
 	else if (arr[0] == 3)
 		printf("bash: %s: is a directory\n", cmd->argv[0]);
-	else if (arr[1] == 0 || arr[0] == 0)
+	else if (arr[1] == 0 || arr[0] == 0 || arr[1]  == 5)
 	{
 		exec_cmd(cmd, env);
 		close_fd(cmd, &arr[2], &arr[3]);
-		if (g_state.exit_code == 34 && cmd->prev == NULL)
+		if (arr[1] == 5 && cmd->prev == NULL && cmd->next == NULL)
 			return (34);
 		g_state.is_fork = 0;
 	}

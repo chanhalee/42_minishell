@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/15 18:37:43 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 21:04:46 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/23 11:36:06 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,9 @@
 
 static void	echo_helper(char **argv, int idx)
 {
-	char	*key;
-	char	*value;
-
 	while (argv[idx] != NULL)
 	{
-		if (argv[idx][0] == '$')
-		{
-			key = ft_substr(argv[idx], 1, ft_strlen(argv[idx]));
-			value = ft_getenv(key);
-			printf("%s\n", value);
-			free(key);
-		}
-		else
-			printf("%s", argv[idx]);
+		printf("%s", argv[idx]);
 		if (argv[idx + 1] != NULL)
 			printf(" ");
 		idx++;
