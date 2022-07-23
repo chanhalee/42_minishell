@@ -6,7 +6,7 @@
 /*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/16 03:00:57 by park              #+#    #+#             */
-/*   Updated: 2022/07/21 13:42:56 by jeounpar         ###   ########.fr       */
+/*   Updated: 2022/07/23 11:53:18 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ static void	free_key_value(char **envs)
 int	ft_export(char **argv, t_list *list)
 {
 	int		error;
+	int		idx;
 	char	**envs;
 
 	if (argv[1] == NULL)
@@ -73,12 +74,17 @@ int	ft_export(char **argv, t_list *list)
 		return (print_error(error, argv[1]));
 	if (error == 1)
 	{
-		envs = ft_p_split(argv[1], '=');
-		if (ft_is_in_env(&(g_state.list), envs[0]) == 1)
-			ft_update_env(&(g_state.list), envs[0], envs[1]);
-		else
-			ft_lstadd(&(g_state.list), ft_strdup(envs[0]), ft_strdup(envs[1]));
-		free_key_value(envs);
+		idx = 1;
+		while (argv[idx] != NULL)
+		{
+			envs = ft_p_split(argv[1], '=');
+			if (ft_is_in_env(&(g_state.list), envs[0]) == 1)
+				ft_update_env(&(g_state.list), envs[0], envs[1]);
+			else
+				ft_lstadd(&(g_state.list), ft_strdup(envs[0]), ft_strdup(envs[1]));
+			free_key_value(envs);
+			idx++;
+		}
 	}
 	return (0);
 }

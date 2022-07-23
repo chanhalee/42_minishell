@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   for_exe_part.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: chanhale <chanhale@student.42seoul.kr>     +#+  +:+       +#+        */
+/*   By: jeounpar <jeounpar@student.42seoul.kr>     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/17 12:25:05 by chanhale          #+#    #+#             */
-/*   Updated: 2022/07/22 02:30:02 by chanhale         ###   ########.fr       */
+/*   Updated: 2022/07/23 12:04:36 by jeounpar         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	check_exec_name_is_builtin(t_cmd *cmd)
 	else if (ft_p_strcmp(cmd->exec_file_name, "env") == 0)
 		return (0);
 	else if (ft_p_strcmp(cmd->exec_file_name, "exit") == 0)
-		return (0);
+		return (5);
 	else if (ft_p_strcmp(cmd->exec_file_name, "cd") == 0)
 		return (1);
 	else if (ft_p_strcmp(cmd->exec_file_name, "export") == 0)
